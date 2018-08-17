@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mint.project.review">
+	<resultMap type="com.mint.project.dtos.ReviewDto" id="ReviewDto">
+       	<result property="rseq" column="rseq" />
+       	<result property="rmseq" column="rmseq" />
+       	<result property="ruseq" column="ruseq" />
+       	<result property="rcontent" column="rcontent" />
+       	<result property="rup" column="rup" />
+       	<result property="rdown" column="rdown" />
+       	<result property="rdate" column="rdate" />
+       
+	</resultMap>
+       
+</mapper>

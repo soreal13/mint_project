@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  <mapper namespace="com.mint.project.genre">
+       <resultMap type="com.mint.project.dtos.GenreDto" id="GenreDto">
+	       <result property="gseq" column="gseq" />
+	      <result property="gmseq" column="gmseq" />
+	      <result property="gaction" column="gaction" />
+	      <result property="gcomedy" column="gcomedy" />
+	      <result property="gcrime" column="gcrime" />
+	      <result property="gdocumentary" column="gdocumentary" />
+	      <result property="gdrama" column="gdrama" />
+	      <result property="gfamily" column="gfamily" />
+	      <result property="gfantasy" column="gfantasy" />
+	      <result property="gnoir" column="gnoir" />
+	      <result property="ghorror" column="ghorror" />
+	      <result property="gmusical" column="gmusical" />
+	      <result property="gmystery" column="gmystery" />
+	      <result property="gromance" column="gromance" />
+	      <result property="gsf" column="gsf" />
+	      <result property="gsports" column="gsports" />
+	      <result property="gthriller" column="gthriller" />
+	      <result property="gwar" column="gwar" />
+	      <result property="gcar" column="gcar" />
+	      <result property="grabbit" column="grabbit" />
+	      <result property="ganimation" column="ganimation" />
+	      <result property="gchildren" column="gchildren" />
+	      <result property="ghistory" column="ghistory" />
+	      <result property="groco" column="groco" />
+	      <result property="gdisaster" column="gdisaster" />
+	      <result property="gwuxia" column="gwuxia" />
+	      <result property="gwestern" column="gwestern" />
+	      <result property="ghotguy" column="ghotguy" />
+	      <result property="ghighteen" column="ghighteen" />
+	      <result property="gdomestic" column="gdomestic" />
+	      <result property="gforeign" column="gforeign" />
+             
+       </resultMap>
+      
+</mapper>

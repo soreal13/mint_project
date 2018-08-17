@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="com.mint.project.dtos.GenreDto" alias="GenreDto"/>
+		 <typeAlias type="com.mint.project.dtos.MovieDto" alias="MovieDto"/>
+		 <typeAlias type="com.mint.project.dtos.ReviewDto" alias="ReviewDto"/>
+		 <typeAlias type="com.mint.project.dtos.StarpointDto" alias="StarpointDto"/>
+		 <typeAlias type="com.mint.project.dtos.TasteDto" alias="TasteDto"/>
+		 <typeAlias type="com.mint.project.dtos.UserDto" alias="UserDto"/>
+	      
+	</typeAliases>
+	
+	
+	<mappers>     
+	      <mapper resource="/sqls/Genre_mapper.xml" />
+	      <mapper resource="/sqls/Movie_mapper.xml" />
+	      <mapper resource="/sqls/Review_mapper.xml" />  
+	      <mapper resource="/sqls/Starpoint_mapper.xml" />  
+	      <mapper resource="/sqls/Taste_mapper.xml" />
+	      <mapper resource="/sqls/User_mapper.xml" />        
+	</mappers>
+
+
+</configuration> 
+  

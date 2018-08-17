@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="com.mint.project.user">
+	<resultMap type="com.mint.project.dtos.UserDto" id="UserDto">
+	
+	  <result property="useq" column="useq" />
+      <result property="uemail" column="uemail" />
+      <result property="unick" column="unick" />
+      <result property="upwd" column="upwd" />
+      <result property="uimg" column="uimg" />
+      <result property="udelflag" column="udelflag" />
+      <result property="umseq" column="umseq" />
+      <result property="ufmseq" column="ufmseq" />
+      <result property="ufuseq" column="ufuseq" />
+      <result property="urseq" column="urseq" />
+      <result property="usessionkey" column="usessionkey" />
+      <result property="usessionlimit" column="usessionlimit" />
+      <result property="uuprseq" column="uuprseq" />
+      <result property="udownrseq" column="udownrseq" />	
+	       
+	</resultMap>
+       
+</mapper>

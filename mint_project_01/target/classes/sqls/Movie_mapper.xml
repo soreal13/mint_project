@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="com.mint.project.movie">
+	<resultMap type="com.mint.project.dtos.MovieDto" id="MovieDto">
+       	  <result property="mseq" column="mseq" />
+	      <result property="mimg" column="mimg" />
+	      <result property="mkeyw" column="mkeyw" />
+	      <result property="mshowdate" column="mshowdate" />
+	      <result property="mdirector" column="mdirector" />
+	      <result property="mtitle" column="mtitle" />
+	      <result property="mage" column="mage" />
+	      <result property="mactor" column="mactor" />
+	      <result property="msummary" column="msummary" />
+	      <result property="mgrade" column="mgrade" />
+	      <result property="mmdpick" column="mmdpick" />
+	      <result property="mfollow" column="mfollow" />
+       
+	</resultMap>
+       
+</mapper>

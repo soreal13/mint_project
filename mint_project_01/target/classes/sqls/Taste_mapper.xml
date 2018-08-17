@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="com.mint.project.taste">
+	<resultMap type="com.mint.project.dtos.TasteDto" id="TasteDto">
+          
+      <result property="tseq" column="tseq" />
+      <result property="tmseq" column="tmseq" />
+      <result property="taction" column="taction" />
+      <result property="tcomedy" column="tcomedy" />
+      <result property="tcrime" column="tcrime" />
+      <result property="tdocumentary" column="tdocumentary" />
+      <result property="tdrama" column="tdrama" />
+      <result property="tfamily" column="tfamily" />
+      <result property="tfantasy" column="tfantasy" />
+      <result property="tnoir" column="tnoir" />
+      <result property="thorror" column="thorror" />
+      <result property="tmusical" column="tmusical" />
+      <result property="tmystery" column="tmystery" />
+      <result property="tromance" column="tromance" />
+      <result property="tsf" column="tsf" />
+      <result property="tsports" column="tsports" />
+      <result property="tthriller" column="tthriller" />
+      <result property="twar" column="twar" />
+      <result property="tcar" column="tcar" />
+      <result property="trabbit" column="trabbit" />
+      <result property="tanimation" column="tanimation" />
+      <result property="tchildren" column="tchildren" />
+      <result property="thistory" column="thistory" />
+      <result property="troco" column="troco" />
+      <result property="tdisaster" column="tdisaster" />
+      <result property="twuxia" column="twuxia" />
+      <result property="twestern" column="twestern" />
+      <result property="thotguy" column="thotguy" />
+      <result property="thighteen" column="thighteen" />
+      <result property="tdomestic" column="tdomestic" />
+      <result property="tforeign" column="tforeign" /> 
+	</resultMap>
+       
+</mapper>
