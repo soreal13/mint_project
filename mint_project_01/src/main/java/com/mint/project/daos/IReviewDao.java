@@ -34,13 +34,14 @@ public interface IReviewDao {
 	//모든 후기 정보
 	public List<ReviewDto> getAllReview();
 	
-	//후기 공감 정보(useq저장,삭제)
+	//후기 공감
 	public boolean updateUp(int rseq, int useq);
 	
-	//후기 비공감(useq저장,삭제)
+	//후기 공감 취소
 	public boolean updateDown(int rseq, int useq);
 	
-	
+	//공감 눌렀는지 확인
+	public boolean chkReview(int useq);
 	
 	
 }

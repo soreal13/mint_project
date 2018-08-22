@@ -10,7 +10,30 @@
      	<result property="sgrade" column="sgrade" />
       	<result property="smseq" column="smseq" />
       	<result property="suseq" column="suseq" />
-       
 	</resultMap>
-       
+	
+<!-- 	초기별점정보생성 -->
+	<insert id="insertStarpoint" parameterType="StarpointDto">
+	INSERT INTO STARPOINT_TABLE (SSEQ, SGRADE, SMSEQ, SUSEQ) VALUES (STARPOINT_TABLE_SEQ.NEXTVAL, #{sgrade}, #{mseq}, #{useq})
+	</insert>
+<!--       별점 정보 수정 -->
+    <update id="updateStarpoint" parameterType="StarpointDto">
+    UPDATE STARPOINT_TABLE SET SGRADE=#{sgrade} WHERE SSEQ=#{sseq}
+    </update>
+<!--     유저&영화로 별점셀렉 -->
+	<select id="getOneStarpoint" parameterType="int">
+	SELECT SGRADE FROM STARPOINT_TABLE WHERE SUSEQ=#{useq} AND SMSEQ=#{mseq}
+	</select>
+<!-- 유저가 평가한 별점목록 -->
+	<select id="getUserStarpoint" parameterType="int">
+	SELECT * FROM STARPOINT_TABLE WHERE SUSEQ=#{useq}
+	</select>
+<!-- 영화별 별점목록 -->
+	<select id="getMovieStarpoint" parameterType="int">
+	SELECT * FROM STARPOINT_TABLE WHERE SMSEQ=#{mseq}
+	</select>
+<!-- 전체 별점목록 -->
+	<select id="getAllstarpoint" parameterType="int">
+	SELECT * FROM STARPOINT_TABLE
+	</select>
 </mapper>

@@ -9,41 +9,48 @@ import com.mint.project.dtos.StarpointDto;
 
 @Repository
 public class StarpointDaoImp implements IStarpointDao {
-
+	@Autowired
+	   private SqlSessionTemplate sqlSession;
+	   private String namespace="com.mint.project.daos";
+	
 	@Override
 	public int insertStarpoint(StarpointDto sdto) {
-		// TODO Auto-generated method stub
-		return 0;
+		  int count=0;
+	      count=sqlSession.insert(namespace+"insertStarpoint", sdto);
+	      return count>0?true:false;
 	}
 
 	@Override
 	public boolean updateStarpoint(StarpointDto sdto) {
-		// TODO Auto-generated method stub
-		return false;
+		 int count=sqlSession.update(namespace+"updateStarpoint",sdto);
+	      return count>0?true:false;
 	}
 
 	@Override
 	public StarpointDto getOneStarpoint(int useq, int mseq) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, Integer> map=new HashMap<>();
+		
+	    map.put("useq", useq);
+	    map.put("mseq", mseq);
+
+		
+		int count=sqlSession.selectOne(namespace+"getOneStarpoint",map);
+		return count>0?true:false;
 	}
 
 	@Override
 	public List<StarpointDto> getUserStarpoint(int useq) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace+"getUserStarpoint",useq);
 	}
 
 	@Override
 	public List<StarpointDto> getMovieStarpoint(int mseq) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace+"getMovieStarpoint",mseq);
 	}
 
 	@Override
 	public List<StarpointDto> getAllstarpoint() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace+"getAllstarpoint");
 	}
 
 }

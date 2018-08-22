@@ -10,23 +10,25 @@ public class ReviewDto {
 	   private int ruseq;
 	   private String rcontent;
 	   private String rup;
-	   private String rdown;
 	   private Date rdate;
+	   private String rdelflag;
+	   private String rupuseq;
 	   
 	   public ReviewDto() {
 	      super();
 	      // TODO Auto-generated constructor stub
 	   }
 	   
-	   public ReviewDto(int rseq, int rmseq, int ruseq, String rcontent, String rup, String rdown, Date rdate) {
+	   public ReviewDto(int rseq, int rmseq, int ruseq, String rcontent, String rup, String rupuseq, Date rdate, String rdelflag) {
 		      super();
 		      this.rseq = rseq;
 		      this.rmseq = rmseq;
 		      this.ruseq = ruseq;
 		      this.rcontent = rcontent;
 		      this.rup = rup;
-		      this.rdown = rdown;
+		      this.rupuseq = rupuseq;
 		      this.rdate = rdate;
+		      this.rdelflag = rdelflag;
 	   }
 
 	   
@@ -60,11 +62,11 @@ public class ReviewDto {
 	   public void setRup(String rup) {
 	      this.rup = rup;
 	   }
-	   public String getRdown() {
-	      return rdown;
+	   public String getRupuseq() {
+	      return rupflag;
 	   }
-	   public void setRdown(String rdown) {
-	      this.rdown = rdown;
+	   public void setRupuseq(String rupuseq) {
+	      this.rupflag = rupflag;
 	   }
 	   public Date getRdate() {
 	      return rdate;
@@ -72,10 +74,21 @@ public class ReviewDto {
 	   public void setRdate(Date rdate) {
 	      this.rdate = rdate;
 	   }
+	   
+	   public String getRdelflag() {
+		   this.rdelflag = rdelflag;
+	   }
+	   
+	   public void setRdelflag(String rdelflag) {
+		this.rdelflag = rdelflag;
+	   }
+	   
+	   
+	   
 	   @Override
 	   public String toString() {
 	      return "ReviewDto [rseq=" + rseq + ", rmseq=" + rmseq + ", ruseq=" + ruseq + ", rcontent=" + rcontent + ", rup="
-	            + rup + ", rdown=" + rdown + ", rdate=" + rdate + "]";
+	            + rup + ", rupuseq=" + rupuseq + ", rdate=" + rdate + ", rdelflag=" + rdelflag + "]";
 	   }
 
 }

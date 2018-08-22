@@ -9,41 +9,42 @@ import com.mint.project.dtos.StarpointDto;
 
 @Service
 public class StarpointServiceImp implements IStarpointService {
-
+	@Autowired
+	private IStarpointDao starpointDao;
 	@Override
 	public int insertStarpoint(StarpointDto sdto) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return starpointDao.insertStarpoint(sdto);
 	}
 
 	@Override
 	public boolean updateStarpoint(StarpointDto sdto) {
 		// TODO Auto-generated method stub
-		return false;
+		return starpointDao.updateStarpoint(sdto);
 	}
 
 	@Override
 	public StarpointDto getOneStarpoint(int useq, int mseq) {
 		// TODO Auto-generated method stub
-		return null;
+		return starpointDao.getOneStarpoint(useq,mseq);
 	}
 
 	@Override
 	public List<StarpointDto> getUserStarpoint(int useq) {
 		// TODO Auto-generated method stub
-		return null;
+		return starpointDao.getUserStarpoint(useq);
 	}
 
 	@Override
 	public List<StarpointDto> getMovieStarpoint(int mseq) {
 		// TODO Auto-generated method stub
-		return null;
+		return starpointDao.getMovieStarpoint(mseq);
 	}
 
 	@Override
 	public List<StarpointDto> getAllstarpoint() {
 		// TODO Auto-generated method stub
-		return null;
+		return starpointDao.getAllstarpoint();
 	}
 
 }
