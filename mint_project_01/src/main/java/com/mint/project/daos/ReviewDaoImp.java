@@ -1,11 +1,15 @@
 package com.mint.project.daos;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mint.project.dtos.ReviewDto;
+
 
 
 
@@ -14,10 +18,11 @@ public class ReviewDaoImp implements IReviewDao {
 
 	@Autowired
 	   private SqlSessionTemplate sqlSession;
-	   private String namespace="com.mint.project.daos";
+	
+	   private String namespace="com.mint.project.review.";
 	
 	@Override
-	public int insertReview(ReviewDto rdto) {
+	public boolean insertReview(ReviewDto rdto) {
 		 int count=0;
 	      count=sqlSession.insert(namespace+"insertReview", rdto);
 	      return count>0?true:false;
@@ -38,7 +43,7 @@ public class ReviewDaoImp implements IReviewDao {
 
 	@Override
 	public List<ReviewDto> getMovieReview(int mseq) {
-		 return sqlSession.selectList(namespace+"getMovieReview",mseq);
+		 return sqlSession.selectList(namespace+"getMovieReview", mseq);
 	}
 
 	@Override
@@ -48,12 +53,12 @@ public class ReviewDaoImp implements IReviewDao {
 
 	@Override
 	public List<ReviewDto> getAllReview() {
-		 return sqlSession.selectList(namespace+"getAllReview");
+		return sqlSession.selectList(namespace+"getAllReview");
 	}
 
 	@Override
 	public boolean updateUp(int rseq, int useq) {
-		Map<String, Integer> map=new HashMap<>();
+		Map<String, Integer> map=new HashMap<String, Integer>();
 		
 	    map.put("rseq", rseq);
 	    map.put("useq", useq);

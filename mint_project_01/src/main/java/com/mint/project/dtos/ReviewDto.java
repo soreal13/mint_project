@@ -63,10 +63,10 @@ public class ReviewDto {
 	      this.rup = rup;
 	   }
 	   public String getRupuseq() {
-	      return rupflag;
+	      return rupuseq;
 	   }
 	   public void setRupuseq(String rupuseq) {
-	      this.rupflag = rupflag;
+	      this.rupuseq = rupuseq;
 	   }
 	   public Date getRdate() {
 	      return rdate;
@@ -76,16 +76,14 @@ public class ReviewDto {
 	   }
 	   
 	   public String getRdelflag() {
-		   this.rdelflag = rdelflag;
+		return rdelflag;
 	   }
-	   
+
 	   public void setRdelflag(String rdelflag) {
 		this.rdelflag = rdelflag;
 	   }
-	   
-	   
-	   
-	   @Override
+
+	@Override
 	   public String toString() {
 	      return "ReviewDto [rseq=" + rseq + ", rmseq=" + rmseq + ", ruseq=" + ruseq + ", rcontent=" + rcontent + ", rup="
 	            + rup + ", rupuseq=" + rupuseq + ", rdate=" + rdate + ", rdelflag=" + rdelflag + "]";

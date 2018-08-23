@@ -16,7 +16,7 @@ public interface IStarpointDao {
 //	getAllStarpoint
 	
 	//초기 별점정보 생성
-	public int insertStarpoint(StarpointDto sdto);
+	public boolean insertStarpoint(StarpointDto sdto);
 	
 	//별점 정보 수정
 	public boolean updateStarpoint(StarpointDto sdto);

@@ -17,7 +17,7 @@ public interface IReviewDao {
 	//asdfkasdfjklasdfjklasdfjklasdfjklasdfkl
 	
 	//후기 생성
-	public int insertReview(ReviewDto rdto);
+	public boolean insertReview(ReviewDto rdto);
 
 	//후기수정
 	public boolean updateReview(ReviewDto rdto);
@@ -41,7 +41,7 @@ public interface IReviewDao {
 	public boolean updateDown(int rseq, int useq);
 	
 	//공감 눌렀는지 확인
-	public boolean chkReview(int useq);
+	public List<ReviewDto> chkReview(int useq);
 	
 	
 }

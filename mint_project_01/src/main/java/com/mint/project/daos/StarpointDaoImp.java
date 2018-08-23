@@ -1,7 +1,11 @@
 package com.mint.project.daos;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mint.project.dtos.StarpointDto;
@@ -14,7 +18,7 @@ public class StarpointDaoImp implements IStarpointDao {
 	   private String namespace="com.mint.project.daos";
 	
 	@Override
-	public int insertStarpoint(StarpointDto sdto) {
+	public boolean insertStarpoint(StarpointDto sdto) {
 		  int count=0;
 	      count=sqlSession.insert(namespace+"insertStarpoint", sdto);
 	      return count>0?true:false;
@@ -34,8 +38,8 @@ public class StarpointDaoImp implements IStarpointDao {
 	    map.put("mseq", mseq);
 
 		
-		int count=sqlSession.selectOne(namespace+"getOneStarpoint",map);
-		return count>0?true:false;
+		return sqlSession.selectOne(namespace+"getOneStarpoint",map);
+		
 	}
 
 	@Override
