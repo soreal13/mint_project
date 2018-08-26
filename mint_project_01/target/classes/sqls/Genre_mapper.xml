@@ -39,5 +39,42 @@
 	      <result property="gforeign" column="gforeign" />
              
        </resultMap>
+       
+       <insert id="insertGenre" parameterType="GenreDto">
+       	insert into GENRE_TABLE (gseq, gmseq, gaction, gcomedy, gcrime, gdocumentary,
+       	gdrama, gfamily, gfantasy, gnoir, ghorror, gmusical, gmystery, gromance, gsf, gsports,
+       	gthriller, gwar, gcar, grabbit, ganimation, gchildren, ghistory, groco, gdisaster, gwuxia,
+       	gwestern, ghotguy, ghighteen, gdomestic, gforeign)
+       	values (#{gseq}, #{gmseq}, #{gaction}, #{gcomedy}, #{gcrime}, #{gdocumentary},
+       	#{gdrama}, #{gfamily}, #{gfantasy}, #{gnoir}, #{ghorror}, #{gmusical}, #{gmystery}, #{gromance}, #{gsf}, #{gsports},
+       	#{gthriller}, #{gwar}, #{gcar}, #{grabbit}, #{ganimation}, #{gchildren}, #{ghistory}, #{groco}, #{gdisaster}, #{gwuxia},
+       	#{gwestern}, #{ghotguy}, #{ghighteen}, #{gdomestic}, #{gforeign})
+       </insert>
+       
+       <update id="updateGenre" parameterType="GenreDto">
+       update GENRE_TABLE SET
+       	gmseq=#{gmseq}, gaction=#{gaction}, gcomedy=#{gcomedy}, gcrime=#{gcrime}, gdocumentary=#{gdocumentary},
+       	gdrama=#{gdrama}, gfamily=#{gfamily}, gfantasy=#{gfantasy}, gnoir=#{gnoir}, ghorror=#{ghorror}, gmusical=#{gmusical}, gmystery=#{gmystery}, gromance=#{gromance}, gsf=#{gsf}, gsports=#{gsports},
+       	gthriller=#{gthriller}, gwar=#{gwar}, gcar=#{gcar}, grabbit=#{grabbit}, ganimation=#{ganimation}, gchildren=#{gchildren}, ghistory=#{ghistory}, groco=#{groco}, gdisaster=#{gdisaster}, gwuxia=#{gwuxia},
+       	gwestern=#{gwestern}, ghotguy=#{ghotguy}, ghighteen=#{ghighteen}, gdomestic=#{gdomestic}, gforeign=#{gforeign}
+       WHERE GSEQ=#{gseq}
+       </update>
+       
+       <select id="getGenre" parameterType="int" resultType="GenreDto">
+       SELECT * FROM GENRE_TABLE
+       WHERE GMSEQ=#{gmseq}       
+       </select>
+       
+       <select id="getAllGenre" resultType="GenreDto">
+       SELECT * FROM GENRE_TABLE
+       </select>
+       
+       <delete id="delGenre" parameterType="int">
+       DELETE FROM GENRE_TABLE
+       WHERE GMSEQ=#{gmseq}       
+       </delete>
+       
+       
+       
       
 </mapper>
