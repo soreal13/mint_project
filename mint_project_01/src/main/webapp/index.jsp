@@ -9,7 +9,7 @@
 </head>
 <body>
 1
-
+<a href="movie_info.do">무비_인포</a>
 
 </body>
 </html>

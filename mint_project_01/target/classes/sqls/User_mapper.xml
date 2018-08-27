@@ -57,12 +57,9 @@
    </update>
 <!--    즐겨찾기한 영화 가져오기 (조건부에 리스트 정렬 넣기) 0-->
    <select id="getUserFavorite" parameterType="UserDto">
-      SELECT UFMSEQ FROM USER_TABLE WHERE USEQ=#{useq} ORDER BY UFMSEQ DESC
+      SELECT UFMSEQ,UFUSEQ FROM USER_TABLE WHERE USEQ=#{useq} ORDER BY UFMSEQ DESC
    </select>
-<!--    즐겨찾기한 유저 목록  -->
-   <select id="getUserFavorite">
-      SELECT UFUSEQ FROM USER_TABLE WHERE USEQ=#{useq} ORDER BY UFUSEQ DESC
-   </select>
+
 <!--    유저가 쓴 리뷰 불러오기 0-->
    <select id="getUserReview" parameterType="UserDto">
       
