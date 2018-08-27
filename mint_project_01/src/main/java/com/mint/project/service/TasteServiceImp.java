@@ -1,45 +1,34 @@
 package com.mint.project.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mint.project.daos.ITasteDao;
 import com.mint.project.dtos.TasteDto;
 
 @Service
 public class TasteServiceImp implements ITasteService {
-	
-	@Autowired
-	private ITasteDao tdao;
 
 	@Override
-	public boolean insertTaste(TasteDto tdto) {
-		return tdao.insertTaste(tdto);
+	public int insertTaste(TasteDto tdto) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
 	public TasteDto getTaste(int useq) {
-		
-		return tdao.getTaste(useq);
-	}
-	
-	@Override
-	public List<TasteDto> getAllTaste(){
-		return tdao.getAllTaste();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public boolean updateTaste(TasteDto tdto) {
-		
-		return tdao.updateTaste(tdto);
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
-	public boolean delTaste(int useq) {
-		
-		return tdao.delTaste(useq);
+	public boolean deleteTaste(int useq) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

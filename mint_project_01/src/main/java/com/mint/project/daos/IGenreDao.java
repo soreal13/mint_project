@@ -7,15 +7,15 @@ import com.mint.project.dtos.GenreDto;
 public interface IGenreDao {
 
 
-//-�옣瑜� (GenreDaoImp.java)
+//-장르 (GenreDaoImp.java)
 //insertGenre
 //updateGenre
 //getGenre
 //getGenreAll
-//delGenre	�쁺�솕�궘�젣�떆 �듃�옖�옲�뀡, �옣瑜대룄 �븘�삁 �궘�젣.
+//delGenre	영화삭제시 트랜잭션, 장르도 아예 삭제.
 //	
 	
-	public boolean insertGenre(GenreDto gdto);
+	public int insertGenre(GenreDto gdto);
 	
 	public boolean updateGenre(GenreDto gdto);	
 	
