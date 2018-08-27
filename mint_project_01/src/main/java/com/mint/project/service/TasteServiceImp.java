@@ -6,23 +6,26 @@ import com.mint.project.dtos.TasteDto;
 
 @Service
 public class TasteServiceImp implements ITasteService {
-
+    
+	@AutoWired
+	private ITasteDao tdao;
+	
 	@Override
-	public int insertTaste(TasteDto tdto) {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean insertTaste(TasteDto tdto) {
+		
+		return tdao.insertTaste(tdto);
 	}
 
 	@Override
 	public TasteDto getTaste(int useq) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return tdao.getTaste(useq);
 	}
 
 	@Override
 	public boolean updateTaste(TasteDto tdto) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return tdao.updateTaste(tdto);
 	}
 
 	@Override
