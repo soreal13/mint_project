@@ -1,13 +1,17 @@
 package com.mint.project.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mint.project.daos.ITasteDao;
 import com.mint.project.dtos.TasteDto;
 
 @Service
 public class TasteServiceImp implements ITasteService {
     
-	@AutoWired
+	@Autowired
 	private ITasteDao tdao;
 	
 	@Override
@@ -37,7 +41,7 @@ public class TasteServiceImp implements ITasteService {
 	@Override
 	public boolean delTaste(int useq) {
 		
-		return tdao.deleTaste(useq);
+		return tdao.delTaste(useq);
 	}
 
 }

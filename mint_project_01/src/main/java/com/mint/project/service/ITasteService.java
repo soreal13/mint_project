@@ -1,5 +1,7 @@
 package com.mint.project.service;
 
+import java.util.List;
+
 import com.mint.project.dtos.TasteDto;
 
 public interface ITasteService {
