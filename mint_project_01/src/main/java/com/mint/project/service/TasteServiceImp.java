@@ -21,6 +21,12 @@ public class TasteServiceImp implements ITasteService {
 		
 		return tdao.getTaste(useq);
 	}
+	
+	@Override
+	public List<TasteDto> getAllTaste(){
+		
+		return tdao.getAllTaste();
+	}
 
 	@Override
 	public boolean updateTaste(TasteDto tdto) {
@@ -29,9 +35,9 @@ public class TasteServiceImp implements ITasteService {
 	}
 
 	@Override
-	public boolean deleteTaste(int useq) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean delTaste(int useq) {
+		
+		return tdao.deleTaste(useq);
 	}
 
 }
