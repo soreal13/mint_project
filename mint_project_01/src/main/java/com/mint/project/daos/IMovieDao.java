@@ -1,5 +1,6 @@
 package com.mint.project.daos;
 
+
 import java.util.List;
 
 import com.mint.project.dtos.MovieDto;
@@ -24,14 +25,19 @@ public interface IMovieDao {
 	
 	// 특정 영화 정보
 	public List<MovieDto> getCertainMovieinfo(String search);
-	
+	 
 	// 영화전체정보
 	public List<MovieDto> getAllMovieinfo();
-	
+
+//	-----------------------------------------------------------------------------------
 	// 팔로우 유저 추가, 삭제
 	public boolean updateFollow(int useq);
 	
+	//팔로우 했는지 확인
+	public boolean chkFollow(int useq);
 	
+	//팔로우 삭제
+	public boolean delFollow(int useq);
 	
 	
 }

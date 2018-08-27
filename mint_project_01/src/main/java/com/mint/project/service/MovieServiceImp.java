@@ -20,38 +20,51 @@ public class MovieServiceImp implements IMovieService {
 	
 	@Override
 	public int insertMovie(MovieDto mdto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mdao.insertMovie(mdto);
 	}
 
 	@Override
 	public boolean updateMovie(MovieDto mdto) {
-		// TODO Auto-generated method stub
-		return false;
+		return mdao.updateMovie(mdto);
 	}
 
 	@Override
 	public boolean delMovie(int mseq) {
-		// TODO Auto-generated method stub
-		return false;
+		return mdao.delMovie(mseq);
 	}
 
 	@Override
 	public MovieDto getMovieinfo(int mseq) {
-		// TODO Auto-generated method stub
-		return null;
+		return mdao.getMovieinfo(mseq);
 	}
-
+	
+	@Override
+	public List<MovieDto> getCertainMovieinfo(String search) {
+		return mdao.getCertainMovieinfo(search);
+	}
+	
 	@Override
 	public List<MovieDto> getAllMovieinfo() {
-		// TODO Auto-generated method stub
-		return null;
+		return mdao.getAllMovieinfo();
+
 	}
 
 	@Override
 	public boolean updateFollow(int useq) {
-		// TODO Auto-generated method stub
-		return false;
+		return mdao.updateFollow(useq);
 	}
+	
+	@Override
+	public boolean chkFollow(int useq) {
+		return mdao.chkFollow(useq);
+	}
+	
+	@Override
+	public boolean delFollow(int useq) {
+		return mdao.delFollow(useq);
+	}
+
+
+	
 
 }
