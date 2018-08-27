@@ -5,20 +5,77 @@
   
   
 <mapper namespace="com.mint.project.movie">
-	<resultMap type="com.mint.project.dtos.MovieDto" id="MovieDto">
-       	  <result property="mseq" column="mseq" />
-	      <result property="mimg" column="mimg" />
-	      <result property="mkeyw" column="mkeyw" />
-	      <result property="mshowdate" column="mshowdate" />
-	      <result property="mdirector" column="mdirector" />
-	      <result property="mtitle" column="mtitle" />
-	      <result property="mage" column="mage" />
-	      <result property="mactor" column="mactor" />
-	      <result property="msummary" column="msummary" />
-	      <result property="mgrade" column="mgrade" />
-	      <result property="mmdpick" column="mmdpick" />
-	      <result property="mfollow" column="mfollow" />
+   <resultMap type="com.mint.project.dtos.MovieDto" id="MovieDto">
+            <result property="mseq" column="mseq" />
+         <result property="mimg" column="mimg" />
+         <result property="mkeyw" column="mkeyw" />
+         <result property="mshowdate" column="mshowdate" />
+         <result property="mdirector" column="mdirector" />
+         <result property="mtitle" column="mtitle" />
+         <result property="mage" column="mage" />
+         <result property="mactor" column="mactor" />
+         <result property="msummary" column="msummary" />
+         <result property="mgrade" column="mgrade" />
+         <result property="mmdpick" column="mmdpick" />
+         <result property="mfollow" column="mfollow" />
        
-	</resultMap>
+   </resultMap>
+   
+   
+<!--신규영화등록 -->
+       <insert id="insertmovie" parameterType="MovieDto">
+         INSERT INTO MOVIE_TABLE
+         (MSEQ,MIMG,MKEYW,MSHOWDATE,MDIRECTOR,MTITLE,MAGE,MACTOR,MSUMMARY,MGRADE,MMDPICK,MFOLLOW)
+         VALUES (MOVIE_TABLE_SEQ.NEXTVAL,#{mimg},#{mkeyw},#{mshowdate},#{mdirector},#{mtitle}
+         ,#{mage},#{mactor},#{msummary},#{mgrade},#{mmdpick},'0')
+       </insert>
        
+       
+<!--영화정보수정 -->
+       <update id="updatemovie" parameterType="MovieDto">
+       UPDATE MOVIE_TABLE SET 
+       MIMG=#{mimg},MKEYW=#{mkeyw},MSHOWDATE=#{mshowdate},MDIRECTOR=#{mdirector},MTITLE=#{mtitle}
+       ,MAGE=#{mage},MACTOR=#{mactor},MSUMMARY=#{msummary},MGRADE=#{mgrade},MMDPICK=#{mmdpick}
+       WHERE MSEQ=#{mseq}
+       </update>
+       
+       
+<!-- 영화삭제 -->
+       <delete id="delmovie" parameterType="int">
+         DELETE MOVIE_TABLE WHERE MSEQ=#{mseq}
+       </delete>
+       
+       
+<!--영화한편정보(상세) -->
+       <select id="getmovieinfo" parameterType="int">
+       SELECT * FROM MOVIE_TABLE WHERE MSEQ=#{mseq}
+       </select>
+       
+       
+<!--검색시 나오는 정보 -->
+       <select id="getcertainmovieinfo">
+       SELECT * FROM MOVIE_TABLE ORDER BY MSEQ DESC 
+      <!--아니 검색하면 링크타고 상세정보로 뜨기때문에 이게 필요한건지 모르겠는데  이건 모르게따아아 -->
+       </select>
+      
+<!--전체영화정보 -->
+       <select id="getallmovieinfo">
+       SELECT * FROM MOVIE_TABLE ORDER BY MSEQ DESC
+       </select>
+       
+       <update id="updatefollow">
+      update movie_table set (mfollow||'#{mfollow}')||':' where mseq=#{meq}
+       </update>
+       
+       <select id="chkfollow">
+          select mseq from movie_table where mfollow like '%:#{useq}:%'
+       </select>
+       
+       
+       <update id="delfollow">
+       update movie_table set mfollow=replace(mfollow,':#{useq}:',':') where mseq=#{mseq}
+       </update>
+       
+
 </mapper>
+

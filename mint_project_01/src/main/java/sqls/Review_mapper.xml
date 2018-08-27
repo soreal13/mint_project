@@ -10,9 +10,9 @@
        	<result property="ruseq" column="ruseq" />
        	<result property="rcontent" column="rcontent" />
        	<result property="rup" column="rup" />
-       	<result property="rupuseq" column="rupuseq" />
        	<result property="rdate" column="rdate" />
-       <result property="rdelflag" column="rdelflag"/>
+       	<result property="rdelflag" column="rdelflag"/>
+        <result property="rupuseq" column="rupuseq" />
 	</resultMap>
 	
 	
@@ -33,7 +33,7 @@
 		</delete>
 		
 <!-- 		영화별 후기 리스트 -->
-		<select id="getMovieReview" parameterType="int" resultMap="ReviewDto">
+		<select id="getMovieReview" parameterType="int" resultType="ReviewDto">
 		SELECT RSEQ, RMSEQ, RUSEQ, RCONTENT, RUP, RDATE, RDELFLAG, RUPUSEQ FROM REVIEW_TABLE WHERE RMSEQ=#{mseq} AND RDELFLAG='N'
 		</select>
 <!-- 유저별 후기 리스트 -->

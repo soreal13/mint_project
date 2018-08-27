@@ -1,5 +1,7 @@
 package com.mint.project.daos;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mint.project.dtos.UserDto;
@@ -7,65 +9,65 @@ import com.mint.project.dtos.UserDto;
 
 @Repository
 public class UserDaoImp implements IUserDao {
+   
+   @Autowired
+      private SqlSessionTemplate sqlSession;
+      private String namespace="com.mint.project.UserDao";
+   
+   @Override
+   public UserDto chkEmail(String uemail) {
+      return sqlSession.selectOne(namespace+"chkEmail",uemail);
+   }
 
-	@Override
-	public UserDto chkEmail(String uemail) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+   @Override
+   public UserDto chkNick(String unick) {
+      return sqlSession.selectOne(namespace+"chkNick",unick);
+   }
 
-	@Override
-	public UserDto chkNick(String unick) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+   @Override
+   public boolean register(UserDto udto) {
+      int count=0;
+      count=sqlSession.insert(namespace+"register",udto);
+      return count>0?true:false;
+   }
 
-	@Override
-	public boolean register(UserDto udto) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+   @Override
+   public UserDto login(UserDto udto) {
+      return sqlSession.selectOne(namespace+"login",udto);
+   }
 
-	@Override
-	public UserDto login(String uemail, String upwd) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+   @Override
+   public boolean updateUimg(UserDto udto) {
+      int count=0;
+      count=sqlSession.update(namespace+"updateUimg",udto);
+      return count>0?true:false;
+   }
 
-	@Override
-	public boolean updateUimg(int useq, String uimg) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+   @Override
+   public int updateUserinfo(UserDto udto) {
+      return sqlSession.update(namespace+"updateUserinfo",udto);
+   }
 
-	@Override
-	public int updateUserinfo(UserDto udto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+   @Override
+   public boolean delUser(int useq) {
+      int count=0;
+      count=sqlSession.delete(namespace+"delUser",useq);
+      return count>0?true:false;
+   }
 
-	@Override
-	public boolean delUser(int useq) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+   @Override
+   public UserDto getUserinfo(UserDto udto) {
+      return sqlSession.selectOne(namespace+"getUserinfo",udto);
+   }
 
-	@Override
-	public UserDto getUserinfo(UserDto udto) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+   @Override
+   public UserDto getUserFavorite(int useq) {
+      return sqlSession.selectOne(namespace+"getUserFavorite",useq);
+   }
 
-	@Override
-	public UserDto getUserFavorite(int useq) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public UserDto getUserReview(int useq) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+   @Override
+   public UserDto getUserReview(int useq) {
+      return sqlSession.selectOne(namespace+"getUserReview",useq);
+   }
 
 }

@@ -24,7 +24,7 @@ public interface IUserService {
 	public UserDto chkNick(String unick);
 
 	//프로필이미지변경
-	public boolean updateUimg (int useq, String uimg);
+	public boolean updateUimg(int useq, String uimg);
 	
 	//유저정보 업데이트
 	public int updateUserinfo(UserDto udto);	
@@ -40,6 +40,8 @@ public interface IUserService {
 		   
 	//유저가 쓴 리뷰 가져오기
 	public UserDto getUserReview(int useq);
+
+	boolean updateUimg(UserDto udto);
 	
 	
 	
