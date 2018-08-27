@@ -2,6 +2,8 @@ package com.mint.project.daos;
 
 import java.util.List;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mint.project.dtos.GenreDto;
@@ -9,35 +11,40 @@ import com.mint.project.dtos.GenreDto;
 
 @Repository
 public class GenreDaoImp implements IGenreDao {
+	
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+	
+	private String namespace="com.mint.project.genre.";
 
 	@Override
-	public int insertGenre(GenreDto gdto) {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean insertGenre(GenreDto gdto) {
+		int count=0;
+		count=sqlSession.insert(namespace+"insertGenre", gdto);		
+		return count>0?true:false;
 	}
 
 	@Override
 	public boolean updateGenre(GenreDto gdto) {
-		// TODO Auto-generated method stub
-		return false;
+		int count=sqlSession.update(namespace+"updateGenre", gdto);
+		return count>0?true:false;
 	}
 
 	@Override
 	public GenreDto getGenre(int mseq) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(namespace+"getGenre", mseq);
 	}
 
 	@Override
 	public List<GenreDto> getAllGenre() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace+"getAllGenre");
 	}
 
 	@Override
 	public boolean delGenre(int mseq) {
-		// TODO Auto-generated method stub
-		return false;
+		int count=0;
+		count=sqlSession.delete(namespace+"delGenre", mseq);
+		return count>0?true:false;
 	}
 
 }
