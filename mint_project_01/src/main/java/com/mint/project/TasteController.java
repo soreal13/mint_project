@@ -54,14 +54,14 @@ public class  TasteController {
 		
 		
 		
-		return "taste_init";
+		return "taste_init2";
 	}
 	
 	//회원가입시 taste 창으로 이동
 		@RequestMapping(value="/taste_init2.do")
 		public String tasteInint2(Locale locale, Model model) {
 			
-			return "taste_init2";
+			return "taste_init";
 		}
 	
 	
