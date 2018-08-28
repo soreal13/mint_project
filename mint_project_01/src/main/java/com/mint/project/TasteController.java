@@ -36,19 +36,21 @@ public class  TasteController {
 	@RequestMapping(value="/taste_init.do")
 	public String tasteInit(Locale locale, Model model) {
 		logger.info("처음 taste 만들기 {}.", locale);
+
 		
-		System.out.println("들어옴");
-		String tstatus = "N";
-		int tuseq=1;
-		
-		TasteDto tdto=new TasteDto();
-		tdto.setTseq(tuseq);
-		tdto.setTuseq(tuseq);
-		tdto.setTstatus(tstatus);
-		
-		System.out.println(tdto.getTseq());
-		
-		tService.insertTaste(tdto);
+		//		08.28 잘 됨		
+//		System.out.println("들어옴");
+//		String tstatus = "N";
+//		int tuseq=1;
+//		
+//		TasteDto tdto=new TasteDto();
+//		tdto.setTseq(tuseq);
+//		tdto.setTuseq(tuseq);
+//		tdto.setTstatus(tstatus);
+//		
+//		System.out.println(tdto.getTseq());
+//		
+//		tService.insertTaste(tdto);
 		
 		
 		
