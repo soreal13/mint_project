@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +22,9 @@ public class  TasteController {
 
 	private static final Logger logger = LoggerFactory.getLogger(TasteController.class);
 	
+	@Autowired
 	private ITasteService tService;
-	
-	private TasteDto tdto;
-	
+		
 	
 	@RequestMapping(value="/taste.do", method =RequestMethod.GET)
 	public String taste(Locale locale, Model model) {
@@ -41,6 +41,7 @@ public class  TasteController {
 		String tstatus = "N";
 		int tuseq=1;
 		
+		TasteDto tdto=new TasteDto();
 		tdto.setTseq(tuseq);
 		tdto.setTuseq(tuseq);
 		tdto.setTstatus(tstatus);

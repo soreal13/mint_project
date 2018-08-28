@@ -37,18 +37,7 @@
 		<constructor-arg index="0" ref="sqlSession"></constructor-arg>
 	</bean>
 	
-	
-<!-- 	트랜잭션 -->
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"></property>
-	</bean>
 
-
-
-	<tx:annotation-driven transaction-manager="transactionManager"
-		proxy-target-class="true" />
-	
 	
 </beans>
 
