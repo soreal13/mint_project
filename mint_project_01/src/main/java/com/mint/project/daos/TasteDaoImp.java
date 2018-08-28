@@ -18,7 +18,8 @@ public class TasteDaoImp implements ITasteDao {
    
    @Override
    public boolean insertTaste(TasteDto tdto) {
-      int count=0;
+       System.out.println("tdao 들어옴"+tdto.getTseq());
+	   int count=0;
       count=sqlSession.insert(namespace+"insertTaste", tdto);      
       return count>0?true:false;
    }

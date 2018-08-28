@@ -31,7 +31,7 @@ public interface IUserDao {
          
    //회원정보가져오기(pwd제외) -
    public UserDto getUserinfo(UserDto udto);
-         
+   
    //즐겨찾는 영화,유저 칼럼 가져오기
    public UserDto getUserFavorite(int useq);
          

@@ -2,7 +2,7 @@ package com.mint.project.dtos;
 
 public class TasteDto {
 
-	private int tseq;
+	   private int tseq;
 	   private int tuseq;
 	   private String taction;
 	   private String tcomedy;
@@ -33,6 +33,7 @@ public class TasteDto {
 	   private String thighteen;
 	   private String tdomestic;
 	   private String tforeign;
+	   private String tstatus;
 	   
 	   public TasteDto() {
 	      super();
@@ -44,7 +45,7 @@ public class TasteDto {
 	         String tdrama, String tfamily, String tfantasy, String tnoir, String thorror, String tmusical,
 	         String tmystery, String tromance, String tsf, String tsports, String tthriller, String twar, String tcar,
 	         String trabbit, String tanimation, String tchildren, String thistory, String troco, String tdisaster,
-	         String twuxia, String twestern, String thotguy, String thighteen, String tdomestic, String tforeign) {
+	         String twuxia, String twestern, String thotguy, String thighteen, String tdomestic, String tforeign, String tstatus) {
 	      super();
 	      this.tseq = tseq;
 	      this.tuseq = tuseq;
@@ -77,6 +78,7 @@ public class TasteDto {
 	      this.thighteen = thighteen;
 	      this.tdomestic = tdomestic;
 	      this.tforeign = tforeign;
+	      this.tstatus = tstatus;
 	   }
 	   
 	   
@@ -266,6 +268,13 @@ public class TasteDto {
 	   public void setTforeign(String tforeign) {
 	      this.tforeign = tforeign;
 	   }
+	   public String getTstatus() {
+		   return tstatus;
+	   }
+	   public void setTstatus(String tstatus) {
+		   this.tstatus = tstatus;
+	   }
+	   
 	   
 	   @Override
 	   public String toString() {
@@ -277,7 +286,7 @@ public class TasteDto {
 	            + ", tanimation=" + tanimation + ", tchildren=" + tchildren + ", thistory=" + thistory
 	            + ", troco=" + troco + ", tdisaster=" + tdisaster + ", twuxia=" + twuxia + ", twestern="
 	            + twestern + ", thotguy=" + thotguy + ", thighteen=" + thighteen + ", tdomestic=" + tdomestic
-	            + ", tforeign=" + tforeign + "]";
+	            + ", tforeign=" + tforeign + ", tstatus="+ tstatus + "]";
 	   }
 	   
 	   

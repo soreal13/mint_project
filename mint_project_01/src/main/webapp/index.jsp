@@ -10,6 +10,8 @@
 <body>
 1
 
+<a href="taste_init.do">취향창 가기</a>
+
 
 </body>
 </html>

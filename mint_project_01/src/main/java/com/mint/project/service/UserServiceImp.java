@@ -49,11 +49,11 @@ public class UserServiceImp implements IUserService {
       return udao.getUserinfo(udto);
    }
 
-   @Override
-   public UserDto getUserFavorite(int useq) {
-      
-      return udao.getUserFavorite(useq);
-   }
+//   @Override
+//   public UserDto getUserFavorite(int useq) {
+//      
+//      return udao.getUserFavorite(useq);
+//   }
 
    @Override
    public UserDto getUserReview(int useq) {
