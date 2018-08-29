@@ -65,13 +65,10 @@ $(".next").click(function(){
 	//아작스 처리 
 	$.ajax({
 		url:"tasteajax_1.do",
-		datatype:"json",
-		data:"seq="+seq,		
+		data:"tastearry="+tastearry,		
 		type:"post",
-		success:function(obj){
+		success:function(){
 			alert("성공");
-			var dto=obj["dto"];
-			$("textarea[name=testajax]").val(dto["content"]);
 		},
 		error:function(){
 			alert("서버통신 실패!!");

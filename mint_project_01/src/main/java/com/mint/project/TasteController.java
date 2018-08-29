@@ -1,6 +1,8 @@
 
 package com.mint.project;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -69,18 +71,42 @@ public class  TasteController {
 	
 	@ResponseBody
 	@RequestMapping(value="tasteAjax_1.do", method= RequestMethod.POST)
-	public Map<String, TasteDto> tasteAjax(Locale locale, Model model){
+	public String tasteAjax(String[] tastearry, Locale locale, Model model){
 		logger.info("ajax처리:초기취향반영", locale);
-		TasteDto tdto =null;
 		
+		TasteDto tdto=new TasteDto();
+		
+		//단어 비교 및 set=1 		
+		for(int i=0; i<tastearry.length; i++) {
+			String tmp= tastearry[i].toString();
+			tdto.setSelect(tmp);	
+		}
+
+		
+		
+//		for(int i=0; i<tastearry.length; i++) {
+//			String tmp= tastearry[i].toString();
+//			String dtmp= tdto.toString();
+//			if(tmp.contains(dtmp)) {
+//				
+//			} else {
+//				
+//			}
+//		}
+			
+			
+		Map<String, TasteDto> map= new HashMap<>();
 		boolean isS=tService.updateTaste(tdto);
 		if(isS) {
-			
+			return "성공";
+		} else {
+			model.addAttribute("msg", "ajax처리 실패");
+			return "error_page";
 		}
 		
-		Map<String, TasteDto> map= new HashMap<>();
 		
-		return map;
+		
+		
 	}
 	
 	@RequestMapping(value="tasteMake.do")
@@ -101,6 +127,9 @@ public class  TasteController {
 	
 	
 	//취향 들고와서 절대값 0에 가장 가까운 것. 
+	
+
+	
 	
 	
 }

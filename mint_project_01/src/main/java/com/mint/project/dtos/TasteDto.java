@@ -79,7 +79,70 @@ public class TasteDto {
 	      this.tdomestic = tdomestic;
 	      this.tforeign = tforeign;
 	      this.tstatus = tstatus;
-	   }
+	   }	   
+	   
+	   public void setSelect(String name){
+		     if(name=="taction"){
+		          setTaction("1");
+		     }else if(name=="tcomedy"){
+		          setTcomedy("1");
+		     }else if(name=="tcrime") {
+		    	 setTcrime("1");
+		     }else if(name=="tdocumentary") {
+		    	 setTdocumentary("1");
+		     }else if(name=="tdrama") {
+		    	 setTdrama("1");
+		     }else if(name=="tfamily") {
+		    	 setTfamily("1");
+		     }else if(name=="tfantasy") {
+		    	 setTfantasy("1");
+		     }else if(name=="tnoir") {
+		    	 setTnoir("1");
+		     }else if(name=="thorror") {
+		    	 setThorror("1");
+		     }else if(name=="tmusical") {
+		    	 setTmusical("1");
+		     }else if(name=="tmystery") {
+		    	 setTmystery("1");
+		     }else if(name=="tromance") {
+		    	 setTromance("1");
+		     }else if(name=="tsf") {
+		    	 setTsf("1");
+		     }else if(name=="tsports") {
+		    	 setTsports("1");
+		     }else if(name=="tthriller") {
+		    	 setTthriller("1");
+		     }else if(name=="twar") {
+		    	 setTwar("1");
+		     }else if(name=="tcar") {
+		    	 setTcar("1");
+		     }else if(name=="trabbit") {
+		    	 setTrabbit("1");
+		     }else if(name=="tanimation") {
+		    	 setTanimation("1");
+		     }else if(name=="tchildren") {
+		    	 setTchildren("1");
+		     }else if(name=="thistory") {
+		    	 setThistory("1");
+		     }else if(name=="troco") {
+		    	 setTroco("1");
+		     }else if(name=="tdisaster") {
+		    	 setTdisaster("1");
+		     }else if(name=="twuxia") {
+		    	 setTwuxia("1");
+		     }else if(name=="twestern") {
+		    	 setTwestern("1");
+		     }else if(name=="thotguy") {
+		    	 setThotguy("1");
+		     }else if(name=="thighteen") {
+		    	 setThighteen("1");
+		     }else if(name=="tdomestic") {
+		    	 setTdomestic("1");
+		     }else if(name=="tforeign") {
+		    	 setTforeign("1");
+		     }		     
+		}
+	   
 	   
 	   
 	   public int getTseq() {
