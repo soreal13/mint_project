@@ -5,8 +5,10 @@ var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 
+
+
 $(".next").click(function(){
-	alert("들어옴");
+	
 	if(animating) return false;
 	animating = true;
 
@@ -42,6 +44,41 @@ $(".next").click(function(){
 		//this comes from the custom easing plugin
 		easing: 'easeInOutBack'
 	});
+	
+	//체크박스 값
+	var checkarry=document.getElementsByName("chk");
+	var tastearry = new Array();
+	alert(checkarry.length);
+	
+	for(var i=0; i<checkarry.length; i++){
+		if($(checkarry[i]).is(':checked')){
+			tastearry.push(checkarry[i].getAttribute("value"));
+			
+		}
+	}
+	//확인차 그냥 넣어놓은 것임. 
+	for(var i=0; i<tastearry.length; i++){
+		alert(tastearry[i].valueOf());
+	}
+	
+		
+	//아작스 처리 
+	$.ajax({
+		url:"tasteajax_1.do",
+		datatype:"json",
+		data:"seq="+seq,		
+		type:"post",
+		success:function(obj){
+			alert("성공");
+			var dto=obj["dto"];
+			$("textarea[name=testajax]").val(dto["content"]);
+		},
+		error:function(){
+			alert("서버통신 실패!!");
+		}				
+	});	
+	
+	
 });
 
 $(".previous").click(function(){

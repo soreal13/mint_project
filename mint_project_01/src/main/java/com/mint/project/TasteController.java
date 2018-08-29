@@ -57,7 +57,8 @@ public class  TasteController {
 		return "taste_init2";
 	}
 	
-	//회원가입시 taste 창으로 이동
+	//회원가입시 혹은 tstatus=n일때 taste 창으로 이동
+	//로그인 컨트롤러에서 if tstatus=n 이거나 없으면 이쪽으로 오게 수정할 것.
 		@RequestMapping(value="/taste_init2.do")
 		public String tasteInint2(Locale locale, Model model) {
 			
@@ -67,10 +68,11 @@ public class  TasteController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value="tasteAjax.do")
+	@RequestMapping(value="tasteAjax_1.do", method= RequestMethod.POST)
 	public Map<String, TasteDto> tasteAjax(Locale locale, Model model){
-		logger.info("ajax처리:취향반영", locale);
-		TasteDto tdto = null;
+		logger.info("ajax처리:초기취향반영", locale);
+		TasteDto tdto =null;
+		
 		boolean isS=tService.updateTaste(tdto);
 		if(isS) {
 			
@@ -83,15 +85,21 @@ public class  TasteController {
 	
 	@RequestMapping(value="tasteMake.do")
 	public String tasteMake(Locale locale, Model model) {
-		logger.info("취향 생성", locale);
+		logger.info("초기 취향 생성완료", locale);
 		
 		
 		
+		//인덱스 말고 영화추천페이지나 개인페이지로 가도 될듯
+		//아니면 결과 페이지(그래프 같은거 보여주기)
 		return "index";
 	}
 	
-	
+	//취향추천 메소드
 	//취향추천 영화
+	//비슷한 영화
+	//비슷한 유저 추천
+	
+	
 	//취향 들고와서 절대값 0에 가장 가까운 것. 
 	
 	
