@@ -54,8 +54,7 @@
        
 <!--검색시 나오는 정보 -->
        <select id="getcertainmovieinfo" parameterType="String" resultType="MovieDto">
-       SELECT * FROM MOVIE_TABLE ORDER BY MSEQ DESC 
-      <!--아니 검색하면 링크타고 상세정보로 뜨기때문에 이게 필요한건지 모르겠는데  이건 모르게따아아 -->
+       SELECT * FROM MOVIE_TABLE WHERE MKEYW=#{mkeyw} ORDER BY MSEQ DESC 
        </select>
       
 <!--전체영화정보 -->
@@ -65,12 +64,12 @@
        
 <!--팔로우 유저 추가  -->
        <update id="updatefollow" parameterType="int">
-      UPDATE MOVIE_TABLE SET (MFOLLOW||'#{mfollow}')||':' WHERE MSEQ=#{meq}
+      UPDATE MOVIE_TABLE SET MFOLLOW=(MFOLLOW||'#{useq}')||':' WHERE MSEQ=#{mseq}
        </update>
        
-<!--팔로우 했는지 확인 -->
-       <select id="chkfollow" parameterType="int">
-          SELECT MSEQ FROM MOVIE_TABLE WHERE MFOLLOW LIKE '%:#{useq}:%'
+<!-- 해당 영화를 팔로우 했는지 확인 -->
+       <select id="chkfollow" parameterType="int" resultType="MovieDto">
+          SELECT MTITLE FROM MOVIE_TABLE WHERE MFOLLOW LIKE '%:#{useq}:%'
        </select>
        
 <!--팔로우 삭제 -->       
@@ -78,5 +77,5 @@
        UPDATE MOVIE_TABLE SET MFOLLOW=REPLACE(MFOLLOW,':#{useq}:',':') WHERE MSEQ=#{mseq}
        </update>
        
-
+ 
 </mapper>

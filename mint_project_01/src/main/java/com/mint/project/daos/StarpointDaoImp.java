@@ -15,7 +15,7 @@ import com.mint.project.dtos.StarpointDto;
 public class StarpointDaoImp implements IStarpointDao {
 	@Autowired
 	   private SqlSessionTemplate sqlSession;
-	   private String namespace="com.mint.project.daos";
+	   private String namespace="com.mint.project.starpoint";
 	
 	@Override
 	public boolean insertStarpoint(StarpointDto sdto) {

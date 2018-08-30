@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+import com.mint.project.dtos.MovieDto;
 import com.mint.project.dtos.TasteDto;
 import com.mint.project.service.ITasteService;
+import com.mint.project.service.MovieServiceImp;
 
 @Controller
 public class  TasteController {
@@ -26,6 +29,10 @@ public class  TasteController {
 	
 	@Autowired
 	private ITasteService tService;
+	
+	@Autowired
+	private MovieServiceImp mService;
+	
 		
 	
 	@RequestMapping(value="/taste.do", method =RequestMethod.GET)
@@ -66,12 +73,12 @@ public class  TasteController {
 			return "taste_init";
 		}
 	
-	
-	
+
 	@ResponseBody
 	@RequestMapping(value="tasteAjax_1.do", method= RequestMethod.POST)
-	public String tasteAjax(Locale locale, Model model,TasteDto paramDto){
+	public Map<String, MovieDto> tasteAjax(Locale locale, Model model,TasteDto paramDto){
 		logger.info("ajax처리:초기취향반영", locale);
+
 		System.out.println(paramDto);
 		TasteDto tdto=paramDto;		
 		System.out.println(tdto);
@@ -79,17 +86,82 @@ public class  TasteController {
 		//테스트
 		tdto.setTseq(1);
 		tdto.setTuseq(1);
+		tdto.setTstatus("N");
 		
 		boolean isS=tService.updateTaste(tdto);
-		if(isS) {
-			return "성공";	
+		if(isS) {			
 
-		} else {
-			return "error_page";
+			//2. 초기영화 불러오기
+//			TasteAop top = new TasteAop();
+//			HashMap<String, MovieSet> initset = top.initTasteMovie();  //Aop로 가서 맵으로 받아옴
+			
+//			ArrayList<MovieDto> initmovie = new ArrayList<MovieDto>();			
+//			ArrayList<GenreDto> initgenre = new ArrayList<GenreDto>();
+			
+			//값 풀어놓을 세팅
+//			MovieDto initmovie = new MovieDto();
+//			GenreDto initgenre = new GenreDto();
+//			HashMap<MovieDto, GenreDto> mtmap = new HashMap<>();
+			
+
+			//2. 그냥 여기서 풀어서 쓰기			
+//			String [] initnum = {"86", "466", "60", "77", "180", "201", "172", "231", "235", "234",
+//					"224", "237", "312", "288", "303", "305", "364", "320", "318", "345", 
+//					"382", "475", "393", "406", "370", "450", "454", "425", "431", "486"} ;
+//			
+//			MovieDto initmovie = new MovieDto();
+//			GenreDto initgenre = new GenreDto();
+//			
+//			HashMap<String, MovieDto> initmap = new HashMap<>();
+//			
+//			for(int i=0; i<initnum.length; i++) {
+//				
+//				initmovie=mService.getMovieinfo(Integer.parseInt(initnum[i]));
+//				//initgenre=gService.getGenre(Integer.parseInt(initnum[i]));
+//							
+//				initmap.put(initnum[i], initmovie);
+//		
+
+			//3. 하나씩 들고오기 걍			
+			MovieDto mdto = mService.getMovieinfo(86);
+			System.out.println(mdto.getMsummary());
+			Map<String, MovieDto> map= new HashMap<>();
+			map.put("mdto", mdto);
+
+			return map;
+			
+//			}
+//			
+//			return initmap;	
+
 		}
-
-		
+		//else 처리 일단 뺌.
+		return null;	
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="tasteAjax_2.do", method= RequestMethod.POST)
+	public Map<String, MovieDto> tasteAjax_2(Locale locale, Model model, int count){
+		logger.info("ajax처리:초기취향 페이지2", locale);
+		
+		//별점 받아와서 리뷰추가 
+		//취향에 반영(취향 로직)
+		//취향을 알려면 
+		
+
+		//뷰에서 카운트 하나씩 추가, 30개 차례대로 무비 반납.
+		String [] initnum = {"86", "466", "60", "77", "180", "201", "172", "231", "235", "234",
+		"224", "237", "312", "288", "303", "305", "364", "320", "318", "345", 
+		"382", "475", "393", "406", "370", "450", "454", "425", "431", "486" };		
+		
+		MovieDto mdto = mService.getMovieinfo(count);
+		Map<String, MovieDto> map = new HashMap<>();
+		map.put("mdto", mdto);		
+		
+		return map;
+	}
+	
+	
 	
 	@RequestMapping(value="tasteMake.do")
 	public String tasteMake(Locale locale, Model model) {

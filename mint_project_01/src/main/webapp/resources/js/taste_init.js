@@ -56,17 +56,21 @@ $(".next").click(function(){
 		}
 	}
 	//확인차 그냥 넣어놓은 것임. 
-	for(var i=0; i<tastearry.length; i++){
-		alert(tastearry[i].valueOf());
-	}
+//	for(var i=0; i<tastearry.length; i++){
+//		alert(tastearry[i].valueOf());
+//	}
 			
 	//아작스 처리 
 	$.ajax({
 		url:"tasteAjax_1.do",
-		data:formsEle.serialize(),		
+		data:formsEle.serialize(),
+		dataType:"json",
 		type:"post",
-		success:function(){
-			alert("성공");
+		success:function(obj){
+			//alert("성공");
+			var mdto=obj["mdto"];
+			$("textarea[name=testAjax]").val(mdto["msummary"]);
+			
 		},
 		error:function(){
 			alert("서버통신 실패!!");
@@ -115,4 +119,8 @@ $(".previous").click(function(){
 $(".submit").click(function(){
 // 	return false;
 })
+
+
+
+
 

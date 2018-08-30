@@ -12,6 +12,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="resources/css/taste_init.css">
+<link rel="stylesheet" href="resources/css/starpoint.css">
 
 
 </head>
@@ -87,11 +88,36 @@
   <form>
     <h2 class="fs-title">${ldto.nick}님의 취향에 대해 좀더 알려주세요!</h2>
     <h3 class="fs-subtitle">영화에 별점을 매겨주세요!</h3>
-    <input type="text" name="twitter" placeholder="Twitter" />
-    <input type="text" name="facebook" placeholder="Facebook" />
-    <input type="text" name="gplus" placeholder="Google Plus" /><br/>
-    <input type="button" name="previous" class="previous action-button" value="Previous" /><br/>
-    <input type="button" name="next" class="next action-button" value="Next" /><br/>
+    
+    <textarea rows="10" cols="60" name="testAjax"></textarea>
+	
+	
+	<span class="star-input">
+  <span class="input">
+    <input type="radio" name="star-input" id="p1" value="1"><label for="p1">0.5</label>
+    <input type="radio" name="star-input" id="p2" value="2"><label for="p2">1</label>
+    <input type="radio" name="star-input" id="p3" value="3"><label for="p3">1.5</label>
+    <input type="radio" name="star-input" id="p4" value="4"><label for="p4">2</label>
+    <input type="radio" name="star-input" id="p5" value="5"><label for="p5">2.5</label>
+    <input type="radio" name="star-input" id="p6" value="6"><label for="p6">3</label>
+    <input type="radio" name="star-input" id="p7" value="7"><label for="p7">3.5</label>
+    <input type="radio" name="star-input" id="p8" value="8"><label for="p8">4</label>
+    <input type="radio" name="star-input" id="p9" value="9"><label for="p9">4.5</label>
+    <input type="radio" name="star-input" id="p10" value="10"><label for="p10">5</label>
+
+  </span>
+  <output for="star-input"><b>0</b>점</output>
+</span>
+	
+
+
+
+<!--     <input type="text" name="twitter" placeholder="Twitter" /> -->
+<!--     <input type="text" name="facebook" placeholder="Facebook" /> -->
+<!--     <input type="text" name="gplus" placeholder="Google Plus" /><br/> -->
+<!--     <input type="button" name="previous" class="previous action-button" value="Previous" /><br/> -->
+    <br/><br/>
+    <input type="hidden" name="next" class="next action-button" value="Next"  /><br/>
     </form>
   </fieldset>
   
@@ -99,11 +125,15 @@
   <form>
     <h2 class="fs-title">${ldto.nick}님 환영합니다!</h2>
     <h3 class="fs-subtitle">MINT: Movie into에 어서 오세요!!</h3>
-    <input type="text" name="fname" placeholder="First Name" />
-    <input type="text" name="lname" placeholder="Last Name" />
-    <input type="text" name="phone" placeholder="Phone" />
-    <textarea name="address" placeholder="Address"></textarea><br/>
-    <input type="button" name="previous" class="previous action-button" value="Previous" /><br/>
+    
+    반갑습니다!
+    MINT: Movie INTo
+    M ove INt o the MINT!
+<!--     <input type="text" name="fname" placeholder="First Name" /> -->
+<!--     <input type="text" name="lname" placeholder="Last Name" /> -->
+<!--     <input type="text" name="phone" placeholder="Phone" /> -->
+<!--     <textarea name="address" placeholder="Address"></textarea><br/> -->
+<!--     <input type="button" name="previous" class="previous action-button" value="Previous" /><br/> -->
     <input type="submit" name="submit" class="submit action-button" value="Submit" /><br/>
   </form>
   </fieldset>
@@ -113,6 +143,8 @@
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
 <script src="resources/js/taste_init.js"></script>
+<script src="resources/js/starpoint.js"></script>
+
 
 
 </body>
