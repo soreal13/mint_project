@@ -139,14 +139,27 @@ public class  TasteController {
 		return null;	
 	}
 	
+	//초기 리뷰 별점 처리
 	@ResponseBody
 	@RequestMapping(value="tasteAjax_2.do", method= RequestMethod.POST)
-	public Map<String, MovieDto> tasteAjax_2(Locale locale, Model model, int count){
+	public Map<String, MovieDto> tasteAjax_2(Locale locale, Model model, int count, int starpoint, int mseq){
 		logger.info("ajax처리:초기취향 페이지2", locale);
 		
-		//별점 받아와서 리뷰추가 
-		//취향에 반영(취향 로직)
-		//취향을 알려면 
+		//mseq로 영화정보랑 장르정보 가져오기
+		 MovieDto mdto= mService.getMovieinfo(mseq);
+		 
+		//별점 평가하기 movietable에 평균별점 나오게 넣기..? 어케하지 흠
+		 
+		//userinfo에 별점평가한 seq 넣기
+		 
+		//useq로 userTaste에 점수 가산해 넣기(업데이트, 단 가산하는거 aop로 반영하기)
+		 
+		 
+		 
+		
+		//취향에 반영(취향 로직) -> aop로? 일단 여기에 짜기.
+		 
+		//취향을 알려면 mseq로 
 		
 
 		//뷰에서 카운트 하나씩 추가, 30개 차례대로 무비 반납.
@@ -154,9 +167,9 @@ public class  TasteController {
 		"224", "237", "312", "288", "303", "305", "364", "320", "318", "345", 
 		"382", "475", "393", "406", "370", "450", "454", "425", "431", "486" };		
 		
-		MovieDto mdto = mService.getMovieinfo(count);
+		MovieDto mdto2 = mService.getMovieinfo(count);
 		Map<String, MovieDto> map = new HashMap<>();
-		map.put("mdto", mdto);		
+		map.put("mdto", mdto2);		
 		
 		return map;
 	}

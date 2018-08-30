@@ -32,27 +32,37 @@ var starRating = function(){
 };
 starRating();
 
-//별점 클릭
-$(function(){
-	$(".star-input").click(function(){
-		var starpoint=$(this).val();
-		$.ajax({
-			url:"tasteAjax_2.do",
-			data:"starpoint="+starpoint,
-			dataType:"json",
-			type:"post",
-			success: function(obj){
-				$("textarea[name=testAjax2]").val("");
-				
-			},
-			error:function(){
-				alert("실패!ㅜㅜ");
-			}
-		});	
-		
-	});
+//취향평가 영화 갯수
+var count=0;
+
+//별점 클릭 메소드
+$(".star-input").click(function(){
+	
+	var starpoint=$(this).val();
+	var mseq=$("#movieset").attr("class");
+	
+	count++;
+	alert(count);
+	
+	$.ajax({
+		url:"tasteAjax_2.do",
+		data:"starpoint="+starpoint&"mseq="+mseq&"count="+count,
+		dataType:"json",
+		type:"post",
+		success: function(obj){				
+			var mdto=obj["mdto"];
+			//$("textarea[name=testAjax2]").val("");
+			$("#mimg").attr("src",mdto["mimg"]);
+			$("#mseq").attr("class",mdto["mseq"]);
+			
+		},
+		error:function(){
+			alert("실패!ㅜㅜ");
+		}
+	});	
 	
 });
+
 
 
 

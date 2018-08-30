@@ -89,25 +89,28 @@
     <h2 class="fs-title">${ldto.nick}님의 취향에 대해 좀더 알려주세요!</h2>
     <h3 class="fs-subtitle">영화에 별점을 매겨주세요!</h3>
     
-    <textarea rows="10" cols="60" name="testAjax"></textarea>
-	
+<!--     <textarea rows="10" cols="60" name="testAjax"></textarea> -->
+<!-- 	피씨방 작성코드 -->
+	<div id=mseq class="mseq"> 
+	<img src="#" alt="mimg" id="mimg">
+	</div>
 	
 	<span class="star-input">
-  <span class="input">
-    <input type="radio" name="star-input" id="p1" value="1"><label for="p1">0.5</label>
-    <input type="radio" name="star-input" id="p2" value="2"><label for="p2">1</label>
-    <input type="radio" name="star-input" id="p3" value="3"><label for="p3">1.5</label>
-    <input type="radio" name="star-input" id="p4" value="4"><label for="p4">2</label>
-    <input type="radio" name="star-input" id="p5" value="5"><label for="p5">2.5</label>
-    <input type="radio" name="star-input" id="p6" value="6"><label for="p6">3</label>
-    <input type="radio" name="star-input" id="p7" value="7"><label for="p7">3.5</label>
-    <input type="radio" name="star-input" id="p8" value="8"><label for="p8">4</label>
-    <input type="radio" name="star-input" id="p9" value="9"><label for="p9">4.5</label>
-    <input type="radio" name="star-input" id="p10" value="10"><label for="p10">5</label>
-
-  </span>
-  <output for="star-input"><b>0</b>점</output>
-</span>
+	  <span class="input">
+	    <input type="radio" name="star-input" id="p1" value="1"><label for="p1">0.5</label>
+	    <input type="radio" name="star-input" id="p2" value="2"><label for="p2">1</label>
+	    <input type="radio" name="star-input" id="p3" value="3"><label for="p3">1.5</label>
+	    <input type="radio" name="star-input" id="p4" value="4"><label for="p4">2</label>
+	    <input type="radio" name="star-input" id="p5" value="5"><label for="p5">2.5</label>
+	    <input type="radio" name="star-input" id="p6" value="6"><label for="p6">3</label>
+	    <input type="radio" name="star-input" id="p7" value="7"><label for="p7">3.5</label>
+	    <input type="radio" name="star-input" id="p8" value="8"><label for="p8">4</label>
+	    <input type="radio" name="star-input" id="p9" value="9"><label for="p9">4.5</label>
+	    <input type="radio" name="star-input" id="p10" value="10"><label for="p10">5</label>
+	
+	  </span>
+	  <output for="star-input"><b>0</b>점</output>
+	</span>
 	
 
 
