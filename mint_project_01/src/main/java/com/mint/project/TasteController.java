@@ -39,7 +39,7 @@ public class  TasteController {
 	public String tasteInit(Locale locale, Model model) {
 		logger.info("처음 taste 만들기 {}.", locale);
 
-		
+		// 지우면 안됨
 		//		08.28 잘 됨		
 //		System.out.println("들어옴");
 //		String tstatus = "N";
@@ -53,11 +53,10 @@ public class  TasteController {
 //		System.out.println(tdto.getTseq());
 //		
 //		tService.insertTaste(tdto);
-		
-		
-		
+	
 		return "taste_init2";
 	}
+
 	
 	//회원가입시 혹은 tstatus=n일때 taste 창으로 이동
 	//로그인 컨트롤러에서 if tstatus=n 이거나 없으면 이쪽으로 오게 수정할 것.
@@ -71,41 +70,24 @@ public class  TasteController {
 	
 	@ResponseBody
 	@RequestMapping(value="tasteAjax_1.do", method= RequestMethod.POST)
-	public String tasteAjax(String[] tastearry, Locale locale, Model model){
+	public String tasteAjax(Locale locale, Model model,TasteDto paramDto){
 		logger.info("ajax처리:초기취향반영", locale);
-		
-		TasteDto tdto=new TasteDto();
-		
-		//단어 비교 및 set=1 		
-		for(int i=0; i<tastearry.length; i++) {
-			String tmp= tastearry[i].toString();
-			tdto.setSelect(tmp);	
-		}
+		System.out.println(paramDto);
+		TasteDto tdto=paramDto;		
+		System.out.println(tdto);
 
+		//테스트
+		tdto.setTseq(1);
+		tdto.setTuseq(1);
 		
-		
-//		for(int i=0; i<tastearry.length; i++) {
-//			String tmp= tastearry[i].toString();
-//			String dtmp= tdto.toString();
-//			if(tmp.contains(dtmp)) {
-//				
-//			} else {
-//				
-//			}
-//		}
-			
-			
-		Map<String, TasteDto> map= new HashMap<>();
 		boolean isS=tService.updateTaste(tdto);
 		if(isS) {
-			return "성공";
+			return "성공";	
+
 		} else {
-			model.addAttribute("msg", "ajax처리 실패");
 			return "error_page";
 		}
-		
-		
-		
+
 		
 	}
 	

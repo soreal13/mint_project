@@ -12,9 +12,9 @@ $(".next").click(function(){
 	if(animating) return false;
 	animating = true;
 
-	current_fs = $(this).parent();
-	next_fs = $(this).parent().next();
-	
+	current_fs = $(this).parent().parent();
+	next_fs = $(this).parent().parent().next();
+	var formsEle=$(this).parent();
 	//activate next step on progressbar using the index of next_fs
 	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 	
@@ -48,7 +48,6 @@ $(".next").click(function(){
 	//체크박스 값
 	var checkarry=document.getElementsByName("chk");
 	var tastearry = new Array();
-	alert(checkarry.length);
 	
 	for(var i=0; i<checkarry.length; i++){
 		if($(checkarry[i]).is(':checked')){
@@ -60,12 +59,11 @@ $(".next").click(function(){
 	for(var i=0; i<tastearry.length; i++){
 		alert(tastearry[i].valueOf());
 	}
-	
-		
+			
 	//아작스 처리 
 	$.ajax({
-		url:"tasteajax_1.do",
-		data:"tastearry="+tastearry,		
+		url:"tasteAjax_1.do",
+		data:formsEle.serialize(),		
 		type:"post",
 		success:function(){
 			alert("성공");
