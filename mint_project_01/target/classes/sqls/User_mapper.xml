@@ -23,7 +23,7 @@
       <result property="udownrseq" column="udownrseq" />   
           
    </resultMap>
-<!--    회원가입  0-->
+ <!--    회원가입  0-->
    <insert id="register" parameterType="UserDto">
       INSERT INTO USER_TABLE
       ( USEQ, UEMAIL, UNICK, UPWD, UIMG, UDELFLAG ) VALUES 
