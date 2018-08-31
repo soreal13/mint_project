@@ -8,8 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-1
-
+<a href="login.do">클릭</a>
 
 </body>
 </html>

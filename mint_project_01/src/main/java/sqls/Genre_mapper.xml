@@ -6,38 +6,75 @@
   
   <mapper namespace="com.mint.project.genre">
        <resultMap type="com.mint.project.dtos.GenreDto" id="GenreDto">
-	       <result property="gseq" column="gseq" />
-	      <result property="gmseq" column="gmseq" />
-	      <result property="gaction" column="gaction" />
-	      <result property="gcomedy" column="gcomedy" />
-	      <result property="gcrime" column="gcrime" />
-	      <result property="gdocumentary" column="gdocumentary" />
-	      <result property="gdrama" column="gdrama" />
-	      <result property="gfamily" column="gfamily" />
-	      <result property="gfantasy" column="gfantasy" />
-	      <result property="gnoir" column="gnoir" />
-	      <result property="ghorror" column="ghorror" />
-	      <result property="gmusical" column="gmusical" />
-	      <result property="gmystery" column="gmystery" />
-	      <result property="gromance" column="gromance" />
-	      <result property="gsf" column="gsf" />
-	      <result property="gsports" column="gsports" />
-	      <result property="gthriller" column="gthriller" />
-	      <result property="gwar" column="gwar" />
-	      <result property="gcar" column="gcar" />
-	      <result property="grabbit" column="grabbit" />
-	      <result property="ganimation" column="ganimation" />
-	      <result property="gchildren" column="gchildren" />
-	      <result property="ghistory" column="ghistory" />
-	      <result property="groco" column="groco" />
-	      <result property="gdisaster" column="gdisaster" />
-	      <result property="gwuxia" column="gwuxia" />
-	      <result property="gwestern" column="gwestern" />
-	      <result property="ghotguy" column="ghotguy" />
-	      <result property="ghighteen" column="ghighteen" />
-	      <result property="gdomestic" column="gdomestic" />
-	      <result property="gforeign" column="gforeign" />
+          <result property="gseq" column="gseq" />
+         <result property="gmseq" column="gmseq" />
+         <result property="gaction" column="gaction" />
+         <result property="gcomedy" column="gcomedy" />
+         <result property="gcrime" column="gcrime" />
+         <result property="gdocumentary" column="gdocumentary" />
+         <result property="gdrama" column="gdrama" />
+         <result property="gfamily" column="gfamily" />
+         <result property="gfantasy" column="gfantasy" />
+         <result property="gnoir" column="gnoir" />
+         <result property="ghorror" column="ghorror" />
+         <result property="gmusical" column="gmusical" />
+         <result property="gmystery" column="gmystery" />
+         <result property="gromance" column="gromance" />
+         <result property="gsf" column="gsf" />
+         <result property="gsports" column="gsports" />
+         <result property="gthriller" column="gthriller" />
+         <result property="gwar" column="gwar" />
+         <result property="gcar" column="gcar" />
+         <result property="grabbit" column="grabbit" />
+         <result property="ganimation" column="ganimation" />
+         <result property="gchildren" column="gchildren" />
+         <result property="ghistory" column="ghistory" />
+         <result property="groco" column="groco" />
+         <result property="gdisaster" column="gdisaster" />
+         <result property="gwuxia" column="gwuxia" />
+         <result property="gwestern" column="gwestern" />
+         <result property="ghotguy" column="ghotguy" />
+         <result property="ghighteen" column="ghighteen" />
+         <result property="gdomestic" column="gdomestic" />
+         <result property="gforeign" column="gforeign" />
              
        </resultMap>
+       
+       <insert id="insertGenre" parameterType="GenreDto">
+          insert into GENRE_TABLE (gseq, gmseq, gaction, gcomedy, gcrime, gdocumentary,
+          gdrama, gfamily, gfantasy, gnoir, ghorror, gmusical, gmystery, gromance, gsf, gsports,
+          gthriller, gwar, gcar, grabbit, ganimation, gchildren, ghistory, groco, gdisaster, gwuxia,
+          gwestern, ghotguy, ghighteen, gdomestic, gforeign)
+          values (#{gseq}, #{gmseq}, #{gaction}, #{gcomedy}, #{gcrime}, #{gdocumentary},
+          #{gdrama}, #{gfamily}, #{gfantasy}, #{gnoir}, #{ghorror}, #{gmusical}, #{gmystery}, #{gromance}, #{gsf}, #{gsports},
+          #{gthriller}, #{gwar}, #{gcar}, #{grabbit}, #{ganimation}, #{gchildren}, #{ghistory}, #{groco}, #{gdisaster}, #{gwuxia},
+          #{gwestern}, #{ghotguy}, #{ghighteen}, #{gdomestic}, #{gforeign})
+       </insert>
+       
+       <update id="updateGenre" parameterType="GenreDto">
+       update GENRE_TABLE SET
+          gmseq=#{gmseq}, gaction=#{gaction}, gcomedy=#{gcomedy}, gcrime=#{gcrime}, gdocumentary=#{gdocumentary},
+          gdrama=#{gdrama}, gfamily=#{gfamily}, gfantasy=#{gfantasy}, gnoir=#{gnoir}, ghorror=#{ghorror}, gmusical=#{gmusical}, gmystery=#{gmystery}, gromance=#{gromance}, gsf=#{gsf}, gsports=#{gsports},
+          gthriller=#{gthriller}, gwar=#{gwar}, gcar=#{gcar}, grabbit=#{grabbit}, ganimation=#{ganimation}, gchildren=#{gchildren}, ghistory=#{ghistory}, groco=#{groco}, gdisaster=#{gdisaster}, gwuxia=#{gwuxia},
+          gwestern=#{gwestern}, ghotguy=#{ghotguy}, ghighteen=#{ghighteen}, gdomestic=#{gdomestic}, gforeign=#{gforeign}
+       WHERE GSEQ=#{gseq}
+       </update>
+       
+       <select id="getGenre" parameterType="int" resultType="GenreDto">
+       SELECT * FROM GENRE_TABLE
+       WHERE GMSEQ=#{gmseq}       
+       </select>
+       
+       <select id="getAllGenre" resultType="GenreDto">
+       SELECT * FROM GENRE_TABLE
+       </select>
+       
+       <delete id="delGenre" parameterType="int">
+       DELETE FROM GENRE_TABLE
+       WHERE GMSEQ=#{gmseq}       
+       </delete>
+       
+       
+       
       
 </mapper>

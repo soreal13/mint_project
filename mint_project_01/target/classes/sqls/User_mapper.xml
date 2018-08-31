@@ -5,9 +5,9 @@
   
   
 <mapper namespace="com.mint.project.user">
-	<resultMap type="com.mint.project.dtos.UserDto" id="UserDto">
-	
-	  <result property="useq" column="useq" />
+   <resultMap type="com.mint.project.dtos.UserDto" id="UserDto">
+   
+     <result property="useq" column="useq" />
       <result property="uemail" column="uemail" />
       <result property="unick" column="unick" />
       <result property="upwd" column="upwd" />
@@ -20,8 +20,57 @@
       <result property="usessionkey" column="usessionkey" />
       <result property="usessionlimit" column="usessionlimit" />
       <result property="uuprseq" column="uuprseq" />
-      <result property="udownrseq" column="udownrseq" />	
-	       
-	</resultMap>
+      <result property="udownrseq" column="udownrseq" />   
+          
+   </resultMap>
+<!--    회원가입  0-->
+   <insert id="register" parameterType="UserDto">
+      INSERT INTO USER_TABLE
+      ( USEQ, UEMAIL, UNICK, UPWD, UIMG, UDELFLAG ) VALUES 
+      ( USER_TABLE_SEQ.NEXTVAL,#{uemail}, #{unick}, #{upwd},'이미지','N' )
+
+   </insert>
+<!--    로그인  0-->
+   <select id="login" parameterType="UserDto" resultType="UserDto">
+      SELECT * FROM USER_TABLE WHERE UEMAIL=#{uemail} AND UPWD=#{upwd} 
+   </select>
+<!--    이메일체크 0-->
+   <select id="chkEmail" parameterType="UserDto" resultType="UserDto">
+      SELECT UEMAIL FROM USER_TABLE WHERE UEMAIL=#{uemail}
+   </select>
+<!--    별명 체크  0-->
+   <select id="chkNick" parameterType="UserDto" resultType="UserDto">
+      SELECT UNICK FROM USER_TABLE WHERE UNICK=#{unick}
+   </select>
+
+<!--    회원 정보 가져오기 0-->
+   <select id="getUserinfo" parameterType="UserDto" resultType="UserDto">
+      SELECT USEQ, UEMAIL, UNICK, UIMG, UMSEQ, UFMSEQ, UFUSEQ, URSEQ, UUPRSEQ, UDOWNRSEQ
+      FROM USER_TABLE WHERE USEQ=#{useq}
+   </select>
+<!--    프로필 이미지 변경 0-->
+   <update id="updateUimg" parameterType="UserDto" >
+      UPDATE USER_TABLE SET UIMG=#{uimg} WHERE USEQ=#{useq}      
+   </update>
+<!--    유저 정보 변경 0-->
+   <update id="updateUserinfo" parameterType="UserDto">
+      UPDATE USER_TABLE SET UNICK=#{unick}, UPWD=#{upwd} WHERE USEQ=#{useq}
+   </update>
+<!--    즐겨찾기한 영화 가져오기 (조건부에 리스트 정렬 넣기) 0-->
+   <select id="getUserFavorite" parameterType="int" resultType="UserDto">
+      SELECT UFMSEQ, UFUSEQ FROM USER_TABLE WHERE USEQ=#{useq} ORDER BY UFMSEQ DESC
+   </select>
+
+<!--    유저가 쓴 리뷰 불러오기 0-->
+   <select id="getUserReview" parameterType="UserDto">
+      
+      SELECT USEQ,RSEQ,RMSEQ,RUSEQ,MTITLE,RCONTENT FROM USER_TABLE, REVIEW_TABLE, MOVIE_TABLE WHERE REVIEW_TABLE.RUSEQ=USER_TABLE.USEQ AND USEQ=#{useq} ORDER BY RSEQ DESC
+   </select>
+<!--    유저 삭제  0-->
+   <delete id="delUser" parameterType="UserDto">
+      UPDATE USER_TABLE SET UDELFLAG='Y' WHERE USEQ=#{useq}
+   </delete>
+   
+   
        
 </mapper>

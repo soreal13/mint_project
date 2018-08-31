@@ -16,12 +16,12 @@ public interface IStarpointDao {
 //	getAllStarpoint
 	
 	//초기 별점정보 생성
-	public int insertStarpoint(StarpointDto sdto);
+	public boolean insertStarpoint(StarpointDto sdto);
 	
 	//별점 정보 수정
 	public boolean updateStarpoint(StarpointDto sdto);
 	
-	//유저&영화로 특정 별점 셀렉트
+	//유저&영화로 특정 별점 셀렉트 == 해당영화 별점 줬는지안줬는지 판단을위한메소드임
 	public StarpointDto getOneStarpoint(int useq, int mseq);
 	
 	//유저 평가한 별점목록
@@ -32,6 +32,7 @@ public interface IStarpointDao {
 	
 	//전체 별점목록
 	public List<StarpointDto> getAllstarpoint();
+	
 	
 	
 }

@@ -10,55 +10,66 @@ import com.mint.project.dtos.UserDto;
 @Service
 public class UserServiceImp implements IUserService {
 
-	@Autowired
-	private IUserDao udao;
-	
-	@Override
-	public UserDto chkEmail(String uemail) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+   @Autowired
+   private IUserDao udao;
+   
+   @Override
+   public UserDto chkEmail(String uemail) {
+      
+      return udao.chkEmail(uemail);
+   }
 
-	@Override
-	public UserDto chkNick(String unick) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+   @Override
+   public UserDto chkNick(String unick) {
+      
+      return udao.chkNick(unick);
+   }
 
-	@Override
-	public boolean updateUimg(int useq, String uimg) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+   @Override
+   public boolean updateUimg(UserDto udto) {
+      
+      return udao.updateUimg(udto);
+   }
 
-	@Override
-	public int updateUserinfo(UserDto udto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+   @Override
+   public int updateUserinfo(UserDto udto) {
+      
+      return udao.updateUserinfo(udto);
+   }
 
-	@Override
-	public boolean delUser(int useq) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+   @Override
+   public boolean delUser(int useq) {
+      
+      return udao.delUser(useq);
+   }
 
-	@Override
-	public UserDto getUserinfo(UserDto udto) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+   @Override
+   public UserDto getUserinfo(UserDto udto) {
+      
+      return udao.getUserinfo(udto);
+   }
 
-	@Override
-	public UserDto getUserFavorite(int useq) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+   @Override
+   public UserDto getUserFavorite(int useq) {
+      
+      return udao.getUserFavorite(useq);
+   }
 
-	@Override
-	public UserDto getUserReview(int useq) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+   @Override
+   public UserDto getUserReview(int useq) {
+      
+      return udao.getUserReview(useq);
+   }
 
+
+   @Override
+	public boolean register(UserDto udto) {
+	   return udao.register(udto);
+   }
+      
+   @Override
+	public UserDto login(UserDto udto) {
+	   return udao.login(udto);
+   }
+  
 }
