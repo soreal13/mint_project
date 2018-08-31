@@ -60,11 +60,16 @@ public class UserServiceImp implements IUserService {
       
       return udao.getUserReview(useq);
    }
+   
+   @Override
+   public boolean register(UserDto udto) {
+	   return udao.register(udto);
+   } 
+   
+   @Override
+   public UserDto login(UserDto udto) {
+	   return udao.login(udto);
+   }
 
-@Override
-public boolean updateUimg(int useq, String uimg) {
-	// TODO Auto-generated method stub
-	return false;
-}
-
+	
 }

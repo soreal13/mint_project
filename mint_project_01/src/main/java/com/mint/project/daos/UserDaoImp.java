@@ -12,7 +12,7 @@ public class UserDaoImp implements IUserDao {
    
    @Autowired
       private SqlSessionTemplate sqlSession;
-      private String namespace="com.mint.project.UserDao";
+      private String namespace="com.mint.project.user.";
    
    @Override
    public UserDto chkEmail(String uemail) {

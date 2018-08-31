@@ -22,9 +22,6 @@ public interface IUserService {
 		
 	//별명 중복체크
 	public UserDto chkNick(String unick);
-
-	//프로필이미지변경
-	public boolean updateUimg(int useq, String uimg);
 	
 	//유저정보 업데이트
 	public int updateUserinfo(UserDto udto);	
@@ -40,8 +37,16 @@ public interface IUserService {
 		   
 	//유저가 쓴 리뷰 가져오기
 	public UserDto getUserReview(int useq);
-
-	boolean updateUimg(UserDto udto);
+	
+	//유저이미지변경
+	public boolean updateUimg(UserDto udto);
+	
+	//회원 가입
+	public boolean register(UserDto udto);
+	
+	//로그인
+	public UserDto login(UserDto udto);
+	
 	
 	
 	
