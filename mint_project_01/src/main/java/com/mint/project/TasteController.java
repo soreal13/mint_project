@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mint.project.aop.TasteAop;
 import com.mint.project.dtos.MovieDto;
 import com.mint.project.dtos.TasteDto;
+import com.mint.project.dtos.UserDto;
 import com.mint.project.service.ITasteService;
 import com.mint.project.service.MovieServiceImp;
+import com.mint.project.service.TasteServiceImp;
+import com.mint.project.service.UserServiceImp;
 
 @Controller
 public class  TasteController {
@@ -28,10 +31,13 @@ public class  TasteController {
 	private static final Logger logger = LoggerFactory.getLogger(TasteController.class);
 	
 	@Autowired
-	private ITasteService tService;
+	private TasteServiceImp tService;
 	
 	@Autowired
 	private MovieServiceImp mService;
+	
+	@Autowired
+	private UserServiceImp uService;
 	
 	TasteAop taop = new TasteAop();
 	
@@ -221,6 +227,15 @@ public class  TasteController {
 		//마지막 영화인 경우
 		} else {
 			System.out.println("-1 들어옴.");
+			
+			TasteDto tdtolast = new TasteDto();
+			
+//			tdtolast.setTuseq(tuseq);
+			tdtolast.setTseq(1);
+			tdtolast.setTstatus("Y");
+			
+			tService.updateTaste(tdtolast);
+			
 			MovieDto mdto2 = mService.getMovieinfo(86);
 			Map<String, MovieDto> map= new HashMap<String, MovieDto>();
 			mdto2.setMseq(-1);
@@ -241,6 +256,7 @@ public class  TasteController {
 		//아니면 결과 페이지(그래프 같은거 보여주기)
 		return "index";
 	}
+	
 	
 	//취향추천 메소드
 	//취향추천 영화
