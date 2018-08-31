@@ -68,7 +68,7 @@ public class ReviewDaoImp implements IReviewDao {
 	}
 	@Override
 	public boolean updateDown(int rseq, int useq) {
-		Map<String, Integer> map=new HashMap<>();
+		Map<String, Integer> map=new HashMap<String, Integer>();
 		
 	    map.put("rseq", rseq);
 	    map.put("useq", useq);

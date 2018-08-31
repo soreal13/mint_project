@@ -32,7 +32,7 @@ public class StarpointDaoImp implements IStarpointDao {
 
 	@Override
 	public StarpointDto getOneStarpoint(int useq, int mseq) {
-		Map<String, Integer> map=new HashMap<>();
+		Map<String, Integer> map=new HashMap<String, Integer>();
 		
 	    map.put("useq", useq);
 	    map.put("mseq", mseq);

@@ -58,7 +58,7 @@
    
    <select id="getTaste" parameterType="int" resultType="TasteDto">
       SELECT *
-      FROME TASTE_TABLE
+      FROM TASTE_TABLE
       WHERE tuseq=#{tuseq}   
    </select>
    

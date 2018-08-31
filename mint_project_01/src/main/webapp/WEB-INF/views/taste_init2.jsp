@@ -7,17 +7,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <title>영화를 평가해주세요!</title>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="resources/css/taste_init.css">
 <link rel="stylesheet" href="resources/css/starpoint.css">
 
-
 </head>
 <body>
-
 <!-- multistep form -->
 <div id="msform">
 
@@ -82,45 +78,42 @@
   <input type="button" name="next" class="next action-button" value="Next" />
   </form>
   </fieldset>  
-
    
   <fieldset>
-  <form>
+  <form id="form2">
     <h2 class="fs-title">${ldto.nick}님의 취향에 대해 좀더 알려주세요!</h2>
     <h3 class="fs-subtitle">영화에 별점을 매겨주세요!</h3>
     
 <!--     <textarea rows="10" cols="60" name="testAjax"></textarea> -->
 <!-- 	피씨방 작성코드 -->
-	<div id=mseq class="mseq"> 
-	<img src="#" alt="mimg" id="mimg">
-	</div>
-	
-	<span class="star-input">
-	  <span class="input">
-	    <input type="radio" name="star-input" id="p1" value="1"><label for="p1">0.5</label>
-	    <input type="radio" name="star-input" id="p2" value="2"><label for="p2">1</label>
-	    <input type="radio" name="star-input" id="p3" value="3"><label for="p3">1.5</label>
-	    <input type="radio" name="star-input" id="p4" value="4"><label for="p4">2</label>
-	    <input type="radio" name="star-input" id="p5" value="5"><label for="p5">2.5</label>
-	    <input type="radio" name="star-input" id="p6" value="6"><label for="p6">3</label>
-	    <input type="radio" name="star-input" id="p7" value="7"><label for="p7">3.5</label>
-	    <input type="radio" name="star-input" id="p8" value="8"><label for="p8">4</label>
-	    <input type="radio" name="star-input" id="p9" value="9"><label for="p9">4.5</label>
-	    <input type="radio" name="star-input" id="p10" value="10"><label for="p10">5</label>
-	
-	  </span>
-	  <output for="star-input"><b>0</b>점</output>
-	</span>
-	
-
-
-
-<!--     <input type="text" name="twitter" placeholder="Twitter" /> -->
-<!--     <input type="text" name="facebook" placeholder="Facebook" /> -->
-<!--     <input type="text" name="gplus" placeholder="Google Plus" /><br/> -->
-<!--     <input type="button" name="previous" class="previous action-button" value="Previous" /><br/> -->
-    <br/><br/>
-    <input type="hidden" name="next" class="next action-button" value="Next"  /><br/>
+	<div id=mseq class="mseq"  >
+	    <h3 class="fs-subtitle">p.s 선택한 장르가 아닌 영화도 나와요^^; 당황하지 마셔요!</h3>	 
+		<img src="http://" alt="mimg" id="mimg">
+		<input type="hidden" id="count" value=0>
+		
+		<br/>
+		<span class="star-input">
+		  <span class="input">
+		    <input type="radio" name="star-input" id="p1" value="1"><label for="p1">0.5</label>
+		    <input type="radio" name="star-input" id="p2" value="2"><label for="p2">1</label>
+		    <input type="radio" name="star-input" id="p3" value="3"><label for="p3">1.5</label>
+		    <input type="radio" name="star-input" id="p4" value="4"><label for="p4">2</label>
+		    <input type="radio" name="star-input" id="p5" value="5"><label for="p5">2.5</label>
+		    <input type="radio" name="star-input" id="p6" value="6"><label for="p6">3</label>
+		    <input type="radio" name="star-input" id="p7" value="7"><label for="p7">3.5</label>
+		    <input type="radio" name="star-input" id="p8" value="8"><label for="p8">4</label>
+		    <input type="radio" name="star-input" id="p9" value="9"><label for="p9">4.5</label>
+		    <input type="radio" name="star-input" id="p10" value="10"><label for="p10">5</label>
+		
+		  </span>
+		  <output for="star-input"><b>0</b>점</output>
+		</span>
+		<br/><br/>
+		<input type="button" class="unseen form2-button"  name="unseen" value="안봤어요" />
+		<input type="button" class="unlike form2-button" name="unlike" value="관심 없어요" />	
+	    <br/><br/>
+    </div>
+    <input type="hidden" id="form2-next" name="next" class="next action-button" value="Next"  /><br/>
     </form>
   </fieldset>
   
@@ -129,15 +122,12 @@
     <h2 class="fs-title">${ldto.nick}님 환영합니다!</h2>
     <h3 class="fs-subtitle">MINT: Movie into에 어서 오세요!!</h3>
     
-    반갑습니다!
-    MINT: Movie INTo
-    M ove INt o the MINT!
-<!--     <input type="text" name="fname" placeholder="First Name" /> -->
-<!--     <input type="text" name="lname" placeholder="Last Name" /> -->
-<!--     <input type="text" name="phone" placeholder="Phone" /> -->
-<!--     <textarea name="address" placeholder="Address"></textarea><br/> -->
+    <h3 class="fs-subtitle">반갑습니다!</h3>
+    <h3 class="fs-subtitle">MINT: <b>M</b>ovie <b>INT</b>o!</h3>
+    <h3 class="fs-subtitle"><b>M</b> ove <b>INt</b> o the <b>MINT!</b></h3>        
+
 <!--     <input type="button" name="previous" class="previous action-button" value="Previous" /><br/> -->
-    <input type="submit" name="submit" class="submit action-button" value="Submit" /><br/>
+   <input type="submit" name="submit" class="submit action-button" value="Submit" /><br/>
   </form>
   </fieldset>
 

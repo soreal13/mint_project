@@ -1,4 +1,3 @@
-//위에까지 폼 아래는 별점 
 // star rating
 var starRating = function(){
   var $star = $(".star-input"),
@@ -32,28 +31,41 @@ var starRating = function(){
 };
 starRating();
 
-//취향평가 영화 갯수
-var count=0;
 
 //별점 클릭 메소드
-$(".star-input").click(function(){
+$(".star-input").find("input").click(function(){
 	
 	var starpoint=$(this).val();
-	var mseq=$("#movieset").attr("class");
-	
-	count++;
+	alert(starpoint);
+	var mseq=$("#mseq").attr("class");
+	var count= $("#count").val();
 	alert(count);
+	count++;
+		
+	var jsonData = {
+			"mseq" : mseq,
+			"count" : count,
+			"starpoint" : starpoint
+		};
 	
 	$.ajax({
 		url:"tasteAjax_2.do",
-		data:"starpoint="+starpoint&"mseq="+mseq&"count="+count,
+		data:jsonData,
 		dataType:"json",
 		type:"post",
 		success: function(obj){				
 			var mdto=obj["mdto"];
-			//$("textarea[name=testAjax2]").val("");
-			$("#mimg").attr("src",mdto["mimg"]);
-			$("#mseq").attr("class",mdto["mseq"]);
+			if(mdto["mseq"] == "-1"){
+				alert("다음버튼 클릭");
+				$("#mimg").attr("src", "#");
+				$("#mseq").attr("hidden", true);
+				$("#form2-next").attr("type", "button");
+								
+			} else {
+				$("#mimg").attr("src",mdto["mimg"]);
+				$("#mseq").attr("class",mdto["mseq"]);
+				$("#count").attr("value", count);	
+			}
 			
 		},
 		error:function(){

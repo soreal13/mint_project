@@ -1,11 +1,11 @@
 
 package com.mint.project;
 
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.mint.project.aop.TasteAop;
 import com.mint.project.dtos.MovieDto;
 import com.mint.project.dtos.TasteDto;
 import com.mint.project.service.ITasteService;
@@ -33,6 +33,17 @@ public class  TasteController {
 	@Autowired
 	private MovieServiceImp mService;
 	
+	TasteAop taop = new TasteAop();
+	
+	
+	@RequestMapping(value="/testpage.do", method =RequestMethod.GET)
+	public String testpage(Locale locale, Model model, HttpServletRequest request) {
+		
+		String[] result = taop.askKeyword("코미디, 드라마, 로맨스, ");
+		System.out.println(result);
+		
+		return "index";
+	}
 		
 	
 	@RequestMapping(value="/taste.do", method =RequestMethod.GET)
@@ -75,7 +86,7 @@ public class  TasteController {
 	
 
 	@ResponseBody
-	@RequestMapping(value="tasteAjax_1.do", method= RequestMethod.POST)
+	@RequestMapping(value="/tasteAjax_1.do", method= RequestMethod.POST)
 	public Map<String, MovieDto> tasteAjax(Locale locale, Model model,TasteDto paramDto){
 		logger.info("ajax처리:초기취향반영", locale);
 
@@ -125,7 +136,7 @@ public class  TasteController {
 			//3. 하나씩 들고오기 걍			
 			MovieDto mdto = mService.getMovieinfo(86);
 			System.out.println(mdto.getMsummary());
-			Map<String, MovieDto> map= new HashMap<>();
+			Map<String, MovieDto> map= new HashMap<String, MovieDto>();
 			map.put("mdto", mdto);
 
 			return map;
@@ -141,47 +152,91 @@ public class  TasteController {
 	
 	//초기 리뷰 별점 처리
 	@ResponseBody
-	@RequestMapping(value="tasteAjax_2.do", method= RequestMethod.POST)
-	public Map<String, MovieDto> tasteAjax_2(Locale locale, Model model, int count, int starpoint, int mseq){
+	@RequestMapping(value="/tasteAjax_2.do", method=RequestMethod.POST)
+	public Map<String, MovieDto> tasteAjax_2(Locale locale, Model model,HttpServletRequest request ){
 		logger.info("ajax처리:초기취향 페이지2", locale);
+		System.out.println(request.getParameter("mseq"));
 		
-		//mseq로 영화정보랑 장르정보 가져오기
-		 MovieDto mdto= mService.getMovieinfo(mseq);
-		 
-		//별점 평가하기 movietable에 평균별점 나오게 넣기..? 어케하지 흠
-		 
-		//userinfo에 별점평가한 seq 넣기
-		 
-		//useq로 userTaste에 점수 가산해 넣기(업데이트, 단 가산하는거 aop로 반영하기)
-		 
-		 
-		 
+		int mseq= Integer.parseInt(request.getParameter("mseq"));
+		int count= Integer.parseInt(request.getParameter("count"));
+		int starpoint= Integer.parseInt(request.getParameter("starpoint"));
 		
-		//취향에 반영(취향 로직) -> aop로? 일단 여기에 짜기.
-		 
-		//취향을 알려면 mseq로 
 		
+		//별점 입력시, 관심없어요할때(=장르 별점 -2점, 리뷰 추가 x)
+		if(starpoint!=-1) {
+			//별점환산
+			int newstarpoint=taop.scalePoint(starpoint);
+			
+			//취향반영			
+			//1. mseq로 키워드(장르) 알아내기
+			 MovieDto mdto= mService.getMovieinfo(mseq);
+			 String mkeyw = mdto.getMkeyw();
+			 
+			 //2. ',' 기준으로 키워드 나누기.
+			 String[] keyword= taop.askKeyword(mkeyw);
+			 
+			//3. 해당 유저의 취향 불러오기( 테스트로 1받음)
+			//TasteDto tdto = tService.getTaste(useq);
+			TasteDto tdto = tService.getTaste(1);
+			
+			//4. 환산 별점 해당유저 취향 키워드에 맞춰서 '더하기'
+			tdto= taop.pointToTaste(tdto, keyword, newstarpoint);
+			 			
+			//5.useq로 userTaste에 점수 가산해 넣기(업데이트, 단 가산하는거 aop로 반영하기)
+			tService.updateTaste(tdto);						 			
+			
+			if(starpoint!=-2) {
+				//여기서부턴 별점 평가에 관련한 것임 *민지*
+				//별점 평가하기 movietable에 평균별점 나오게 넣기			 
+				//userinfo에 별점평가한 seq 넣기
+				
+			}
+			 			 			 							 
+		//안봤어요(일단 아무것도 안함)
+		} else {
+			
+		}
+		
+		//공통메소드 다음 영화 리턴 
+		
+		//뷰에서 카운트 하나씩 추가되어서 왔음, 30개 차례대로 무비 반납.
+				
+		String [] initnum = {"86", "466", "60", "77", "180", "-1" };
+//		"201", "172", "231", "235", "234",
+//		"224", "237", "312", "288", "303", "305", "364", "320", "318", "345", 
+//		"382", "475", "393", "406", "370", "450", "454", "425", "431", "486", 
 
-		//뷰에서 카운트 하나씩 추가, 30개 차례대로 무비 반납.
-		String [] initnum = {"86", "466", "60", "77", "180", "201", "172", "231", "235", "234",
-		"224", "237", "312", "288", "303", "305", "364", "320", "318", "345", 
-		"382", "475", "393", "406", "370", "450", "454", "425", "431", "486" };		
 		
-		MovieDto mdto2 = mService.getMovieinfo(count);
-		Map<String, MovieDto> map = new HashMap<>();
-		map.put("mdto", mdto2);		
+		int mseq2=Integer.parseInt(initnum[count]);
+		
+		//마지막 영화가 아닌 경우
+		if (mseq2!=-1) {
+
+		MovieDto mdto2 = mService.getMovieinfo(mseq2);
+		Map<String, MovieDto> map= new HashMap<String, MovieDto>();
+		map.put("mdto", mdto2); 
 		
 		return map;
+		
+		//마지막 영화인 경우
+		} else {
+			System.out.println("-1 들어옴.");
+			MovieDto mdto2 = mService.getMovieinfo(86);
+			Map<String, MovieDto> map= new HashMap<String, MovieDto>();
+			mdto2.setMseq(-1);
+			map.put("mdto", mdto2);
+					
+			return map;
+		}
+		
 	}
 	
-	
-	
-	@RequestMapping(value="tasteMake.do")
+		
+	@RequestMapping(value="/tasteMake.do")
 	public String tasteMake(Locale locale, Model model) {
 		logger.info("초기 취향 생성완료", locale);
 		
-		
-		
+
 		//인덱스 말고 영화추천페이지나 개인페이지로 가도 될듯
 		//아니면 결과 페이지(그래프 같은거 보여주기)
 		return "index";
