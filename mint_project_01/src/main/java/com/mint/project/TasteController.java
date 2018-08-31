@@ -141,7 +141,7 @@ public class  TasteController {
 
 			//3. 하나씩 들고오기 걍			
 			MovieDto mdto = mService.getMovieinfo(86);
-			System.out.println(mdto.getMsummary());
+			//System.out.println(mdto.getMsummary());
 			Map<String, MovieDto> map= new HashMap<String, MovieDto>();
 			map.put("mdto", mdto);
 
@@ -184,13 +184,13 @@ public class  TasteController {
 			//3. 해당 유저의 취향 불러오기( 테스트로 1받음)
 			//TasteDto tdto = tService.getTaste(useq);
 			TasteDto tdto = tService.getTaste(1);
-			
+			System.out.println("3."+tdto);
 			//4. 환산 별점 해당유저 취향 키워드에 맞춰서 '더하기'
 			tdto= taop.pointToTaste(tdto, keyword, newstarpoint);
-			 			
+			System.out.println("4."+tdto); 			
 			//5.useq로 userTaste에 점수 가산해 넣기(업데이트, 단 가산하는거 aop로 반영하기)
 			tService.updateTaste(tdto);						 			
-			
+			System.out.println("5."+tdto);
 			if(starpoint!=-2) {
 				//여기서부턴 별점 평가에 관련한 것임 *민지*
 				//별점 평가하기 movietable에 평균별점 나오게 넣기			 
