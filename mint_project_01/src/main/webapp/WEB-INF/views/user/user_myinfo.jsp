@@ -8,6 +8,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h1>나의정보</h1>
+<table border="2">
+		<tr>
+			<th>이메일</th>
+			<td>${udto.uemail}</td>
+		</tr>
+		<tr>
+			<th>별명</th>
+			<td>${udto.unick}</td>
+		</tr>
+		<tr>
+			<th>프로필사진</th>
+			<td>${udto.uimg}</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<button onclick="location.href='user_updateform.do'">수정</button>
+				<button onclick="location.href='deluser.do?useq=${udto.useq}'">탈퇴</button>
+			</td>
+		</tr>
+	</table>
 </body>
 </html>

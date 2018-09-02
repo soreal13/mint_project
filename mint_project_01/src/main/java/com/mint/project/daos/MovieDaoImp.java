@@ -1,8 +1,9 @@
 
-
 package com.mint.project.daos;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,9 @@ public class MovieDaoImp implements IMovieDao {
    private String namespace="com.mint.project.movie.";
    
    @Override
-   public int insertMovie(MovieDto mdto) {
-      return sqlSession.insert(namespace+"insertmovie",mdto);
+   public boolean insertMovie(MovieDto mdto) {
+	   int count=sqlSession.insert(namespace+"insertmovie",mdto);
+      return count>0?true:false;
    }
 
    @Override
@@ -51,20 +53,30 @@ public class MovieDaoImp implements IMovieDao {
    }
 //-------------------------------------------------------------------------------------------------
    @Override
-   public boolean updateFollow(int useq) {
-      int count=sqlSession.update(namespace+"updatefollow",useq);
+   public boolean updateFollow(String mfollow,int mseq) {
+	  MovieDto mdto=new MovieDto();
+	 
+	  mdto.setMfollow(mfollow);
+	  mdto.setMseq(mseq);
+	  System.out.println("mseq는? 업데이트팔로"+mseq);
+
+      int count=sqlSession.update(namespace+"updatefollow",mdto);
       return count>0?true:false;
    }
 
    @Override
-   public boolean chkFollow(int useq) {
-      int count=sqlSession.selectOne(namespace+"chkfollow",useq);
-      return count>0?true:false;
+   public MovieDto chkFollow(int useq) {
+	   return sqlSession.selectOne(namespace+"chkfollow",useq);
    }
    
    @Override
-   public boolean delFollow(int useq) {
-      int count=sqlSession.update(namespace+"delfollow",useq);
+   public boolean delFollow(String mfollow, int mseq) {
+	   Map<String, Object> map=new HashMap<>();
+	   System.out.println("mseq는? 델팔로"+mseq);
+	   map.put("mseq", mseq);
+	   map.put("mfollow",mfollow);
+	   
+      int count=sqlSession.update(namespace+"delfollow",map);
       return count>0?true:false;
    }
 

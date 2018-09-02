@@ -8,10 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="admin_movie_upload.do">영화업로드</a>
-<a href="admin/admin_movie_modify.do?mseq=50">영화 수정</a>
+<%
+	String msg=(String)request.getAttribute("msg");
+%>
 
-<a href="../admin/admin_getuser.do">회원 정보 전체보기</a>
-<a href="admin_getreview.do">영화 리뷰 전체보기</a>
+<h3>에러</h3>
+<h5><%=msg%></h5>
 </body>
 </html>

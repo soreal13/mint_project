@@ -41,6 +41,7 @@ public class  TasteController {
 	
 	TasteAop taop = new TasteAop();
 	
+	// <-- 김소진 작성 코드 -->
 	
 	@RequestMapping(value="/testpage.do", method =RequestMethod.GET)
 	public String testpage(Locale locale, Model model, HttpServletRequest request) {
@@ -78,7 +79,7 @@ public class  TasteController {
 //		
 //		tService.insertTaste(tdto);
 	
-		return "taste_init2";
+		return "taste_init";
 	}
 
 	

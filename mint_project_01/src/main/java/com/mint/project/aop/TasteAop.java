@@ -22,6 +22,9 @@ public class TasteAop {
 	@Autowired
 	TasteServiceImp tService;
 	
+	
+	//<--김소진 작성코드 
+	
 	//별점 환산점수
 	public int scalePoint(int starpoint) {
 		//일단 정수로 그냥 들어감 ㅠㅠ 로그함수 나중에 하자 

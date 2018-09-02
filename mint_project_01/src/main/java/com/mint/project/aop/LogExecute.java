@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 public class LogExecute {
 
-	
+	//<--김소진 작성코드
 	public void before(JoinPoint join) {
         Logger log=LoggerFactory.getLogger(join.getTarget()+"");
         log.debug("시작");
