@@ -36,7 +36,7 @@ public class MovieServiceImp implements IMovieService {
 
    @Override
    public MovieDto getMovieinfo(int mseq) {
-	   System.out.println("서비스 결과"+mdao.getMovieinfo(mseq));
+      System.out.println("서비스 결과"+mdao.getMovieinfo(mseq));
       return mdao.getMovieinfo(mseq);
    }
    
@@ -52,8 +52,9 @@ public class MovieServiceImp implements IMovieService {
    }
 
    @Override
-   public boolean updateFollow(String mfollow, int mseq) {
-      return mdao.updateFollow(mfollow,mseq);
+   public boolean updateFollow(MovieDto mdto) {
+//      return mdao.updateFollow(mfollow,mseq);
+      return mdao.updateFollow(mdto);
    }
    
    @Override
@@ -62,8 +63,8 @@ public class MovieServiceImp implements IMovieService {
    }
    
    @Override
-   public boolean delFollow(String mfollow, int mseq) {
-      return mdao.delFollow(mfollow,mseq);
+   public boolean delFollow(MovieDto mdto) {
+      return mdao.delFollow(mdto);
    }
 
 

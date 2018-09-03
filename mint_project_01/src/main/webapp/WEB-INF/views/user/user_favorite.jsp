@@ -16,13 +16,12 @@
     $( "#tabs" ).tabs();
   } );
   </script>
-
 </head>
 <body>
-<!-- 프로필관련 -->
+<%@include file="../header.jsp"%>
 <table>
    <tr>
-     <td style="border: 1px solid red; height: 70px; width: 70px;">${udto.uimg}</td>
+     <td style="border: 1px solid red; height: 70px; width: 70px;">${ldto.uimg}</td>
      <td>
        <input type="button" value="내 정보 수정" onclick="location.href='user_updateform.do'">
        <input type="button" value="마이 페이지" onclick="location.href='userinfo.do'">
@@ -30,24 +29,36 @@
    </tr>
 </table>
 
-<!-- <div id="tabs"> -->
-<!--   <ul> -->
-<!--     <li><a href="#tabs-1">즐겨찾기한 영화</a></li> -->
-<!--     <li><a href="#tabs-2">즐겨찾기한 유저</a></li> -->
-<!--   </ul> -->
-<!--   <div id="tabs-1"> -->
-<!--   	<ul> -->
-<%--   		<li>${dto.mimg}</li> --%>
-<%--   		<li>${dto.mtitle}</li> --%>
-<!--   	</ul> -->
-<!--   </div> -->
-<!--   <div id="tabs-2"> -->
-<!--     <ul> -->
-<%--   		<li>${dto.uimg}</li> --%>
-<%--   		<li>${dto.nnick}</li> --%>
-<!--   	</ul> -->
-<!--   </div> -->
-<!-- </div> -->
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">즐겨찾기한 영화</a></li>
+    <li><a href="#tabs-2">즐겨찾기한 유저</a></li>
+  </ul>
+  <div id="tabs-1">
+        <table class="table table-striped" border="2">
+      <col width="100px" />
+      <col width="100px" />
+      <tr>
+         <td><img src="${mdto.mimg}"></td>   
+      </tr>
+      <tr>
+         <td>${mdto.mtitle}</td>
+      </tr>
+   </table>
+  </div>
+  <div id="tabs-2">
+    <table class="table table-striped" border="2">
+      <col width="100px" />
+      <col width="100px" />
+      <tr>
+         <td><img src="${udto.uimg}"></td>   
+      </tr>
+      <tr>
+         <td>${udto.unick}</td>
+      </tr>
+   </table>
+  </div>
+</div>
  
  
 </body>

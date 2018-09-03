@@ -21,7 +21,7 @@ public class MovieDaoImp implements IMovieDao {
    
    @Override
    public boolean insertMovie(MovieDto mdto) {
-	   int count=sqlSession.insert(namespace+"insertmovie",mdto);
+      int count=sqlSession.insert(namespace+"insertmovie",mdto);
       return count>0?true:false;
    }
 
@@ -44,7 +44,10 @@ public class MovieDaoImp implements IMovieDao {
 
    @Override
    public List<MovieDto> getCertainMovieinfo(String search) {
-      return sqlSession.selectOne(namespace+"getcertainmovieinfo",search);
+      
+      String mkeyw=search;
+      System.out.println("mkeyw 여기는다오 = "+mkeyw);
+      return sqlSession.selectList(namespace+"getcertainmovieinfo",mkeyw);
    }
 
    @Override
@@ -53,30 +56,27 @@ public class MovieDaoImp implements IMovieDao {
    }
 //-------------------------------------------------------------------------------------------------
    @Override
-   public boolean updateFollow(String mfollow,int mseq) {
-	  MovieDto mdto=new MovieDto();
-	 
-	  mdto.setMfollow(mfollow);
-	  mdto.setMseq(mseq);
-	  System.out.println("mseq는? 업데이트팔로"+mseq);
+   public boolean updateFollow(MovieDto mDto) {
+//     MovieDto mdto=new MovieDto();
+    
+//     mdto.setMfollow(mfollow);
+//     mdto.setMseq(mseq);
+//      System.out.println(mdto);
+     System.out.println("mseq는? 업데이트팔로"+mDto);
 
-      int count=sqlSession.update(namespace+"updatefollow",mdto);
+      int count=sqlSession.update(namespace+"updatefollow",mDto);
       return count>0?true:false;
    }
 
    @Override
    public MovieDto chkFollow(int useq) {
-	   return sqlSession.selectOne(namespace+"chkfollow",useq);
+      return sqlSession.selectOne(namespace+"chkfollow",useq);
    }
    
    @Override
-   public boolean delFollow(String mfollow, int mseq) {
-	   Map<String, Object> map=new HashMap<>();
-	   System.out.println("mseq는? 델팔로"+mseq);
-	   map.put("mseq", mseq);
-	   map.put("mfollow",mfollow);
-	   
-      int count=sqlSession.update(namespace+"delfollow",map);
+   public boolean delFollow(MovieDto mdto) {
+    
+      int count=sqlSession.update(namespace+"delfollow",mdto);
       return count>0?true:false;
    }
 

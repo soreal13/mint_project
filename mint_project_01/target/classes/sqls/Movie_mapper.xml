@@ -68,8 +68,8 @@
 
 <!--팔로우 유저 추가  -->
        <update id="updatefollow" parameterType="MovieDto">
-      UPDATE MOVIE_TABLE SET MFOLLOW=(MFOLLOW||'#{mfollow}')||':' WHERE MSEQ=#{mseq}
-<!--  UPDATE MOVIE_TABLE SET MFOLLOW=#{mfollow} WHERE MSEQ=#{mseq} -->
+      UPDATE MOVIE_TABLE SET MFOLLOW=(MFOLLOW||#{mfollow})||':' WHERE MSEQ=#{mseq}
+<!--       UPDATE MOVIE_TABLE SET MFOLLOW='kkk' WHERE MSEQ=#{mseq} -->
        </update>
        
 <!-- 해당 영화를 팔로우 했는지 확인 -->
@@ -78,8 +78,8 @@
        </select>
        
 <!--팔로우 삭제 -->       
-       <update id="delfollow" parameterType="Map">
-       UPDATE MOVIE_TABLE SET MFOLLOW=REPLACE(MFOLLOW,':#{mfollow}:',':') WHERE MSEQ=#{mseq}
+       <update id="delfollow" parameterType="MovieDto">
+       UPDATE MOVIE_TABLE SET MFOLLOW=REPLACE(MFOLLOW,#{mfollow},':') WHERE MSEQ=#{mseq}
        </update>
        
  

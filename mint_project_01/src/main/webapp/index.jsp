@@ -12,26 +12,7 @@
 </head>
 <body>
 <%@include file="WEB-INF/views/header.jsp"%>
-testindex (순서는 본인들 편한대로 바꾸세요.)
-<br/><br/>
-<hr/>
-<br/><br/>
-<h3>승원 테스트</h3>
-<a href="login.do" >로그인창</a>
-<br/><br/>
 
-<hr/>
-
-<br/><br/>
-<h3>민지 테스트</h3>
-<a href="movie_info.do?mseq=64&useq=100">무비_인포</a>
-
-<a href="movie_search.do">무비_서치</a>
-
-<a href="admin_main.do">관리자 메인 페이지</a>
-
-<img src="resources/img/M_like2.png">
-<br/><br/>
 
 <hr/>
 
@@ -46,10 +27,22 @@ testindex (순서는 본인들 편한대로 바꾸세요.)
 <h3>소진 테스트</h3>
 <a href="taste_init.do">취향창 가기</a>
 <br/><br/>
-<a href="testpage.do">테스트페이지</a>
-<br/><br/>
 <hr/>
 <br/><br/>
+
+
+<br/><br/>
+<h3>민지 테스트</h3>
+<a href="movie_info.do?mseq=64&useq=100">무비_인포</a>
+
+<a href="movie_search.do">무비_서치</a>
+
+<a href="admin_main.do">관리자 메인 페이지</a>
+
+<img src="resources/img/M_like2.png">
+<br/><br/>
+
+
 <%@include file="WEB-INF/views/footer.jsp"%>
 </body>
 </html>

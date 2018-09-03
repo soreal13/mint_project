@@ -12,8 +12,7 @@ import com.mint.project.dtos.TasteDto;
 public class TasteDaoImp implements ITasteDao {
 
    @Autowired
-   private SqlSessionTemplate sqlSession;
-   
+   private SqlSessionTemplate sqlSession;   
    private String namespace="com.mint.project.taste.";
    
    @Override

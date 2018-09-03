@@ -8,34 +8,50 @@
 <title>Mint header</title>
 <style type="text/css">
 
- @media screen and (min-width: 1980px){
-
-        div#googlePlay{
-
-            width: 1980px !important;
-
-            left:0; right:0;
-
-            margin-left:auto; margin-right:auto;
-
-        }
-/* @media screen and (min-width : 최소값 - 이 크기보다 클때 해당 css 를 적용) */
-/* max-width : 최대값  이 크기보다 작을때 해당 css 를 적용 */
-/* margin left/right auto - 왜그런진 모르겟지만 div를 가로에서 가운데 정렬시켜줌 */
-/* absolute 속성 필요 */
-
+   @font-face{     font-family:"mint_bodyfont";     src: url("resources/font/DXKPGB-KSCpc-EUC-H.ttf") format("truetype");       }
+   @font-face{     font-family:"mint_catefont";     src: url("resources/font/DXMobrRExtraBold-KSCpc-EUC-H.ttf") format("truetype");       }
    .logo{
+   text-align: center;
+   }
+
+   .logo img{
    margin: auto;
-   
+   width: 250px;
+   height: auto;
+   display: box;
+   margin-right: auto;
+   margin-left: auto;
+   }
+   .btn_box{
+   text-align: right;
+   margin-right:70px;
+   }
+   .btn_box img{
+      width: 50px;
+   height: auto;
    }
    
-   
-/*    .login{ */
-/*    clear:both; */
-/*    } */
-
+   .login{
+   float: right;
+   }
    .genre_category{
    margin: auto;
+   text-align: center;
+   font-family: 'mint_catefont' !important;
+   margin-right: auto;
+   margin-left: auto;
+   }
+
+   body{
+   font-family: 'mint_bodyfont';
+   }
+   a{
+   text-decoration:none;
+   color: black;
+   
+   }
+   a:hover{
+   color:#99cccc;
    }
 </style>
 <script type="text/javascript">
@@ -52,7 +68,7 @@ function keyword_check(){
 <body>
 <div class="logo">
    <img id="logo" alt="" src="resources/img/MINTlogo2.png" />
-</div>
+</div><br>
 <div class="genre_category">
    <a href="movie_search.do?search='액션'">액션</a>
    <a href="movie_search.do?search='코미디'">코미디</a>
@@ -87,9 +103,11 @@ function keyword_check(){
 </div>
 
 
+<div class="btn_box">
 
+<img alt="loginimg" src="resources/img/login.png" onclick="location.href='login_user.do'">
 <div class="searchbox">
-<form name="search" align="right" style="margin-right:70px;" method = "get"  
+<form name="search" align="right" method = "get"  
 action ="movie_search.do" onsubmit="return keyword_check()">
 <!-- align : 정렬 , style : 스타일 정보 포함 (margin : 여백 설정) , method : 전달 방식 ,  
 action : submit 시 이동 경로 ,onsubmit : submit 클릭시 호출 조건 (true 일 때 action으로 넘어감 )-->
@@ -101,9 +119,6 @@ action : submit 시 이동 경로 ,onsubmit : submit 클릭시 호출 조건 (tr
 </td>  
 </form>
 </div>
-<div class="login">
-<img alt="loginimg" src="resources/img/login.png">
 </div>
 
 </body>
-</html>

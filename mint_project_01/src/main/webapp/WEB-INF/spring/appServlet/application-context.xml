@@ -37,6 +37,7 @@
 		<constructor-arg index="0" ref="sqlSession"></constructor-arg>
 	</bean>
 	
+	<tx:annotation-driven transaction-manager="txManager"/>
 
 	
 </beans>

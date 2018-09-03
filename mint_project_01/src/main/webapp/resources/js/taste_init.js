@@ -194,7 +194,7 @@ $(".unlike").click(function(){
 //마지막 단계완료
 $(".submit").click(function(){
 
-	location.href="index.do";
+	location.href="tasteMake.do";
 })
 
 

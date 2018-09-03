@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,7 @@ import com.mint.project.service.ITasteService;
 import com.mint.project.service.MovieServiceImp;
 import com.mint.project.service.TasteServiceImp;
 import com.mint.project.service.UserServiceImp;
+import com.sun.org.apache.xalan.internal.xsltc.runtime.Parameter;
 
 @Controller
 public class  TasteController {
@@ -59,25 +61,24 @@ public class  TasteController {
 		return "taste";
 	}
 	
+	//이건 회원가입 이후에 넣기. 
 	//처음 취향창 갈 때 취향 칼럼 생성. useq=tseq
 	@RequestMapping(value="/taste_init.do")
-	public String tasteInit(Locale locale, Model model) {
+	public String tasteInit(Locale locale, Model model, HttpSession session) {
 		logger.info("처음 taste 만들기 {}.", locale);
 
-		// 지우면 안됨
 		//		08.28 잘 됨		
-//		System.out.println("들어옴");
-//		String tstatus = "N";
-//		int tuseq=1;
-//		
-//		TasteDto tdto=new TasteDto();
-//		tdto.setTseq(tuseq);
-//		tdto.setTuseq(tuseq);
-//		tdto.setTstatus(tstatus);
-//		
-//		System.out.println(tdto.getTseq());
-//		
-//		tService.insertTaste(tdto);
+		
+		String tstatus = "N";
+		int tuseq=Integer.parseInt((String)session.getAttribute("useq"));
+		
+		TasteDto tdto=new TasteDto();
+		tdto.setTseq(tuseq);
+		tdto.setTuseq(tuseq);
+		tdto.setTstatus(tstatus);
+		
+		System.out.println(tdto.getTseq());
+		tService.insertTaste(tdto);
 	
 		return "taste_init";
 	}
@@ -94,7 +95,7 @@ public class  TasteController {
 
 	@ResponseBody
 	@RequestMapping(value="/tasteAjax_1.do", method= RequestMethod.POST)
-	public Map<String, MovieDto> tasteAjax(Locale locale, Model model,TasteDto paramDto){
+	public Map<String, MovieDto> tasteAjax(Locale locale, Model model,TasteDto paramDto, HttpSession session){
 		logger.info("ajax처리:초기취향반영", locale);
 
 		System.out.println(paramDto);
@@ -160,7 +161,7 @@ public class  TasteController {
 	//초기 리뷰 별점 처리
 	@ResponseBody
 	@RequestMapping(value="/tasteAjax_2.do", method=RequestMethod.POST)
-	public Map<String, MovieDto> tasteAjax_2(Locale locale, Model model,HttpServletRequest request ){
+	public Map<String, MovieDto> tasteAjax_2(Locale locale, Model model,HttpServletRequest request, HttpSession session ){
 		logger.info("ajax처리:초기취향 페이지2", locale);
 		System.out.println(request.getParameter("mseq"));
 		
@@ -251,6 +252,8 @@ public class  TasteController {
 	@RequestMapping(value="/tasteMake.do")
 	public String tasteMake(Locale locale, Model model) {
 		logger.info("초기 취향 생성완료", locale);
+		
+//		int tseq=
 		
 
 		//인덱스 말고 영화추천페이지나 개인페이지로 가도 될듯

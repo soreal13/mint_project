@@ -26,13 +26,13 @@ public interface IMovieService {
    public List<MovieDto> getAllMovieinfo();
    
    // 팔로우 유저 추가
-   public boolean updateFollow(String mfollow, int mseq);
+   public boolean updateFollow(MovieDto mdto);
    
    //팔로우 했는지 확인
    public MovieDto chkFollow(int useq);
       
    //팔로우 삭제
-   public boolean delFollow(String mfollow, int mseq);
+   public boolean delFollow(MovieDto mdto);
 
       
    

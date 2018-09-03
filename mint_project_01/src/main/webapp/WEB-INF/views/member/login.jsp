@@ -8,11 +8,11 @@
 <title>로그인</title>
 <script type="text/javascript">
 //추가
-function login() {
-    var form = document.getElementById("loginForm");
-    //TODO 유효성 검사
-    return true;
-}        
+//function login() {
+//    var form = document.getElementById("loginForm");
+//    //TODO 유효성 검사
+//    return true;
+//}        
 
 </script>
 
@@ -21,7 +21,7 @@ function login() {
 <!-- 추가 onsubmit -->
 <div id="container"> 
 <h1>반갑습니다.</h1>
-<form id="loginForm" action="getin.do" method="POST" onsubmit="return login()">
+<form id="loginForm" action="getin.do" method="POST">
 <table>
 	<tr>
 		<td>이메일</td>
