@@ -3,7 +3,6 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mint</groupId>
-	<artifactId>project</artifactId>
 	<name>mint_project_01</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
@@ -156,12 +155,39 @@
 			    <groupId>org.springframework</groupId>
 			    <artifactId>spring-orm</artifactId>
 			    <version>4.3.4.RELEASE</version>
-			</dependency>             
-
+			</dependency>
+		<!-- ajax처리      -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>2.9.4</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.9.4</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-annotations</artifactId>
+		    <version>2.9.4</version>
+		</dependency>
+<!-- 		commons lang으로 String을 처리하기 위함 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.5</version>
+		</dependency>
+<!-- 	JSON라이브러리 -->
+		<dependency>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1.1</version>
+		</dependency>			
+		
 </dependencies>
 
-	
-	
+
     <build>
         <plugins>
             <plugin>
@@ -200,4 +226,5 @@
             </plugin>
         </plugins>
     </build>
+    <artifactId>project</artifactId>
 </project>

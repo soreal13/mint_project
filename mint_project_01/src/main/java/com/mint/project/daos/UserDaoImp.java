@@ -12,7 +12,7 @@ public class UserDaoImp implements IUserDao {
    
    @Autowired
       private SqlSessionTemplate sqlSession;
-      private String namespace="com.mint.project.UserDao";
+      private String namespace="com.mint.project.user.";
    
    @Override
    public UserDto chkEmail(String uemail) {
@@ -45,13 +45,13 @@ public class UserDaoImp implements IUserDao {
 
    @Override
    public int updateUserinfo(UserDto udto) {
-      return sqlSession.update(namespace+"updateUserinfo",udto);
+	   return sqlSession.update(namespace+"updateUserinfo",udto);
    }
 
    @Override
    public boolean delUser(int useq) {
       int count=0;
-      count=sqlSession.delete(namespace+"delUser",useq);
+      count=sqlSession.update(namespace+"delUser",useq);
       return count>0?true:false;
    }
 
@@ -64,6 +64,7 @@ public class UserDaoImp implements IUserDao {
    public UserDto getUserFavorite(int useq) {
       return sqlSession.selectOne(namespace+"getUserFavorite",useq);
    }
+  
 
    @Override
    public UserDto getUserReview(int useq) {

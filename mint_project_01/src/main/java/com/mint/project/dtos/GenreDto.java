@@ -5,35 +5,35 @@ public class GenreDto {
 
 	private int gseq;
 	   private int guseq;
-	   private String gaction;
-	   private String gcomedy;
-	   private String gcrime;
-	   private String gdocumentary;
-	   private String gdrama;
-	   private String gfamily;
-	   private String gfantasy;
-	   private String gnoir;
-	   private String ghorror;
-	   private String gmusical;
-	   private String gmystery;
-	   private String gromance;
-	   private String gsf;
-	   private String gsports;
-	   private String gthriller;
-	   private String gwar;
-	   private String gcar;
-	   private String grabbit;
-	   private String ganimation;
-	   private String gchildren;
-	   private String ghistory;
-	   private String groco;
-	   private String gdisaster;
-	   private String gwuxia;
-	   private String gwestern;
-	   private String ghotguy;
-	   private String ghighteen;
-	   private String gdomestic;
-	   private String gforeign;
+	   private int gaction;
+	   private int gcomedy;
+	   private int gcrime;
+	   private int gdocumentary;
+	   private int gdrama;
+	   private int gfamily;
+	   private int gfantasy;
+	   private int gnoir;
+	   private int ghorror;
+	   private int gmusical;
+	   private int gmystery;
+	   private int gromance;
+	   private int gsf;
+	   private int gsports;
+	   private int gthriller;
+	   private int gwar;
+	   private int gcar;
+	   private int grabbit;
+	   private int ganimation;
+	   private int gchildren;
+	   private int ghistory;
+	   private int groco;
+	   private int gdisaster;
+	   private int gwuxia;
+	   private int gwestern;
+	   private int ghotguy;
+	   private int ghighteen;
+	   private int gdomestic;
+	   private int gforeign;
 	   
 	   
 	   public GenreDto() {
@@ -41,11 +41,11 @@ public class GenreDto {
 	      // TODO Auto-generated constructor stub
 	   }
 	   
-	   public GenreDto(int gseq, int guseq, String gaction, String gcomedy, String gcrime, String gdocumentary,
-		         String gdrama, String gfamily, String gfantasy, String gnoir, String ghorror, String gmusical,
-		         String gmystery, String gromance, String gsf, String gsports, String gthriller, String gwar, String gcar,
-		         String grabbit, String ganimation, String gchildren, String ghistory, String groco, String gdisaster,
-		         String gwuxia, String gwestern, String ghotguy, String ghighteen, String gdomestic, String gforeign) {
+	   public GenreDto(int gseq, int guseq, int gaction, int gcomedy, int gcrime, int gdocumentary,
+		         int gdrama, int gfamily, int gfantasy, int gnoir, int ghorror, int gmusical,
+		         int gmystery, int gromance, int gsf, int gsports, int gthriller, int gwar, int gcar,
+		         int grabbit, int ganimation, int gchildren, int ghistory, int groco, int gdisaster,
+		         int gwuxia, int gwestern, int ghotguy, int ghighteen, int gdomestic, int gforeign) {
 		      super();
 		      this.gseq = gseq;
 		      this.guseq = guseq;
@@ -93,178 +93,178 @@ public class GenreDto {
 	   public void setGuseq(int guseq) {
 	      this.guseq = guseq;
 	   }
-	   public String getGaction() {
+	   public int getGaction() {
 	      return gaction;
 	   }
-	   public void setGaction(String gaction) {
+	   public void setGaction(int gaction) {
 	      this.gaction = gaction;
 	   }
-	   public String getGcomedy() {
+	   public int getGcomedy() {
 	      return gcomedy;
 	   }
-	   public void setGcomedy(String gcomedy) {
+	   public void setGcomedy(int gcomedy) {
 	      this.gcomedy = gcomedy;
 	   }
-	   public String getGcrime() {
+	   public int getGcrime() {
 	      return gcrime;
 	   }
-	   public void setGcrime(String gcrime) {
+	   public void setGcrime(int gcrime) {
 	      this.gcrime = gcrime;
 	   }
-	   public String getGdocumentary() {
+	   public int getGdocumentary() {
 	      return gdocumentary;
 	   }
-	   public void setGdocumentary(String gdocumentary) {
+	   public void setGdocumentary(int gdocumentary) {
 	      this.gdocumentary = gdocumentary;
 	   }
-	   public String getGdrama() {
+	   public int getGdrama() {
 	      return gdrama;
 	   }
-	   public void setGdrama(String gdrama) {
+	   public void setGdrama(int gdrama) {
 	      this.gdrama = gdrama;
 	   }
-	   public String getGfamily() {
+	   public int getGfamily() {
 	      return gfamily;
 	   }
-	   public void setGfamily(String gfamily) {
+	   public void setGfamily(int gfamily) {
 	      this.gfamily = gfamily;
 	   }
-	   public String getGfantasy() {
+	   public int getGfantasy() {
 	      return gfantasy;
 	   }
-	   public void setGfantasy(String gfantasy) {
+	   public void setGfantasy(int gfantasy) {
 	      this.gfantasy = gfantasy;
 	   }
-	   public String getGnoir() {
+	   public int getGnoir() {
 	      return gnoir;
 	   }
-	   public void setGnoir(String gnoir) {
+	   public void setGnoir(int gnoir) {
 	      this.gnoir = gnoir;
 	   }
-	   public String getGhorror() {
+	   public int getGhorror() {
 	      return ghorror;
 	   }
-	   public void setGhorror(String ghorror) {
+	   public void setGhorror(int ghorror) {
 	      this.ghorror = ghorror;
 	   }
-	   public String getGmusical() {
+	   public int getGmusical() {
 	      return gmusical;
 	   }
-	   public void setGmusical(String gmusical) {
+	   public void setGmusical(int gmusical) {
 	      this.gmusical = gmusical;
 	   }
-	   public String getGmystery() {
+	   public int getGmystery() {
 	      return gmystery;
 	   }
-	   public void setGmystery(String gmystery) {
+	   public void setGmystery(int gmystery) {
 	      this.gmystery = gmystery;
 	   }
-	   public String getGromance() {
+	   public int getGromance() {
 	      return gromance;
 	   }
-	   public void setGromance(String gromance) {
+	   public void setGromance(int gromance) {
 	      this.gromance = gromance;
 	   }
-	   public String getGsf() {
+	   public int getGsf() {
 	      return gsf;
 	   }
-	   public void setGsf(String gsf) {
+	   public void setGsf(int gsf) {
 	      this.gsf = gsf;
 	   }
-	   public String getGsports() {
+	   public int getGsports() {
 	      return gsports;
 	   }
-	   public void setGsports(String gsports) {
+	   public void setGsports(int gsports) {
 	      this.gsports = gsports;
 	   }
-	   public String getGthriller() {
+	   public int getGthriller() {
 	      return gthriller;
 	   }
-	   public void setGthriller(String gthriller) {
+	   public void setGthriller(int gthriller) {
 	      this.gthriller = gthriller;
 	   }
-	   public String getGwar() {
+	   public int getGwar() {
 	      return gwar;
 	   }
-	   public void setGwar(String gwar) {
+	   public void setGwar(int gwar) {
 	      this.gwar = gwar;
 	   }
-	   public String getGcar() {
+	   public int getGcar() {
 	      return gcar;
 	   }
-	   public void setGcar(String gcar) {
+	   public void setGcar(int gcar) {
 	      this.gcar = gcar;
 	   }
-	   public String getGrabbit() {
+	   public int getGrabbit() {
 	      return grabbit;
 	   }
-	   public void setGrabbit(String grabbit) {
+	   public void setGrabbit(int grabbit) {
 	      this.grabbit = grabbit;
 	   }
-	   public String getGanimation() {
+	   public int getGanimation() {
 	      return ganimation;
 	   }
-	   public void setGanimation(String ganimation) {
+	   public void setGanimation(int ganimation) {
 	      this.ganimation = ganimation;
 	   }
-	   public String getGchildren() {
+	   public int getGchildren() {
 	      return gchildren;
 	   }
-	   public void setGchildren(String gchildren) {
+	   public void setGchildren(int gchildren) {
 	      this.gchildren = gchildren;
 	   }
-	   public String getGhistory() {
+	   public int getGhistory() {
 	      return ghistory;
 	   }
-	   public void setGhistory(String ghistory) {
+	   public void setGhistory(int ghistory) {
 	      this.ghistory = ghistory;
 	   }
-	   public String getGroco() {
+	   public int getGroco() {
 	      return groco;
 	   }
-	   public void setGroco(String groco) {
+	   public void setGroco(int groco) {
 	      this.groco = groco;
 	   }
-	   public String getGdisaster() {
+	   public int getGdisaster() {
 	      return gdisaster;
 	   }
-	   public void setGdisaster(String gdisaster) {
+	   public void setGdisaster(int gdisaster) {
 	      this.gdisaster = gdisaster;
 	   }
-	   public String getGwuxia() {
+	   public int getGwuxia() {
 	      return gwuxia;
 	   }
-	   public void setGwuxia(String gwuxia) {
+	   public void setGwuxia(int gwuxia) {
 	      this.gwuxia = gwuxia;
 	   }
-	   public String getGwestern() {
+	   public int getGwestern() {
 	      return gwestern;
 	   }
-	   public void setGwestern(String gwestern) {
+	   public void setGwestern(int gwestern) {
 	      this.gwestern = gwestern;
 	   }
-	   public String getGhotguy() {
+	   public int getGhotguy() {
 	      return ghotguy;
 	   }
-	   public void setGhotguy(String ghotguy) {
+	   public void setGhotguy(int ghotguy) {
 	      this.ghotguy = ghotguy;
 	   }
-	   public String getGhighteen() {
+	   public int getGhighteen() {
 	      return ghighteen;
 	   }
-	   public void setGhighteen(String ghighteen) {
+	   public void setGhighteen(int ghighteen) {
 	      this.ghighteen = ghighteen;
 	   }
-	   public String getGdomestic() {
+	   public int getGdomestic() {
 	      return gdomestic;
 	   }
-	   public void setGdomestic(String gdomestic) {
+	   public void setGdomestic(int gdomestic) {
 	      this.gdomestic = gdomestic;
 	   }
-	   public String getGforeign() {
+	   public int getGforeign() {
 	      return gforeign;
 	   }
-	   public void setGforeign(String gforeign) {
+	   public void setGforeign(int gforeign) {
 	      this.gforeign = gforeign;
 	   }
 	   

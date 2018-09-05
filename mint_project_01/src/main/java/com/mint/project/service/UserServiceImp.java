@@ -12,6 +12,10 @@ public class UserServiceImp implements IUserService {
 
    @Autowired
    private IUserDao udao;
+
+   
+   //김홍익 작성 코드.
+   
    
    @Override
    public UserDto chkEmail(String uemail) {
@@ -61,10 +65,17 @@ public class UserServiceImp implements IUserService {
       return udao.getUserReview(useq);
    }
 
-@Override
-public boolean updateUimg(int useq, String uimg) {
-	// TODO Auto-generated method stub
-	return false;
-}
 
+   @Override
+	public boolean register(UserDto udto) {
+	   return udao.register(udto);
+   }
+      
+   @Override
+	public UserDto login(UserDto udto) {
+	   return udao.login(udto);
+   }
+   
+   
+  
 }

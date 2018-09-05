@@ -34,7 +34,8 @@ public interface IUserDao {
          
    //즐겨찾는 영화,유저 칼럼 가져오기
    public UserDto getUserFavorite(int useq);
-         
+   
+   
    //유저가 쓴 리뷰 가져오기
    public UserDto getUserReview(int useq);
 

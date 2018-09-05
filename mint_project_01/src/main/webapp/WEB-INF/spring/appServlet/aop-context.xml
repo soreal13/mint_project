@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+		
+<!-- 	bean등록		 -->
+	<bean id="logAop" class="com.mint.project.aop.LogExecute"/>
+	
+<!-- 	실행할 때 위치를 잡아주는 것(pointCut)  -->
+	<aop:config>
+		<aop:pointcut expression="execution(* com.mint.project.daos.*Dao.*(..))" id="daoLogPoint"/>
+		<aop:aspect id="logAop" ref="logAop">
+			<!-- 메서드 실행 전에  -->
+			<aop:before method="before" pointcut-ref="daoLogPoint"/>
+			<!-- 메서드 리턴이 있을 때 -->
+			<aop:after-returning method="afterReturning" pointcut-ref="daoLogPoint"/>
+			<!-- 메서드에서 예외가 발생했을 때 -->
+			<aop:after-throwing method="daoError" pointcut-ref="daoLogPoint"/>
+		</aop:aspect>
+	</aop:config>
+		
+</beans>

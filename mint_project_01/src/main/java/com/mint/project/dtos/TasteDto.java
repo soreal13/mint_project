@@ -2,37 +2,38 @@ package com.mint.project.dtos;
 
 public class TasteDto {
 
-	private int tseq;
+	   private int tseq;
 	   private int tuseq;
-	   private String taction;
-	   private String tcomedy;
-	   private String tcrime;
-	   private String tdocumentary;
-	   private String tdrama;
-	   private String tfamily;
-	   private String tfantasy;
-	   private String tnoir;
-	   private String thorror;
-	   private String tmusical;
-	   private String tmystery;
-	   private String tromance;
-	   private String tsf;
-	   private String tsports;
-	   private String tthriller;
-	   private String twar;
-	   private String tcar;
-	   private String trabbit;
-	   private String tanimation;
-	   private String tchildren;
-	   private String thistory;
-	   private String troco;
-	   private String tdisaster;
-	   private String twuxia;
-	   private String twestern;
-	   private String thotguy;
-	   private String thighteen;
-	   private String tdomestic;
-	   private String tforeign;
+	   private int taction;
+	   private int tcomedy;
+	   private int tcrime;
+	   private int tdocumentary;
+	   private int tdrama;
+	   private int tfamily;
+	   private int tfantasy;
+	   private int tnoir;
+	   private int thorror;
+	   private int tmusical;
+	   private int tmystery;
+	   private int tromance;
+	   private int tsf;
+	   private int tsports;
+	   private int tthriller;
+	   private int twar;
+	   private int tcar;
+	   private int trabbit;
+	   private int tanimation;
+	   private int tchildren;
+	   private int thistory;
+	   private int troco;
+	   private int tdisaster;
+	   private int twuxia;
+	   private int twestern;
+	   private int thotguy;
+	   private int thighteen;
+	   private int tdomestic;
+	   private int tforeign;
+	   private String tstatus;
 	   
 	   public TasteDto() {
 	      super();
@@ -40,11 +41,11 @@ public class TasteDto {
 	   }
 	   
 
-	   public TasteDto(int tseq, int tuseq, String taction, String tcomedy, String tcrime, String tdocumentary,
-	         String tdrama, String tfamily, String tfantasy, String tnoir, String thorror, String tmusical,
-	         String tmystery, String tromance, String tsf, String tsports, String tthriller, String twar, String tcar,
-	         String trabbit, String tanimation, String tchildren, String thistory, String troco, String tdisaster,
-	         String twuxia, String twestern, String thotguy, String thighteen, String tdomestic, String tforeign) {
+	   public TasteDto(int tseq, int tuseq, int taction, int tcomedy, int tcrime, int tdocumentary,
+	         int tdrama, int tfamily, int tfantasy, int tnoir, int thorror, int tmusical,
+	         int tmystery, int tromance, int tsf, int tsports, int tthriller, int twar, int tcar,
+	         int trabbit, int tanimation, int tchildren, int thistory, int troco, int tdisaster,
+	         int twuxia, int twestern, int thotguy, int thighteen, int tdomestic, int tforeign, String tstatus) {
 	      super();
 	      this.tseq = tseq;
 	      this.tuseq = tuseq;
@@ -77,7 +78,9 @@ public class TasteDto {
 	      this.thighteen = thighteen;
 	      this.tdomestic = tdomestic;
 	      this.tforeign = tforeign;
-	   }
+	      this.tstatus = tstatus;
+	   }	   
+	
 	   
 	   
 	   public int getTseq() {
@@ -92,180 +95,187 @@ public class TasteDto {
 	   public void setTuseq(int tuseq) {
 	      this.tuseq = tuseq;
 	   }
-	   public String getTaction() {
+	   public int getTaction() {
 	      return taction;
 	   }
-	   public void setTaction(String taction) {
+	   public void setTaction(int taction) {
 	      this.taction = taction;
 	   }
-	   public String getTcomedy() {
+	   public int getTcomedy() {
 	      return tcomedy;
 	   }
-	   public void setTcomedy(String tcomedy) {
+	   public void setTcomedy(int tcomedy) {
 	      this.tcomedy = tcomedy;
 	   }
-	   public String getTcrime() {
+	   public int getTcrime() {
 	      return tcrime;
 	   }
-	   public void setTcrime(String tcrime) {
+	   public void setTcrime(int tcrime) {
 	      this.tcrime = tcrime;
 	   }
-	   public String getTdocumentary() {
+	   public int getTdocumentary() {
 	      return tdocumentary;
 	   }
-	   public void setTdocumentary(String tdocumentary) {
+	   public void setTdocumentary(int tdocumentary) {
 	      this.tdocumentary = tdocumentary;
 	   }
-	   public String getTdrama() {
+	   public int getTdrama() {
 	      return tdrama;
 	   }
-	   public void setTdrama(String tdrama) {
+	   public void setTdrama(int tdrama) {
 	      this.tdrama = tdrama;
 	   }
-	   public String getTfamily() {
+	   public int getTfamily() {
 	      return tfamily;
 	   }
-	   public void setTfamily(String tfamily) {
+	   public void setTfamily(int tfamily) {
 	      this.tfamily = tfamily;
 	   }
-	   public String getTfantasy() {
+	   public int getTfantasy() {
 	      return tfantasy;
 	   }
-	   public void setTfantasy(String tfantasy) {
+	   public void setTfantasy(int tfantasy) {
 	      this.tfantasy = tfantasy;
 	   }
-	   public String getTnoir() {
+	   public int getTnoir() {
 	      return tnoir;
 	   }
-	   public void setTnoir(String tnoir) {
+	   public void setTnoir(int tnoir) {
 	      this.tnoir = tnoir;
 	   }
-	   public String getThorror() {
+	   public int getThorror() {
 	      return thorror;
 	   }
-	   public void setThorror(String thorror) {
+	   public void setThorror(int thorror) {
 	      this.thorror = thorror;
 	   }
-	   public String getTmusical() {
+	   public int getTmusical() {
 	      return tmusical;
 	   }
-	   public void setTmusical(String tmusical) {
+	   public void setTmusical(int tmusical) {
 	      this.tmusical = tmusical;
 	   }
-	   public String getTmystery() {
+	   public int getTmystery() {
 	      return tmystery;
 	   }
-	   public void setTmystery(String tmystery) {
+	   public void setTmystery(int tmystery) {
 	      this.tmystery = tmystery;
 	   }
-	   public String getTromance() {
+	   public int getTromance() {
 	      return tromance;
 	   }
-	   public void setTromance(String tromance) {
+	   public void setTromance(int tromance) {
 	      this.tromance = tromance;
 	   }
-	   public String getTsf() {
+	   public int getTsf() {
 	      return tsf;
 	   }
-	   public void setTsf(String tsf) {
+	   public void setTsf(int tsf) {
 	      this.tsf = tsf;
 	   }
-	   public String getTsports() {
+	   public int getTsports() {
 	      return tsports;
 	   }
-	   public void setTsports(String tsports) {
+	   public void setTsports(int tsports) {
 	      this.tsports = tsports;
 	   }
-	   public String getTthriller() {
+	   public int getTthriller() {
 	      return tthriller;
 	   }
-	   public void setTthriller(String tthriller) {
+	   public void setTthriller(int tthriller) {
 	      this.tthriller = tthriller;
 	   }
-	   public String getTwar() {
+	   public int getTwar() {
 	      return twar;
 	   }
-	   public void setTwar(String twar) {
+	   public void setTwar(int twar) {
 	      this.twar = twar;
 	   }
-	   public String getTcar() {
+	   public int getTcar() {
 	      return tcar;
 	   }
-	   public void setTcar(String tcar) {
+	   public void setTcar(int tcar) {
 	      this.tcar = tcar;
 	   }
-	   public String getTrabbit() {
+	   public int getTrabbit() {
 	      return trabbit;
 	   }
-	   public void setTrabbit(String trabbit) {
+	   public void setTrabbit(int trabbit) {
 	      this.trabbit = trabbit;
 	   }
-	   public String getTanimation() {
+	   public int getTanimation() {
 	      return tanimation;
 	   }
-	   public void setTanimation(String tanimation) {
+	   public void setTanimation(int tanimation) {
 	      this.tanimation = tanimation;
 	   }
-	   public String getTchildren() {
+	   public int getTchildren() {
 	      return tchildren;
 	   }
-	   public void setTchildren(String tchildren) {
+	   public void setTchildren(int tchildren) {
 	      this.tchildren = tchildren;
 	   }
-	   public String getThistory() {
+	   public int getThistory() {
 	      return thistory;
 	   }
-	   public void setThistory(String thistory) {
+	   public void setThistory(int thistory) {
 	      this.thistory = thistory;
 	   }
-	   public String getTroco() {
+	   public int getTroco() {
 	      return troco;
 	   }
-	   public void setTroco(String troco) {
+	   public void setTroco(int troco) {
 	      this.troco = troco;
 	   }
-	   public String getTdisaster() {
+	   public int getTdisaster() {
 	      return tdisaster;
 	   }
-	   public void setTdisaster(String tdisaster) {
+	   public void setTdisaster(int tdisaster) {
 	      this.tdisaster = tdisaster;
 	   }
-	   public String getTwuxia() {
+	   public int getTwuxia() {
 	      return twuxia;
 	   }
-	   public void setTwuxia(String twuxia) {
+	   public void setTwuxia(int twuxia) {
 	      this.twuxia = twuxia;
 	   }
-	   public String getTwestern() {
+	   public int getTwestern() {
 	      return twestern;
 	   }
-	   public void setTwestern(String twestern) {
+	   public void setTwestern(int twestern) {
 	      this.twestern = twestern;
 	   }
-	   public String getThotguy() {
+	   public int getThotguy() {
 	      return thotguy;
 	   }
-	   public void setThotguy(String thotguy) {
+	   public void setThotguy(int thotguy) {
 	      this.thotguy = thotguy;
 	   }
-	   public String getThighteen() {
+	   public int getThighteen() {
 	      return thighteen;
 	   }
-	   public void setThighteen(String thighteen) {
+	   public void setThighteen(int thighteen) {
 	      this.thighteen = thighteen;
 	   }
-	   public String getTdomestic() {
+	   public int getTdomestic() {
 	      return tdomestic;
 	   }
-	   public void setTdomestic(String tdomestic) {
+	   public void setTdomestic(int tdomestic) {
 	      this.tdomestic = tdomestic;
 	   }
-	   public String getTforeign() {
+	   public int getTforeign() {
 	      return tforeign;
 	   }
-	   public void setTforeign(String tforeign) {
+	   public void setTforeign(int tforeign) {
 	      this.tforeign = tforeign;
 	   }
+	   public String getTstatus() {
+		   return tstatus;
+	   }
+	   public void setTstatus(String tstatus) {
+		   this.tstatus = tstatus;
+	   }
+	   
 	   
 	   @Override
 	   public String toString() {
@@ -277,7 +287,7 @@ public class TasteDto {
 	            + ", tanimation=" + tanimation + ", tchildren=" + tchildren + ", thistory=" + thistory
 	            + ", troco=" + troco + ", tdisaster=" + tdisaster + ", twuxia=" + twuxia + ", twestern="
 	            + twestern + ", thotguy=" + thotguy + ", thighteen=" + thighteen + ", tdomestic=" + tdomestic
-	            + ", tforeign=" + tforeign + "]";
+	            + ", tforeign=" + tforeign + ", tstatus="+ tstatus + "]";
 	   }
 	   
 	   

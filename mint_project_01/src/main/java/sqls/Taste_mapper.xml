@@ -37,18 +37,14 @@
       <result property="thighteen" column="thighteen" />
       <result property="tdomestic" column="tdomestic" />
       <result property="tforeign" column="tforeign" /> 
+      <result property="tstatus" column="tstatus" />
    
    </resultMap>
    
    <insert id="insertTaste" parameterType="TasteDto">
-       INSERT INTO TASTE_TABLE (tseq, tuseq, taction, tcomedy, tcrime, tdocumentary,
-          tdrama, tfamily, tfantasy, tnoir, thorror, tmusical, tmystery, tromance, tsf, tsports,
-          tthriller, twar, tcar, trabbit, tanimation, tchildren, thistory, troco, tdisaster, twuxia,
-          twestern, thotguy, thighteen, tdomestic, tforeign)
-          VALUES (#{tseq}, #{tuseq}, #{taction}, #{tcomedy}, #{tcrime}, #{tdocumentary},
-          #{tdrama}, #{tfamily}, #{tfantasy}, #{tnoir}, #{thorror}, #{tmusical}, #{tmystery}, #{tromance}, #{tsf}, #{tsports},
-          #{tthriller}, #{twar}, #{tcar}, #{trabbit}, #{tanimation}, #{tchildren}, #{thistory}, #{troco}, #{tdisaster}, #{twuxia},
-          #{twestern}, #{thotguy}, #{thighteen}, #{tdomestic}, #{tforeign})
+       INSERT INTO TASTE_TABLE (tseq, tuseq, tstatus)
+          VALUES (#{tseq}, #{tuseq}, #{tstatus})
+          
    </insert>
    
    <update id="updateTaste" parameterType="TasteDto">
@@ -56,13 +52,13 @@
           tseq=#{tseq}, taction=#{taction}, tcomedy=#{tcomedy}, tcrime=#{tcrime}, tdocumentary=#{tdocumentary},
           tdrama=#{tdrama}, tfamily=#{tfamily}, tfantasy=#{tfantasy}, tnoir=#{tnoir}, thorror=#{thorror}, tmusical=#{tmusical}, tmystery=#{tmystery}, tromance=#{tromance}, tsf=#{tsf}, tsports=#{tsports},
           tthriller=#{tthriller}, twar=#{twar}, tcar=#{tcar}, trabbit=#{trabbit}, tanimation=#{tanimation}, tchildren=#{tchildren}, thistory=#{thistory}, troco=#{troco}, tdisaster=#{tdisaster}, twuxia=#{twuxia},
-          twestern=#{twestern}, thotguy=#{thotguy}, thighteen=#{thighteen}, tdomestic=#{tdomestic}, tforeign=#{tforeign}
+          twestern=#{twestern}, thotguy=#{thotguy}, thighteen=#{thighteen}, tdomestic=#{tdomestic}, tforeign=#{tforeign}, tstatus=#{tstatus}
        WHERE TUSEQ=#{tuseq}         
    </update>
    
    <select id="getTaste" parameterType="int" resultType="TasteDto">
       SELECT *
-      FROME TASTE_TABLE
+      FROM TASTE_TABLE
       WHERE tuseq=#{tuseq}   
    </select>
    

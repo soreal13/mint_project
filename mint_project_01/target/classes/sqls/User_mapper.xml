@@ -24,27 +24,27 @@
           
    </resultMap>
 <!--    회원가입  0-->
-   <insert id="register" parameterType="UserDto">
+   <insert id="register" parameterType="UserDto" >
       INSERT INTO USER_TABLE
-      ( USEQ, UEMAIL, UNICK, UPWD, UIMG, UDELFLAG ) VALUES 
-      ( USER_TABLE_SEQ.NEXTVAL,#{uemail}, #{unick}, #{upwd},#{uimg},'N' )
+      ( USEQ, UEMAIL, UNICK, UPWD,UIMG, UDELFLAG ) VALUES 
+      ( USER_TABLE_SEQ.NEXTVAL,#{uemail}, #{unick}, #{upwd}, #{uimg},'N' )
 
    </insert>
 <!--    로그인  0-->
-   <select id="login" parameterType="UserDto">
-      SELECT * FROM USER_TABLE WHERE UEMAIL=? AND UPWD=? 
+   <select id="login" parameterType="UserDto" resultType="UserDto">
+      SELECT * FROM USER_TABLE WHERE UEMAIL=#{uemail} AND UPWD=#{upwd} 
    </select>
 <!--    이메일체크 0-->
-   <select id="chkEmail" parameterType="UserDto">
-      SELECT UEMAIL AS CONT FORM USER_TABLE WHERE UEMAIL=#{uemail}
+   <select id="chkEmail" parameterType="UserDto" resultType="UserDto">
+      SELECT UEMAIL FROM USER_TABLE WHERE UEMAIL=#{uemail}
    </select>
 <!--    별명 체크  0-->
-   <select id="chkNick" parameterType="UserDto">
-      SELECT UNICK AS CONT FORM USER_TABLE WHERE UNICK=#{unick}
+   <select id="chkNick" parameterType="UserDto" resultType="UserDto">
+      SELECT UNICK FROM USER_TABLE WHERE UNICK=#{unick}
    </select>
 <!--    회원 정보 가져오기 0-->
    <select id="getUserinfo" parameterType="UserDto">
-      SELECT USEQ, UEMAIL, UNICK, UIMG, UMSEQ, UFMSEQ, UFUSEQ, URSEQ, UUPRSEQ, UDOWRNSEQ
+      SELECT USEQ, UEMAIL, UNICK, UIMG, UMSEQ, UFMSEQ, UFUSEQ, URSEQ, UUPRSEQ, UDOWNRSEQ
       FROM USER_TABLE WHERE USEQ=#{useq}
    </select>
 <!--    프로필 이미지 변경 0-->
@@ -57,12 +57,9 @@
    </update>
 <!--    즐겨찾기한 영화 가져오기 (조건부에 리스트 정렬 넣기) 0-->
    <select id="getUserFavorite" parameterType="UserDto">
-      SELECT UFMSEQ FROM USER_TABLE WHERE USEQ=#{useq} ORDER BY UFMSEQ DESC
+      SELECT UFMSEQ,UFUSEQ FROM USER_TABLE WHERE USEQ=#{useq} ORDER BY UFMSEQ DESC
    </select>
-<!--    즐겨찾기한 유저 목록  -->
-   <select id="getUserFavorite">
-      SELECT UFUSEQ FROM USER_TABLE WHERE USEQ=#{useq} ORDER BY UFUSEQ DESC
-   </select>
+
 <!--    유저가 쓴 리뷰 불러오기 0-->
    <select id="getUserReview" parameterType="UserDto">
       
@@ -76,57 +73,3 @@
    
        
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

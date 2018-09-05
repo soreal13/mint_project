@@ -4,6 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   
+  
+<!--  김민지 작성코드 -->
+  
 <mapper namespace="com.mint.project.movie">
    <resultMap type="com.mint.project.dtos.MovieDto" id="MovieDto">
             <result property="mseq" column="mseq" />
@@ -18,6 +21,7 @@
          <result property="mgrade" column="mgrade" />
          <result property="mmdpick" column="mmdpick" />
          <result property="mfollow" column="mfollow" />
+         <result property="m_useq" column="m_useq" />
        
    </resultMap>
    
@@ -27,7 +31,7 @@
          INSERT INTO MOVIE_TABLE
          (MSEQ,MIMG,MKEYW,MSHOWDATE,MDIRECTOR,MTITLE,MAGE,MACTOR,MSUMMARY,MGRADE,MMDPICK,MFOLLOW)
          VALUES (MOVIE_TABLE_SEQ.NEXTVAL,#{mimg},#{mkeyw},#{mshowdate},#{mdirector},#{mtitle}
-         ,#{mage},#{mactor},#{msummary},#{mgrade},#{mmdpick},'0')
+         ,#{mage},#{mactor},#{msummary},null,#{mmdpick},'0')
        </insert>
        
        
@@ -47,35 +51,36 @@
        
        
 <!--영화한편정보(상세) -->
-       <select id="getmovieinfo" parameterType="int">
+       <select id="getmovieinfo" parameterType="int" resultType="MovieDto">
        SELECT * FROM MOVIE_TABLE WHERE MSEQ=#{mseq}
        </select>
        
        
 <!--검색시 나오는 정보 -->
-       <select id="getcertainmovieinfo">
-       SELECT * FROM MOVIE_TABLE ORDER BY MSEQ DESC 
-      <!--아니 검색하면 링크타고 상세정보로 뜨기때문에 이게 필요한건지 모르겠는데  이건 모르게따아아 -->
+       <select id="getcertainmovieinfo" parameterType="String" resultType="MovieDto">
+       SELECT * FROM MOVIE_TABLE WHERE MKEYW=#{mkeyw} ORDER BY MSEQ DESC 
        </select>
       
 <!--전체영화정보 -->
-       <select id="getallmovieinfo">
+       <select id="getallmovieinfo" resultType="MovieDto">
        SELECT * FROM MOVIE_TABLE ORDER BY MSEQ DESC
        </select>
-       
-       <update id="updatefollow">
-      update movie_table set (mfollow||'#{mfollow}')||':' where mseq=#{meq}
+
+<!--팔로우 유저 추가  -->
+       <update id="updatefollow" parameterType="MovieDto">
+      UPDATE MOVIE_TABLE SET MFOLLOW=(MFOLLOW||#{mfollow})||':' WHERE MSEQ=#{mseq}
+<!--       UPDATE MOVIE_TABLE SET MFOLLOW='kkk' WHERE MSEQ=#{mseq} -->
        </update>
        
-       <select id="chkfollow">
-          select mseq from movie_table where mfollow like '%:#{useq}:%'
+<!-- 해당 영화를 팔로우 했는지 확인 -->
+       <select id="chkfollow" parameterType="int" resultType="MovieDto">
+          SELECT MTITLE FROM MOVIE_TABLE WHERE MFOLLOW LIKE '%:#{m_useq}:%'
        </select>
        
-       
-       <update id="delfollow">
-       update movie_table set mfollow=replace(mfollow,':#{useq}:',':') where mseq=#{mseq}
+<!--팔로우 삭제 -->       
+       <update id="delfollow" parameterType="MovieDto">
+       UPDATE MOVIE_TABLE SET MFOLLOW=REPLACE(MFOLLOW,#{mfollow},':') WHERE MSEQ=#{mseq}
        </update>
        
-
+ 
 </mapper>
-

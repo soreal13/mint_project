@@ -16,7 +16,7 @@ public class TasteServiceImp implements ITasteService {
 	
 	@Override
 	public boolean insertTaste(TasteDto tdto) {
-		
+		System.out.println("서비스 들어옴");
 		return tdao.insertTaste(tdto);
 	}
 

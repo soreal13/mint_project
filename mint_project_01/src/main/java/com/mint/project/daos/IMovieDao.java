@@ -12,7 +12,7 @@ public interface IMovieDao {
    
 
    // 영화신규추가
-   public int insertMovie(MovieDto mdto);
+   public boolean insertMovie(MovieDto mdto);
 
    // 영화정보수정   
    public boolean updateMovie(MovieDto mdto);
@@ -31,13 +31,13 @@ public interface IMovieDao {
 
 //   -----------------------------------------------------------------------------------
    // 팔로우 유저 추가, 삭제
-   public boolean updateFollow(int useq);
-   
+//   public boolean updateFollow(String mfollow, int mseq);
+   public boolean updateFollow(MovieDto mdto);
    //팔로우 했는지 확인
-   public boolean chkFollow(int useq);
+   public MovieDto chkFollow(int useq);
    
    //팔로우 삭제
-   public boolean delFollow(int useq);
+   public boolean delFollow(MovieDto mDto);
    
    
 }
