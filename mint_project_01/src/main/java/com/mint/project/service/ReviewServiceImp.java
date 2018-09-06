@@ -44,13 +44,13 @@ public class ReviewServiceImp implements IReviewService {
 	}
 
 	@Override
-	public boolean updateUp(int rseq, int useq) {
-		return reviewDao.updateUp(rseq,useq);
+	public boolean updateUp(ReviewDto rdto) {
+		return reviewDao.updateUp(rdto);
 	}
 
 	@Override
-	public boolean updateDown(int rseq, int useq) {
-		return reviewDao.updateDown(rseq,useq);
+	public boolean updateDown(ReviewDto rdto) {
+		return reviewDao.updateDown(rdto);
 	}
 	@Override
 	public List<ReviewDto> chkReview(int useq) {

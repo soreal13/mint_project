@@ -1,5 +1,7 @@
 package com.mint.project.daos;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -61,14 +63,41 @@ public class UserDaoImp implements IUserDao {
    }
 
    @Override
-   public UserDto getUserFavorite(int useq) {
-      return sqlSession.selectOne(namespace+"getUserFavorite",useq);
+   public List<UserDto> getUserReview(int useq) {
+      return sqlSession.selectList(namespace+"getUserReview",useq);
+   }
+
+
+   
+   @Override
+   public List<UserDto> getFavoriteMovie(int useq) {
+      return sqlSession.selectList(namespace+"getFavoriteMovie",useq);
    }
   
 
+   //영화 즐찾추가
+   public boolean  updateFavoriteMovie (UserDto udto) {
+	   int count=sqlSession.update(namespace+"updatefavoritemovie",udto);
+	      return count>0?true:false;
+   }
+   
+   //유저 즐찾 확인
+   public UserDto chkFavorite(int useq) {
+	   return sqlSession.selectOne(namespace+"chkfavorite",useq);
+   }
+   
+
+   //영호 즐찾 삭제
+   public boolean delFavoriteMovie(UserDto udto) {
+	   int count=sqlSession.update(namespace+"delfavoritemovie",udto);
+	      return count>0?true:false;
+   
+   }
+   
+   //ㅁㅈ
    @Override
-   public UserDto getUserReview(int useq) {
-      return sqlSession.selectOne(namespace+"getUserReview",useq);
+   public List<UserDto> getAlluserinfo() {
+	   return sqlSession.selectList(namespace+"getAlluserinfo");
    }
 
 }

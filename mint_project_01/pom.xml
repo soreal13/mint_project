@@ -183,7 +183,26 @@
 		    <groupId>com.googlecode.json-simple</groupId>
 		    <artifactId>json-simple</artifactId>
 		    <version>1.1.1</version>
-		</dependency>			
+		</dependency>
+<!--       이메일 전송    부터 -->
+      <dependency>
+           <groupId>javax.mail</groupId>
+           <artifactId>mail</artifactId>
+           <version>1.4.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+          <artifactId>spring-context-support</artifactId>
+            <version>${org.springframework-version}</version>
+      </dependency>
+      <dependency>
+          <groupId>com.sun.mail</groupId>
+          <artifactId>javax.mail</artifactId>
+          <version>1.5.6</version>
+      </dependency>
+<!-- 메일전송관련 까지       -->		
+		
+					
 		
 </dependencies>
 

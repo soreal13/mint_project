@@ -1,9 +1,14 @@
 package com.mint.project.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.mint.project.daos.ITasteDao;
 import com.mint.project.daos.IUserDao;
+import com.mint.project.dtos.TasteDto;
 import com.mint.project.dtos.UserDto;
 
 
@@ -12,7 +17,8 @@ public class UserServiceImp implements IUserService {
 
    @Autowired
    private IUserDao udao;
-
+   @Autowired
+   private ITasteDao tdao;
    
    //김홍익 작성 코드.
    
@@ -54,28 +60,52 @@ public class UserServiceImp implements IUserService {
    }
 
    @Override
-   public UserDto getUserFavorite(int useq) {
+   public List<UserDto> getFavoriteMovie(int useq) {
       
-      return udao.getUserFavorite(useq);
+      return udao.getFavoriteMovie(useq);
    }
-
+   
    @Override
-   public UserDto getUserReview(int useq) {
+   public List<UserDto> getUserReview(int useq) {
       
       return udao.getUserReview(useq);
    }
 
-
+   @Transactional
    @Override
-	public boolean register(UserDto udto) {
-	   return udao.register(udto);
+	public boolean register(UserDto udto, TasteDto tdto) {
+	   
+	   udao.register(udto);
+	   return tdao.insertTaste(tdto);
+	   
    }
       
    @Override
 	public UserDto login(UserDto udto) {
 	   return udao.login(udto);
    }
+   @Override
+   public List<UserDto> getAlluserinfo(){
+   	return udao.getAlluserinfo();
+   }
+   
+   @Override
+   //영화추가
+   public boolean  updateFavoriteMovie(UserDto udto) {
+	   return udao.updateFavoriteMovie(udto);
+   }
+   
+   @Override
+   //유저 즐찾 확인
+   public UserDto chkFavorite(int useq) {
+	   return udao.chkFavorite(useq);
+   }
    
    
+   @Override
+   //유저 즐찾 삭제
+   public boolean delFavoriteMovie(UserDto udto) {
+	   return udao.delFavoriteMovie(udto);
+   }
   
 }

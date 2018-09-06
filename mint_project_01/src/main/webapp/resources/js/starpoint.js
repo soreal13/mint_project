@@ -36,16 +36,16 @@ starRating();
 $(".star-input").find("input").click(function(){
 	
 	var starpoint=$(this).val();
-	alert(starpoint);
 	var mseq=$("#mseq").attr("class");
 	var count= $("#count").val();
-	alert(count);
+	var useq= $("#userseq").val();
 	count++;
 		
 	var jsonData = {
 			"mseq" : mseq,
 			"count" : count,
-			"starpoint" : starpoint
+			"starpoint" : starpoint,
+			"userseq" : useq
 		};
 	
 	$.ajax({

@@ -43,23 +43,25 @@
    
    <insert id="insertTaste" parameterType="TasteDto">
        INSERT INTO TASTE_TABLE (tseq, tuseq, tstatus)
-          VALUES (#{tseq}, #{tuseq}, #{tstatus})
+          VALUES (USER_TABLE_SEQ.CURRVAL, USER_TABLE_SEQ.CURRVAL, 'N')
           
    </insert>
    
    <update id="updateTaste" parameterType="TasteDto">
        update TASTE_TABLE SET
-          tseq=#{tseq}, taction=#{taction}, tcomedy=#{tcomedy}, tcrime=#{tcrime}, tdocumentary=#{tdocumentary},
+          taction=#{taction}, tcomedy=#{tcomedy}, tcrime=#{tcrime}, tdocumentary=#{tdocumentary},
           tdrama=#{tdrama}, tfamily=#{tfamily}, tfantasy=#{tfantasy}, tnoir=#{tnoir}, thorror=#{thorror}, tmusical=#{tmusical}, tmystery=#{tmystery}, tromance=#{tromance}, tsf=#{tsf}, tsports=#{tsports},
           tthriller=#{tthriller}, twar=#{twar}, tcar=#{tcar}, trabbit=#{trabbit}, tanimation=#{tanimation}, tchildren=#{tchildren}, thistory=#{thistory}, troco=#{troco}, tdisaster=#{tdisaster}, twuxia=#{twuxia},
           twestern=#{twestern}, thotguy=#{thotguy}, thighteen=#{thighteen}, tdomestic=#{tdomestic}, tforeign=#{tforeign}, tstatus=#{tstatus}
-       WHERE TUSEQ=#{tuseq}         
+       WHERE TSEQ=#{tseq}         
    </update>
+   
+   
    
    <select id="getTaste" parameterType="int" resultType="TasteDto">
       SELECT *
       FROM TASTE_TABLE
-      WHERE tuseq=#{tuseq}   
+      WHERE tseq=#{tseq}   
    </select>
    
    <select id="gelAllTaste" resultType="TasteDto">
@@ -69,7 +71,7 @@
    
    <delete id="delTaste" parameterType="int">
       DELETE FROM TASTE_TABLE
-      WHERE tuseq=#{tuseq}   
+      WHERE tseq=#{tseq}   
    </delete>
    
        

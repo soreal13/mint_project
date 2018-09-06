@@ -21,7 +21,6 @@
          <result property="mgrade" column="mgrade" />
          <result property="mmdpick" column="mmdpick" />
          <result property="mfollow" column="mfollow" />
-         <result property="m_useq" column="m_useq" />
        
    </resultMap>
    
@@ -69,13 +68,9 @@
 <!--팔로우 유저 추가  -->
        <update id="updatefollow" parameterType="MovieDto">
       UPDATE MOVIE_TABLE SET MFOLLOW=(MFOLLOW||#{mfollow})||':' WHERE MSEQ=#{mseq}
-<!--       UPDATE MOVIE_TABLE SET MFOLLOW='kkk' WHERE MSEQ=#{mseq} -->
        </update>
        
-<!-- 해당 영화를 팔로우 했는지 확인 -->
-       <select id="chkfollow" parameterType="int" resultType="MovieDto">
-          SELECT MTITLE FROM MOVIE_TABLE WHERE MFOLLOW LIKE '%:#{m_useq}:%'
-       </select>
+
        
 <!--팔로우 삭제 -->       
        <update id="delfollow" parameterType="MovieDto">

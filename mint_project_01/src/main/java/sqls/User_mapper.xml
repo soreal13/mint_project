@@ -21,29 +21,56 @@
       <result property="usessionlimit" column="usessionlimit" />
       <result property="uuprseq" column="uuprseq" />
       <result property="udownrseq" column="udownrseq" />   
-          
+          <collection property="mdto" resultMap="MovieDto" />
+           <collection property="rdto" resultMap="ReviewDto" />
+   </resultMap>
+   <resultMap type="com.mint.project.dtos.MovieDto" id="MovieDto">
+            <result property="mseq" column="mseq" />
+         <result property="mimg" column="mimg" />
+         <result property="mkeyw" column="mkeyw" />
+         <result property="mshowdate" column="mshowdate" />
+         <result property="mdirector" column="mdirector" />
+         <result property="mtitle" column="mtitle" />
+         <result property="mage" column="mage" />
+         <result property="mactor" column="mactor" />
+         <result property="msummary" column="msummary" />
+         <result property="mgrade" column="mgrade" />
+         <result property="mmdpick" column="mmdpick" />
+         <result property="mfollow" column="mfollow" />
+         <result property="m_useq" column="m_useq" />
+   </resultMap>
+	<resultMap type="com.mint.project.dtos.ReviewDto" id="ReviewDto">
+       	<result property="rseq" column="rseq" />
+       	<result property="rmseq" column="rmseq" />
+       	<result property="ruseq" column="ruseq" />
+       	<result property="rcontent" column="rcontent" />
+       	<result property="rup" column="rup" />
+       	<result property="rdate" column="rdate" />
+       	<result property="rdelflag" column="rdelflag"/>
+        <result property="rupuseq" column="rupuseq" />
    </resultMap>
 <!--    회원가입  0-->
-   <insert id="register" parameterType="UserDto" >
+   <insert id="register" parameterType="UserDto">
       INSERT INTO USER_TABLE
-      ( USEQ, UEMAIL, UNICK, UPWD,UIMG, UDELFLAG ) VALUES 
-      ( USER_TABLE_SEQ.NEXTVAL,#{uemail}, #{unick}, #{upwd}, #{uimg},'N' )
+      ( USEQ, UEMAIL, UNICK, UPWD, UIMG, UDELFLAG ) VALUES 
+      ( USER_TABLE_SEQ.NEXTVAL,#{uemail}, #{unick}, #{upwd},#{uimg},'N' )
 
    </insert>
 <!--    로그인  0-->
-   <select id="login" parameterType="UserDto" resultType="UserDto">
-      SELECT * FROM USER_TABLE WHERE UEMAIL=#{uemail} AND UPWD=#{upwd} 
+   <select id="login" parameterType="UserDto" resultMap="UserDto">
+      SELECT USEQ,UEMAIL,UNICK,UIMG,UDELFLAG,UMSEQ,UFMSEQ,UFUSEQ,URSEQ,USESSIONKEY,
+      USESSIONLIMIT,UUPRSEQ,UDOWNRSEQ FROM USER_TABLE WHERE UEMAIL=#{uemail} AND UPWD=#{upwd}
    </select>
 <!--    이메일체크 0-->
-   <select id="chkEmail" parameterType="UserDto" resultType="UserDto">
-      SELECT UEMAIL FROM USER_TABLE WHERE UEMAIL=#{uemail}
+   <select id="chkEmail" parameterType="UserDto" resultMap="UserDto">
+      SELECT UEMAIL AS COUNT FROM USER_TABLE WHERE UEMAIL=#{uemail}
    </select>
 <!--    별명 체크  0-->
-   <select id="chkNick" parameterType="UserDto" resultType="UserDto">
-      SELECT UNICK FROM USER_TABLE WHERE UNICK=#{unick}
+   <select id="chkNick" parameterType="UserDto" resultMap="UserDto" >
+      SELECT UNICK AS COUNT FROM USER_TABLE WHERE UNICK=#{unick}
    </select>
 <!--    회원 정보 가져오기 0-->
-   <select id="getUserinfo" parameterType="UserDto">
+   <select id="getUserinfo" parameterType="UserDto" resultMap="UserDto">
       SELECT USEQ, UEMAIL, UNICK, UIMG, UMSEQ, UFMSEQ, UFUSEQ, URSEQ, UUPRSEQ, UDOWNRSEQ
       FROM USER_TABLE WHERE USEQ=#{useq}
    </select>
@@ -55,21 +82,49 @@
    <update id="updateUserinfo" parameterType="UserDto">
       UPDATE USER_TABLE SET UPWD=#{upwd} WHERE USEQ=#{useq}
    </update>
-<!--    즐겨찾기한 영화 가져오기 (조건부에 리스트 정렬 넣기) 0-->
-   <select id="getUserFavorite" parameterType="UserDto">
-      SELECT UFMSEQ,UFUSEQ FROM USER_TABLE WHERE USEQ=#{useq} ORDER BY UFMSEQ DESC
+<!--    즐겨찾기한 영화 가져오기-->
+   <select id="getFavoriteMovie" parameterType="int" resultMap="UserDto">
+      SELECT MTITLE, MIMG FROM USER_TABLE, MOVIE_TABLE 
+      WHERE USER_TABLE.UFMSEQ=MOVIE_TABLE.MSEQ AND USEQ=#{useq} ORDER BY UFMSEQ DESC
    </select>
-
-<!--    유저가 쓴 리뷰 불러오기 0-->
-   <select id="getUserReview" parameterType="UserDto">
-      
-      SELECT USEQ,RSEQ,RMSEQ,RUSEQ,MTITLE,RCONTENT FROM USER_TABLE, REVIEW_TABLE, MOVIE_TABLE WHERE REVIEW_TABLE.RUSEQ=USER_TABLE.USEQ AND USEQ=#{useq} ORDER BY RSEQ DESC
+   
+<!--    유저가 쓴 리뷰 불러오기 0  resultType="UserDto"  -->
+   <select id="getUserReview" parameterType="int" resultMap="UserDto">
+        SELECT MTITLE,RCONTENT,RDATE,RUP FROM USER_TABLE, REVIEW_TABLE, MOVIE_TABLE 
+      WHERE REVIEW_TABLE.RUSEQ=USER_TABLE.USEQ AND MOVIE_TABLE.MSEQ=REVIEW_TABLE.RMSEQ AND USEQ=#{useq} ORDER BY RSEQ DESC
    </select>
-<!--    유저 삭제  0-->
-   <delete id="delUser" parameterType="int">
+   
+<!--         후기삭제 DELFLAG N =삭제되기전 Y = 삭제된후-->
+		<delete id="delRe" parameterType="int">
+		UPDATE REVIEW_TABLE SET RDELFLAG='Y'
+		WHERE RUSEQ=#{useq}
+		</delete>
+   
+   
+<!--    회원탈퇴  0-->
+   <update id="delUser" parameterType="int">
       UPDATE USER_TABLE SET UDELFLAG='Y' WHERE USEQ=#{useq}
-   </delete>
+   </update>
    
-   
+
+
+       
+<!--  영화 즐겨찾기 추가  -->
+       <update id="updateFavoriteMovie" parameterType="UserDto">
+      UPDATE USER_TABLE SET UFMSEQ=(UFMSEQ||#{ufmseq})||':' WHERE USEQ=#{useq}
+       </update>
+       
+<!-- 해당 유저를 팔로우 했는지 확인 -->
+       <select id="chkFavorite" parameterType="int" resultType="UserDto">
+          SELECT MTITLE FROM USER_TABLE WHERE MFOLLOW LIKE '%:#{m_useq}:%'  //?뭔데 
+       </select>
+       
+       
+<!--	즐겨찾기 영화 삭제 -->       
+       <update id="delFavoriteMovie" parameterType="UserDto">
+       UPDATE USER_TABLE SET UFMSEQ=REPLACE(UFMSEQ,#{ufmseq},':') WHERE USEQ=#{useq}
+       </update>
        
 </mapper>
+
+

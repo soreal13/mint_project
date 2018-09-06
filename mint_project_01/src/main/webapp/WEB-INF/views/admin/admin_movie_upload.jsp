@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- 민지코드 -->
 <div class="movieupload_box">
 	<form action="movieupload.do" method="post">
 		<h3>한줄평 작성하기</h3>

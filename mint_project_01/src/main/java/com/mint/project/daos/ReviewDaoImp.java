@@ -57,22 +57,14 @@ public class ReviewDaoImp implements IReviewDao {
 	}
 
 	@Override
-	public boolean updateUp(int rseq, int useq) {
-		Map<String, Integer> map=new HashMap<String, Integer>();
-		
-	    map.put("rseq", rseq);
-	    map.put("useq", useq);
-	    int count=sqlSession.update(namespace+"updateUp",map);
+	public boolean updateUp(ReviewDto rdto) {
+	    int count=sqlSession.update(namespace+"updateUp",rdto);
 	    return count>0?true:false;
 		
 	}
 	@Override
-	public boolean updateDown(int rseq, int useq) {
-		Map<String, Integer> map=new HashMap<String, Integer>();
-		
-	    map.put("rseq", rseq);
-	    map.put("useq", useq);
-	    int count=sqlSession.update(namespace+"updateDown",map);
+	public boolean updateDown(ReviewDto rdto) {
+	    int count=sqlSession.update(namespace+"updateDown",rdto);
 	    return count>0?true:false;
 	};
 	

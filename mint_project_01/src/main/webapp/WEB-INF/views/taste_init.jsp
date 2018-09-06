@@ -26,9 +26,10 @@
   <!-- fieldsets -->
   <fieldset>
     <form>
-    <h2 class="fs-title">${ldto.nick}님 반갑습니다.</h2>
-    <h3 class="fs-subtitle">${ldto.nick}님에 대해 알려주세요!</h3>
+    <h2 class="fs-title">${ldto.unick}님 반갑습니다.</h2>
+    <h3 class="fs-subtitle">${ldto.unick}님에 대해 알려주세요!</h3>
     <h5>좋아하는 장르를 선택해주세요!</h5><br/><br/>
+    <input type="hidden" id="userseq" value="${ldto.useq}" />
     <!-- 체크되는 것은 1, 아닌 것은 0 넣기  -->
 	    <input type="checkbox" id="taction" name="taction" value="1" />
 	    <label for="taction"><span>액션</span></label>
@@ -81,7 +82,7 @@
    
   <fieldset>
   <form id="form2">
-    <h2 class="fs-title">${ldto.nick}님의 취향에 대해 좀더 알려주세요!</h2>
+    <h2 class="fs-title">${ldto.unick}님의 취향에 대해 좀더 알려주세요!</h2>
     <h3 class="fs-subtitle">영화에 별점을 매겨주세요!</h3>
     
 <!--     <textarea rows="10" cols="60" name="testAjax"></textarea> -->
@@ -89,8 +90,8 @@
 	<div id=mseq class="mseq"  >
 	    <h3 class="fs-subtitle">p.s 선택한 장르가 아닌 영화도 나와요^^; 당황하지 마셔요!</h3>	 
 		<img src="http://" alt="mimg" id="mimg">
-		<input type="hidden" id="count" value=0>
-		
+		<input type="hidden" id="count" value=0 />
+		<input type="hidden" id="userseq" value="${ldto.useq}" />
 		<br/>
 		<span class="star-input">
 		  <span class="input">
@@ -109,7 +110,7 @@
 		  <output for="star-input"><b>0</b>점</output>
 		</span>
 		<br/><br/>
-		<input type="button" class="unseen form2-button"  name="unseen" value="안봤어요" />
+		<input type="button" class="unseen form2-button" name="unseen" value="안봤어요" />
 		<input type="button" class="unlike form2-button" name="unlike" value="관심 없어요" />	
 	    <br/><br/>
     </div>
@@ -119,7 +120,7 @@
   
   <fieldset>
   <form>
-    <h2 class="fs-title">${ldto.nick}님 환영합니다!</h2>
+    <h2 class="fs-title">${ldto.unick}님 환영합니다!</h2>
     <h3 class="fs-subtitle">MINT: Movie into에 어서 오세요!!</h3>
     
     <h3 class="fs-subtitle">반갑습니다!</h3>

@@ -37,6 +37,27 @@
 		<constructor-arg index="0" ref="sqlSession"></constructor-arg>
 	</bean>
 	
+	<!--    이메일 찾기  시작 -->
+
+
+     <bean id="mailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
+      <property name="host" value="smtp.gmail.com" />
+      <property name="port" value="587" />
+      <property name="username" value="ejswhp@gmail.com" />
+      <property name="password" value="magickiss88" />
+      <property name="javaMailProperties">
+         <props>
+               <prop key="mail.transport.protocol">smtp</prop>
+               <prop key="mail.smtp.auth">true</prop>
+               <prop key="mail.smtp.starttls.enable">true</prop>
+               <prop key="mail.debug">true</prop>
+
+         </props>
+      </property>
+ 
+   </bean>
+<!--    이메일 찾기 끝 -->
+	
 	<tx:annotation-driven transaction-manager="txManager"/>
 
 	

@@ -1,5 +1,8 @@
 package com.mint.project.service;
 
+import java.util.List;
+
+import com.mint.project.dtos.TasteDto;
 import com.mint.project.dtos.UserDto;
 
 public interface IUserService {
@@ -42,15 +45,34 @@ public interface IUserService {
 	public UserDto getUserFavorite(int useq);
 		   
 	//유저가 쓴 리뷰 가져오기
-	public UserDto getUserReview(int useq);
+	public List<UserDto> getUserReview(int useq);
+
 
 	//회원가입
-	public boolean register(UserDto udto);
+	public boolean register(UserDto udto, TasteDto dto);
        
 	//로그인
 	public UserDto login(UserDto udto);
 
+	//민지
+	public List<UserDto> getAlluserinfo();
+	
+	//------------------------------------------------
+	//홍익
+	//즐겨찾기한 영화 가져오기
+		public List<UserDto> getFavoriteMovie(int useq);
 
+		//영화 추가
+		 public boolean updateFavoriteMovie (UserDto udto);
+		 
+		 
+		//유저 즐찾 확인
+		public UserDto chkFavorite(int useq);
+		   
+
+		//영화즐찾삭제
+		 public boolean delFavoriteMovie(UserDto udto);
+	
 	
 	
 }

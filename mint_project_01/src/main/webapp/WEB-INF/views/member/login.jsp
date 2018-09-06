@@ -18,7 +18,7 @@
 
 </head>
 <body>
-<!-- 추가 onsubmit -->
+
 <div id="container"> 
 <h1>반갑습니다.</h1>
 <form id="loginForm" action="getin.do" method="POST">

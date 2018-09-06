@@ -23,7 +23,7 @@ public class TasteAop {
 	TasteServiceImp tService;
 	
 	
-	//<--김소진 작성코드 
+	//<--김소진 작성코드 --->
 	
 	//별점 환산점수
 	public int scalePoint(int starpoint) {

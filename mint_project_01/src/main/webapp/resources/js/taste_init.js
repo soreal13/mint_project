@@ -111,12 +111,14 @@ $(".unseen").click(function(){
 	//영화seq, 안봤으니 아무런거 안하고 다음영화 들고와
 	var mseq= $("#mseq").attr("class");
 	var count= $("#count").val();
+	var useq= $("#userseq").val();
 	count++;
 	
 	var jsonData = {
 			"mseq" : mseq,
 			"count" : count,
-			"starpoint" : -1
+			"starpoint" : -1,
+			"userseq" : useq
 		};
 		
 	$.ajax({
@@ -154,12 +156,14 @@ $(".unlike").click(function(){
 	
 	var mseq= $("#mseq").attr("class");
 	var count= $("#count").val();
+	var useq= $("#userseq").val();
 	count++;
 	
 	var jsonData = {
 			"mseq" : mseq,
 			"count" : count,
-			"starpoint" : -2
+			"starpoint" : -2,
+			"userseq" : useq
 		};
 		
 	$.ajax({

@@ -47,6 +47,9 @@
       SELECT USEQ, UEMAIL, UNICK, UIMG, UMSEQ, UFMSEQ, UFUSEQ, URSEQ, UUPRSEQ, UDOWNRSEQ
       FROM USER_TABLE WHERE USEQ=#{useq}
    </select>
+   
+   
+   
 <!--    프로필 이미지 변경 0-->
    <update id="updateUimg" parameterType="UserDto" >
       UPDATE USER_TABLE SET UIMG=#{uimg} WHERE USEQ=#{useq}      
@@ -70,6 +73,18 @@
       UPDATE USER_TABLE SET UDELFLAG='Y' WHERE USEQ=#{useq}
    </delete>
    
+
+   <!-- 민지작성/ 모든 유저 정보 불러오기(admin용) -->
+   <select id="getAlluserinfo" resultType="UserDto">
+   	  SELECT * FROM USER_TABLE ORDER BY USEQ DESC
+   </select>
+
+
+
    
        
 </mapper>
+
+
+
+

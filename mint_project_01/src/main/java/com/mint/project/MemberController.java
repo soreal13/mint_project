@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -27,6 +28,15 @@ import com.mint.project.service.IUserService;
 import com.mint.project.service.TasteServiceImp;
 import com.mint.project.service.UserServiceImp;
 
+import javax.mail.internet.MimeMessage;
+
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 
 @Controller
 public class MemberController {
@@ -39,6 +49,9 @@ public class MemberController {
 	@Autowired
 	private TasteServiceImp tService;
 	
+   @Autowired
+   private JavaMailSender mailSender;
+	
 	//로그인 창으로
 	@RequestMapping(value="/login.do", method =RequestMethod.GET)
 	public String index(Locale locale, Model model) {
@@ -48,15 +61,17 @@ public class MemberController {
 	
 	//회원가입
 	@RequestMapping(value="/sign.do", method =RequestMethod.POST)
-	public String register(UserDto udto ,Locale locale, Model model) {
+	public @ResponseBody String register(UserDto udto ,Locale locale, Model model) {
 		
-		
+		TasteDto tdto = new TasteDto();
 		String img = "default.png";
 		udto.setUimg(img);
 		
-		boolean isS=userService.register(udto);
+		boolean isS=userService.register(udto, tdto);
 		if(isS) {
-			return "member/login";
+			
+				return "member/login";
+			
 		}else {
 			model.addAttribute("msg","가입 실패");
 			return "member/signin";
@@ -71,10 +86,10 @@ public class MemberController {
 	}
 	
 	//로그인 시도
-    @RequestMapping(value="/getin.do", method =RequestMethod.POST)
-	   public String login(UserDto udto,HttpSession session) throws Exception {
+    @RequestMapping(value="/getin.do")
+	   public String login(Model model, UserDto udto,HttpSession session) throws Exception {
 	   UserDto loginUser = userService.login(udto);
-
+	   System.out.println("로그인창 들어옴");
 	        if (loginUser != null) {
 	            session.setAttribute("ldto", loginUser);
 	            
@@ -83,7 +98,11 @@ public class MemberController {
 	            if(tdto.getTstatus().equals("N")) {
 	            	System.out.println("초기취향 설정안함");
 	            	return "taste_init";
+	            	
 	            } else {
+	            	System.out.println(tdto.toString());
+	            	System.out.println("로그인직전");
+	            	model.addAttribute("tdto", tdto);
 	            	return "user/user_main";
 	            }		            
 	            
@@ -92,12 +111,35 @@ public class MemberController {
 	        }
 		}
   
-    //이메일 찾기 창으로
-	@RequestMapping(value="/findemail.do", method =RequestMethod.GET)
-	public String findemail(Locale locale, Model model) {
-		
-		return "member/find_email";
-	}
+    @RequestMapping(value="/findemail.do", method =RequestMethod.GET)
+    public String findemail(Locale locale, Model model) {
+       
+       return "member/find_email";
+    }   
+     
+    
+    @RequestMapping(value="/findemail_user.do", method =RequestMethod.POST)
+    public String findemail(HttpServletRequest request) {      
+       String setfrom = "ejswhp@gmail.com";
+       String tomail = request.getParameter("tomail");
+       String title = request.getParameter("title");
+       String content = request.getParameter("content");
+       
+       
+       try {
+             MimeMessage message = mailSender.createMimeMessage();
+             MimeMessageHelper messageHelper = new MimeMessageHelper(message,true,"UTF-8");
+             messageHelper.setFrom(setfrom);  // 보내는사람 생략하거나 하면 정상작동을 안함
+             messageHelper.setTo(tomail);     // 받는사람 이메일
+             messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+             messageHelper.setText(content);  // 메일 내용
+            
+             mailSender.send(message);
+           } catch(Exception e){
+             System.out.println(e);
+           }
+       return "/member/login";
+    }
 	
 	//비밀번호 찾기 창으로 
 	@RequestMapping(value="/findpwd.do", method =RequestMethod.GET)
@@ -105,6 +147,15 @@ public class MemberController {
 		
 		return "member/find_pwd";
 	}
+	
+	
+	   @RequestMapping(value="/findpwd_user.do", method =RequestMethod.GET)
+	   public String findpwd_user(HttpServletRequest request) {
+
+	      return "member/login";
+	   }
+	   
+	   
 	
 	@ResponseBody //비동기로 다시 원래 페이지로 돌아간다.
 	@RequestMapping(value="/emchk.do", method =RequestMethod.POST)
@@ -117,7 +168,7 @@ public class MemberController {
 		}else {
 			isS="y";
 		}
-		Map<String, String>map=new HashMap<>();
+		Map<String, String>map=new HashMap<String, String>();
 		map.put("isS",isS);
 		
 		return map;
@@ -134,7 +185,7 @@ public class MemberController {
 		}else {
 			isS="y";
 		}
-		Map<String, String>map=new HashMap<>();
+		Map<String, String>map=new HashMap<String, String>();
 		map.put("isS",isS);
 		
 		return map;

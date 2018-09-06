@@ -35,10 +35,10 @@ public interface IReviewDao {
 	public List<ReviewDto> getAllReview();
 	
 	//후기 공감
-	public boolean updateUp(int rseq, int useq);
+	public boolean updateUp(ReviewDto rdto);
 	
 	//후기 공감 취소
-	public boolean updateDown(int rseq, int useq);
+	public boolean updateDown(ReviewDto rdto);
 	
 	//공감 눌렀는지 확인
 	public List<ReviewDto> chkReview(int useq);
