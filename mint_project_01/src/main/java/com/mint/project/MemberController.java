@@ -70,7 +70,7 @@ public class MemberController {
 		return "member/signin";
 	}
 	
-	//로그인 시도
+//	로그인 시도
     @RequestMapping(value="/getin.do", method =RequestMethod.POST)
 	   public String login(UserDto udto,HttpSession session) throws Exception {
 	   UserDto loginUser = userService.login(udto);
@@ -84,7 +84,7 @@ public class MemberController {
 	            	System.out.println("초기취향 설정안함");
 	            	return "taste_init";
 	            } else {
-	            	return "user/user_main";
+	            	return "redirect:usermain_user.do";
 	            }		            
 	            
 	        } else {

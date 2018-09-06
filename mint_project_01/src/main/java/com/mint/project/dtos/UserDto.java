@@ -19,35 +19,9 @@ public class UserDto {
 	   private String usessionlimit;
 	   private String uuprseq;
 	   private String udownrseq;
+	   private MovieDto mdto;
+	   private ReviewDto rdto;
 	   
-	   
-	   
-		public UserDto() {
-			super();
-			// TODO Auto-generated constructor stub
-		}   
-
-	public UserDto(int useq, String uemail, String unick, String upwd, String uimg, String udelflag, String umseq,
-			String ufmseq, String ufuseq, String urseq, String usessionkey, String usessionlimit, String uuprseq,
-			String udownrseq) {
-		super();
-		this.useq = useq;
-		this.uemail = uemail;
-		this.unick = unick;
-		this.upwd = upwd;
-		this.uimg = uimg;
-		this.udelflag = udelflag;
-		this.umseq = umseq;
-		this.ufmseq = ufmseq;
-		this.ufuseq = ufuseq;
-		this.urseq = urseq;
-		this.usessionkey = usessionkey;
-		this.usessionlimit = usessionlimit;
-		this.uuprseq = uuprseq;
-		this.udownrseq = udownrseq;
-	}
-	
-	
 	public int getUseq() {
 		return useq;
 	}
@@ -132,15 +106,51 @@ public class UserDto {
 	public void setUdownrseq(String udownrseq) {
 		this.udownrseq = udownrseq;
 	}
-	
-	
+	public MovieDto getMdto() {
+		return mdto;
+	}
+	public void setMdto(MovieDto mdto) {
+		this.mdto = mdto;
+	}
+	public ReviewDto getRdto() {
+		return rdto;
+	}
+	public void setRdto(ReviewDto rdto) {
+		this.rdto = rdto;
+	}
+	public UserDto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public UserDto(int useq, String uemail, String unick, String upwd, String uimg, String udelflag, String umseq,
+			String ufmseq, String ufuseq, String urseq, String usessionkey, String usessionlimit, String uuprseq,
+			String udownrseq, MovieDto mdto, ReviewDto rdto) {
+		super();
+		this.useq = useq;
+		this.uemail = uemail;
+		this.unick = unick;
+		this.upwd = upwd;
+		this.uimg = uimg;
+		this.udelflag = udelflag;
+		this.umseq = umseq;
+		this.ufmseq = ufmseq;
+		this.ufuseq = ufuseq;
+		this.urseq = urseq;
+		this.usessionkey = usessionkey;
+		this.usessionlimit = usessionlimit;
+		this.uuprseq = uuprseq;
+		this.udownrseq = udownrseq;
+		this.mdto = mdto;
+		this.rdto = rdto;
+	}
 	@Override
 	public String toString() {
 		return "UserDto [useq=" + useq + ", uemail=" + uemail + ", unick=" + unick + ", upwd=" + upwd + ", uimg=" + uimg
 				+ ", udelflag=" + udelflag + ", umseq=" + umseq + ", ufmseq=" + ufmseq + ", ufuseq=" + ufuseq
 				+ ", urseq=" + urseq + ", usessionkey=" + usessionkey + ", usessionlimit=" + usessionlimit
-				+ ", uuprseq=" + uuprseq + ", udownrseq=" + udownrseq + "]";
+				+ ", uuprseq=" + uuprseq + ", udownrseq=" + udownrseq + ", mdto=" + mdto + ", rdto=" + rdto + "]";
 	}
-	
+		   
+	   
 	
 }

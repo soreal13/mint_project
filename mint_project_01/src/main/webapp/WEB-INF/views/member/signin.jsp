@@ -139,6 +139,7 @@
 </script>
 </head>
 <body>
+<%@include file="../header.jsp"%>
 <h1>MINT 회원가입</h1>
 <form action="sign.do" method="POST">
 <table>		

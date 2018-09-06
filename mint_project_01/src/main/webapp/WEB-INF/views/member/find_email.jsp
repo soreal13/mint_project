@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@include file="../header.jsp"%>
 <h2>이메일 찾기</h2>
 <form action="findemail.do" method="post">
 <table border="1">

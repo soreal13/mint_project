@@ -29,7 +29,7 @@
 <!--         후기삭제 DELFLAG N =삭제되기전 Y = 삭제된후-->
 		<delete id="delReview" parameterType="int">
 		UPDATE REVIEW_TABLE SET RDELFLAG='Y'
-		WHERE RSEQ=#{rseq}
+		WHERE RUSEQ=#{useq}
 		</delete>
 		
 <!-- 		영화별 후기 리스트 -->

@@ -18,10 +18,12 @@
 
 </head>
 <body>
+<%@include file="../header.jsp"%>
 <!-- 추가 onsubmit -->
 <div id="container"> 
 <h1>반갑습니다.</h1>
 <form id="loginForm" action="getin.do" method="POST">
+
 <table>
 	<tr>
 		<td>이메일</td>

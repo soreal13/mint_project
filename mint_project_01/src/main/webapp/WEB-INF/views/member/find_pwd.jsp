@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@include file="../header.jsp"%>
 <h2>비밀번호 찾기</h2>
 <form action="findpwd.do" method="post">
 <table border="1">

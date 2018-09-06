@@ -1,17 +1,21 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=utf-8"); %>
-<!DOCTYPE html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery UI Tabs - Default functionality</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
+<style type="text/css">
+#abc{
+list-style: none;float: left;margin-left: 50px;
+border:1px solid red; width: 200px; height: 250px;
+}
+
+</style>
+<title>글목록보기</title>
+<script type="text/javascript">
   $( function() {
     $( "#tabs" ).tabs();
   } );
@@ -29,36 +33,26 @@
    </tr>
 </table>
 
-<div id="tabs">
-  <ul>
-    <li><a href="#tabs-1">즐겨찾기한 영화</a></li>
-    <li><a href="#tabs-2">즐겨찾기한 유저</a></li>
-  </ul>
-  <div id="tabs-1">
-        <table class="table table-striped" border="2">
+<table class="table table-striped"  class="abc" >
       <col width="100px" />
-      <col width="100px" />
-      <tr>
-         <td><img src="${mdto.mimg}"></td>   
-      </tr>
-      <tr>
-         <td>${mdto.mtitle}</td>
-      </tr>
+      <col width="50px" />
+
+      <c:choose>
+         <c:when test="${empty lists}">
+         </c:when>
+         <c:otherwise>
+            <c:forEach var = "ldto" items="${lists}">
+             <tr>
+        	 <th id="abc"><a href="#"><img src="${ldto.mdto.mimg}" alt="포스터"/></th>
+     		 </tr>
+               <tr>
+                  <td>${ldto.mdto.mtitle}</td>
+               </tr>
+            </c:forEach>            
+         </c:otherwise>
+      </c:choose>
+     
    </table>
-  </div>
-  <div id="tabs-2">
-    <table class="table table-striped" border="2">
-      <col width="100px" />
-      <col width="100px" />
-      <tr>
-         <td><img src="${udto.uimg}"></td>   
-      </tr>
-      <tr>
-         <td>${udto.unick}</td>
-      </tr>
-   </table>
-  </div>
-</div>
  
  
 </body>

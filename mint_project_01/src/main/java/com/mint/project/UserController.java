@@ -37,38 +37,27 @@ public class UserController {
    private IMovieService movieService;
 
    // 홍익작성코드 -->
-      
-//   로그인창으로 이동 (완료)
-      @RequestMapping(value="/login.do", method =RequestMethod.GET)
-            public String loginpage(Locale locale, Model model) {
-         
-               return "member/login";
-            }
-
-
-//      로그인 (완료) - 로그인실패시 alert뜨게 하는법 찾아서 넣기
-      @RequestMapping(value="/getin.do", method =RequestMethod.POST)
-         public String login1(UserDto udto,HttpSession session) throws Exception {
-         UserDto loginUser = userService.login(udto);
-              if (loginUser != null) {
-                  session.setAttribute("ldto", loginUser);
-                  return "user/user_main";
-              } else {
-                   return "member/login";
-              }
-         }
-       
+ 
+   
+   
 //   유저메인으로 이동 (완료)
-      @RequestMapping(value="/usermain.do", method =RequestMethod.GET)
-            public String usermain(HttpSession session, Locale locale, Model model) {
+      @RequestMapping(value="/usermain_user.do", method =RequestMethod.GET)
+            public String usermain(HttpSession session,UserDto udto, Model model) {
+    	  UserDto ldto=(UserDto)session.getAttribute("ldto");
+//      	  model.addAttribute("ldto", ldto);
 
+    	  
+    	  List<UserDto>lldto=userService.getUserReview(ldto.getUseq());
+    	  System.out.println(lldto.size());
+          model.addAttribute("lldto", lldto);
+      	  
              return "user/user_main";
             }
          
    
    
 //   유저 정보 가져오기 (완료)
-      @RequestMapping(value="/userinfo.do", method =RequestMethod.GET)
+      @RequestMapping(value="/userinfo_user.do", method =RequestMethod.GET)
          public String userGetInfo(HttpSession session, Model model) {
          UserDto lldto=(UserDto)session.getAttribute("ldto");
          UserDto ldto=userService.getUserinfo(lldto);
@@ -113,61 +102,41 @@ public class UserController {
          }
        
       
-//   리뷰 불러오기XXXXXXXXXXXXXXXXXXXXXXXXXXXXX안됌안됌 (수정중)
+//   리뷰 불러오기(완료_개 힘들었네 ㅂㄷㅂㄷ)
       @RequestMapping(value="/userreview.do", method =RequestMethod.GET)
       public String review(UserDto udto, Model model) {
-//         List<UserDto> ldto=userService.getUserReview(udto.getUseq());
-//         model.addAttribute("ldto", ldto);
-         
-//         
-//         MovieDto mdto=new MovieDto();
-//         model.addAttribute("mdto", mdto);
-//         
-//         ReviewDto rdto = new ReviewDto();
-//         model.addAttribute("rdto", rdto);
-//         
-//         
-         
-      
-//         MovieDto mdto=new MovieDto();
-////         model.addAttribute("mdto", mdto);
-//         List<ReviewDto> rdto = reviewService.getUserReview(udto.getUseq());
-//         model.addAttribute("rdto", rdto);
-//
-//         ReviewDto rrdto = new ReviewDto();
-//         rrdto.getRcontent();
-//         
-         
-         return "user/user_review";
-         
-   
-//         
-//         
-//         
-//         MovieDto mdto = new MovieDto();
-//         Map<String, UserDto>map1=new HashMap<>();
-//         Map<String, ReviewDto>map2=new HashMap<>();
-//         Map<String, MovieDto>map3=new HashMap<>();
-//         map1.put("ddto", ddto);
-//         map2.put("rdto",rdto);
-//         map3.put("mdto",mdto);
+    	  
+    	  List<UserDto>ldto=userService.getUserReview(udto.getUseq());
+    	  
+          model.addAttribute("lists", ldto);
+          System.out.println(ldto.size());
+          
+          return "user/user_review";
+
       
          
    }
 
 //리뷰 삭제 (수정중)
-      @RequestMapping(value="/delRiview.do", method =RequestMethod.GET)
-      public String delRiview(HttpSession session, Locale locale, Model model) {
-         ReviewDto rdto = new ReviewDto();
-         boolean isS=reviewService.delReview(rdto.getRseq());
-         if(isS) {
-            return "redirect:userreview.do";
-         }else {
-            model.addAttribute("msg","글삭제실패");
-            return "user/user_main";
-         }
-         
+      @RequestMapping(value="/delReview.do?", method =RequestMethod.POST)
+      public String delRiview(HttpSession session,int rseq,Model model) {
+    	  boolean isS = reviewService.delReview(rseq);
+    	  if(isS) {
+              return "userreview.do";
+           }else {
+              model.addAttribute("msg","글삭제실패");
+             return "user/user_main";
+          }
       }
+      
+//추천영화 모아보기
+      @RequestMapping(value="/usergrade.do", method =RequestMethod.GET)
+      public String 추천천영화(UserDto udto, Model model) {
+    	  
+          return "user/user_grade";
+   }
+
+      
       
       
 //   즐겨찾기 정보창으로 이동
@@ -175,19 +144,21 @@ public class UserController {
       public String userupdate(UserDto udto, Locale locale, Model model) {
 
          return "user/user_favorite";
-}
+      }
    
-//   즐겨찾기 유저,영화 (수정중)
-//      @RequestMapping(value="/userfavorite.do", method =RequestMethod.GET)
-//      public String uertfavorite(HttpSession session,UserDto udto, Locale locale, Model model) {
-//         logger.info("가져와보기{}.", locale);
-//         List<UserDto> ddto=userService.getUserFavorite(udto.getUseq());
-//      
-//         Map<String, UserDto>map=new HashMap<>();
-////         map.put("ldto", ddto);
-//         return "user/user_favorite";
-//}
 
+//	  즐겨찾기 영화 (수정중)
+	      @RequestMapping(value="/userfavoriteMovie.do", method =RequestMethod.GET)
+	      public String uerfavoriteMovie(HttpSession session,UserDto udto, Model model) {
+	    	  
+	    	  List<UserDto>ldto=userService.getFavoriteMovie(udto.getUseq());
+	    	  
+	          model.addAttribute("lists", ldto);
+	          System.out.println(ldto.size());
+	    	  
+	    	  
+	         return "user/user_favorite";
+	}
    
    
 }

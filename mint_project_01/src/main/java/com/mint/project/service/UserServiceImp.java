@@ -1,5 +1,7 @@
 package com.mint.project.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,18 +56,22 @@ public class UserServiceImp implements IUserService {
    }
 
    @Override
-   public UserDto getUserFavorite(int useq) {
+   public List<UserDto> getFavoriteMovie(int useq) {
       
-      return udao.getUserFavorite(useq);
+      return udao.getFavoriteMovie(useq);
    }
+   
+
 
    @Override
-   public UserDto getUserReview(int useq) {
+   public List<UserDto> getUserReview(int useq) {
       
       return udao.getUserReview(useq);
    }
 
 
+   
+   
    @Override
 	public boolean register(UserDto udto) {
 	   return udao.register(udto);
@@ -76,6 +82,24 @@ public class UserServiceImp implements IUserService {
 	   return udao.login(udto);
    }
    
+
+   @Override
+   //영화추가
+   public boolean  updateFavoriteMovie(UserDto udto) {
+	   return udao.updateFavoriteMovie(udto);
+   }
    
+   @Override
+   //유저 즐찾 확인
+   public UserDto chkFavorite(int useq) {
+	   return udao.chkFavorite(useq);
+   }
+   
+   
+   @Override
+   //유저 즐찾 삭제
+   public boolean delFavoriteMovie(UserDto udto) {
+	   return udao.delFavoriteMovie(udto);
+   }
   
 }
