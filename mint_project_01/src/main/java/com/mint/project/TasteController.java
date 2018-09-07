@@ -2,6 +2,7 @@
 package com.mint.project;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -249,9 +250,19 @@ public class  TasteController {
 	public Map<String, MovieDto> yourMovie(Locale locale, Model model, HttpServletRequest request, HttpSession session){
 		logger.info("영화 추천 메소드", locale);
 		
+		//1. 유저정보 가져오기		
+		int tseq = Integer.parseInt(request.getParameter("useq"));
+		System.out.println(tseq);
 		
+		TasteDto tdto = tService.getTaste(tseq);
 		
+		//2. 유저의 취향점수 중 제일 높은 것 뽑아내기(=tdto주고 한글키워드 받아옴)
+		String keyw = taop.getKeyw(tdto);
 		
+		//3. 키워드로 영화 검색하기
+		List<MovieDto> tmlist= mService.getCertainMovieinfo(keyw);
+		model.addAttribute("tmlist", tmlist);		
+				
 		
 		Map<String, MovieDto> map= new HashMap<String, MovieDto>();
 				

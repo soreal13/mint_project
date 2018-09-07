@@ -22,9 +22,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mint.project.aop.TasteAop;
+import com.mint.project.dtos.MovieDto;
 import com.mint.project.dtos.TasteDto;
 import com.mint.project.dtos.UserDto;
 import com.mint.project.service.IUserService;
+import com.mint.project.service.MovieServiceImp;
 import com.mint.project.service.TasteServiceImp;
 import com.mint.project.service.UserServiceImp;
 
@@ -48,9 +51,13 @@ public class MemberController {
 	private UserServiceImp userService;
 	@Autowired
 	private TasteServiceImp tService;
+	@Autowired
+	private MovieServiceImp mService;
 	
    @Autowired
    private JavaMailSender mailSender;
+   
+	TasteAop taop = new TasteAop();
 	
 	//로그인 창으로
 	@RequestMapping(value="/login.do", method =RequestMethod.GET)
@@ -87,7 +94,7 @@ public class MemberController {
 	
 	//로그인 시도
     @RequestMapping(value="/getin.do")
-	   public String login(Model model, UserDto udto,HttpSession session) throws Exception {
+	   public String login(Locale locale, Model model, UserDto udto,HttpSession session,  HttpServletRequest request) throws Exception {
 	   UserDto loginUser = userService.login(udto);
 	   System.out.println("로그인창 들어옴");
 	        if (loginUser != null) {
@@ -100,10 +107,18 @@ public class MemberController {
 	            	return "taste_init";
 	            	
 	            } else {
-	            	System.out.println(tdto.toString());
-	            	System.out.println("로그인직전");
-	            	model.addAttribute("tdto", tdto);
-	            	return "user/user_main";
+//	            	System.out.println(tdto.toString());
+//	            	System.out.println("로그인직전");
+//	            	model.addAttribute("tdto", tdto);
+//	            	System.out.println("취향 메소드 시작");	        		
+//	        		//2. 유저의 취향점수 중 제일 높은 것 뽑아내기(=tdto주고 한글키워드 받아옴)
+//	        		String keyw = taop.getKeyw(tdto);
+//	        		System.out.println(keyw);
+//	        		//3. 키워드로 영화 검색하기
+//	        		List<MovieDto> tmlist= mService.getCertainMovieinfo(keyw);
+//	        		model.addAttribute("tmlist", tmlist);		
+//	            	model.addAttribute("keyw", keyw);
+	            	return "redirect:usermain_user.do";
 	            }		            
 	            
 	        } else {

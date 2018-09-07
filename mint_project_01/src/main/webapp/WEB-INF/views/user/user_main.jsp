@@ -1,6 +1,9 @@
+<%@page import="com.mint.project.dtos.MovieDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=utf-8"); %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,14 +17,28 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 var useq = $("#forchartseq").val();
 function drawChart() {
-	var data = google.visualization.arrayToDataTable([
+	var data = google.visualization.arrayToDataTable([	
 	['장르', '비중'],
+	
+	['액션', ${tdto.taction} ],
+	['코미디', ${tdto.tcomedy} ],
 	['범죄',  ${tdto.tcrime} ],
 	['드라마', ${tdto.tdrama} ],
+	['가족', ${tdto.tfamily}],
 	['스릴러', ${tdto.tthriller} ],
-	['코미디', ${tdto.tcomedy} ],
-	['로맨스', ${tdto.tromance} ],
-	['가족',   ${tdto.tfamily} ]	
+	['판타지', ${tdto.tfantasy} ],
+	['느와르', ${tdto.tnoir}],	
+	['호러', ${tdto.thorror}],
+	['뮤지컬', ${tdto.tmusical}],
+	['로맨스', ${tdto.tromance}],
+	['SF', ${tdto.tsf}],
+	['스포츠', ${tdto.tsports}],
+	['전쟁', ${tdto.twar}],
+	['애니메이션', ${tdto.tanimation}],
+	['역사', ${tdto.thistory}],
+	['로코', ${tdto.troco}],
+	['하이틴', ${tdto.thighteen}]
+	
 	]);
 		
 	var options = {
@@ -36,7 +53,7 @@ function drawChart() {
 }
 </script>
 <style type="text/css">
-.uimg>li{
+.mimg>li{
 list-style: none;float: left;margin-left: 50px;
 border:1px solid red; width: 130px; height: 180px;
 }
@@ -46,7 +63,23 @@ border:1px solid red; width: 130px; height: 180px;
 width:400px; height:30px;; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 list-style: none; float: left; margin-left: 30px;
 }
+
+#recmovie{
+border:1px solid red; width: 130px; height: 180px;
+}
+
 </style>
+
+<style type="text/css">
+
+.table img{
+	width: 203px;
+	height: 290px;
+	
+	}
+</style>
+	
+
 </head>
 <body>
 <%@include file="../header.jsp"%>
@@ -67,13 +100,13 @@ list-style: none; float: left; margin-left: 30px;
 <table>
    <tr>
      <td>
-         <ul class="uimg">
-         <li><a href="#"><img src="${mdto.mimg}" alt="포스터"/></a></li>
-         <li><a href="#"><img src="${mdto.mimg}" alt="포스터"/></a></li>
-        <li><a href="#"><img src="${mdto.mimg}" alt="포스터"/></a></li>
-        <li><a href="#"><img src="${mdto.mimg}" alt="포스터"/></a></li>
-          <li><a href="#"><img src="${mdto.mimg}" alt="포스터"/></a></li>
-         <li><a href="#"><img src="${mdto.mimg}" alt="포스터"/></a></li>
+         <ul class="mimg">
+         <li><a href="#"><img src="${ldto.mdto.mimg}" alt="포스터"/></a></li> 
+          <li><a href="#"><img src="${ldto.mdto.mimg}" alt="포스터"/></a></li> 
+         <li><a href="#"><img src="${ldto.mdto.mimg}" alt="포스터"/></a></li> 
+         <li><a href="#"><img src="${ldto.mdto.mimg}" alt="포스터"/></a></li> 
+           <li><a href="#"><img src="${ldto.mdto.mimg}" alt="포스터"/></a></li>          
+           <li><a href="#"><img src="${ldto.mdto.mimg}" alt="포스터"/></a></li>
          </ul>
      </td>
    </tr>
@@ -82,42 +115,65 @@ list-style: none; float: left; margin-left: 30px;
   <h1>${ldto.unick}님의 한줄평</h1>
 
 <!-- <table  onclick="location.href='userreview.do'"> -->
-<div onclick="location.href='userreview.do'">
+<div onclick="location.href='userreview.do?useq=${ldto.useq}'">
    <ul class="reviewtext">
-      <li>●${mdto.mtitle}-${rdto.rcontent}</li> <!-- <확인!>여기 </li>아니고 </td>로 되어있길래 고쳤는데 혹시 일부러 그런거면 돌려두세요~ -->
-      <li>●${mdto.mtitle}-${rdto.rcontent}</li>
-      <li>●${mdto.mtitle}-${rdto.rcontent}</li>
+      <li>●${lldto[0].mdto.mtitle} ${lldto[0].rdto.rcontent}</li>
+      <li>●${lldto[1].mdto.mtitle} ${lldto[1].rdto.rcontent}</li>
+      <li>●${lldto[2].mdto.mtitle} ${lldto[2].rdto.rcontent}</li>
    </ul>
    <br/>
    <ul class="reviewtext">
-      <li>●${mdto.mtitle}-${rdto.rcontent}</li>
-      <li>●${mdto.mtitle}-${rdto.rcontent}</li>
-      <li>●${mdto.mtitle}-${rdto.rcontent}</li>
+      <li>●${lldto[3].mdto.mtitle} ${lldto[3].rdto.rcontent}</li>
+      <li>●${lldto[4].mdto.mtitle} ${lldto[4].rdto.rcontent}</li>
+      <li>●${lldto[5].mdto.mtitle} ${lldto[5].rdto.rcontent}</li>
    </ul>
    <br/>
 </div>
+ <div onclick="location.href='usergrade.do?useq=${ldto.useq}'"> 
+ </div> 
+
+<!-- 여기서 부터 소진코드 -->
+<% 
+List<MovieDto> tmlist=(List<MovieDto>)request.getAttribute("tmlist");
+String keyw =(String)request.getAttribute("keyw");
+
+%>
+
 <br/><br/><br/>
   <h1>${ldto.unick}님의 영화 통계</h1>
   <div id="piechart" style="width: 900px; height: 500px;"></div>
   <input type="hidden" id="forchartseq" value="${ldto.useq}" /> 
   <br/><br/>
- <h1>${ldto.unick}님께 추천해드리는 영화</h1>
-  <div onclick="location.href='usergrade.do?useq=${ldto.useq}'">
-<table>
+  
+  
+  <h1>${ldto.unick}님께 추천해드리는 영화</h1>  
+
+   <h4>키워드 추천: 선호도가 높게나온 <%=keyw%>장르의 영화입니다!</h4>
+   
+   <table>
    <tr>
      <td>
          <ul class="mimg">
-         <li><a href="#"><img src="${ldto.mdto.mimg}" alt="포스터"/></a></li>
-         <li><a href="#"><img src="${ldto.mdto.mimg}" alt="포스터"/></a></li>
-        <li><a href="#"><img src="${ldto.mdto.mimg}" alt="포스터"/></a></li>
-        <li><a href="#"><img src="${ldto.mdto.mimg}" alt="포스터"/></a></li>
-          <li><a href="#"><img src="${ldto.mdto.mimg}" alt="포스터"/></a></li>
-         <li><a href="#"><img src="${ldto.mdto.mimg}" alt="포스터"/></a></li>
-         </ul>
+<%
+   
+   for(int i=0;i<tmlist.size();i++){
+	      MovieDto mdto=tmlist.get(i);
+	   if(i<6){
+		   
+		  %>		 
+			<li>
+				<a href="movie_info.do?mseq=<%=mdto.getMseq()%>&useq=${ldto.useq}"><img src="<%=mdto.getMimg()%>" id="recmovie"></a><br/>
+				<a href="movie_info.do?mseq=<%=mdto.getMseq()%>&useq=${ldto.useq}"><%=mdto.getMtitle()%></a>
+			</li>				
+		 <%		   
+	   	}		   				   
+	   }
+%>
+		</ul>
      </td>
    </tr>
 </table>
-  </div>  
-  
+<br/><br/>
+<%@include file="../footer.jsp"%>
 </body>
 </html>

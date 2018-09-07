@@ -135,6 +135,25 @@
 	      });
 	      
 	   });
+	   
+   //    이메일 중복체크 버튼 옆에 text로 사용 여부 나타내기
+   $(function(){
+      $('#uemail').keyup(function(){
+         $('#eucheck').text('');
+      }) //#email.keyup
+      
+      $('#echeck').keyup(function(){
+         if($('#uemail').val()!=$('#ncheck').val()){
+            $('#"eucheck"').text('');
+            $('#"eucheck"').html("별명이 일치하지 않습니다.");
+            $('#echeck').attr('title', 'nnn');
+         } else {
+            $('#"eucheck"').text('');
+            $('#"eucheck"').html("별명이 일치합니다.");
+            $('#echeck').attr('title', 'y');
+         } //#ncheck.keyup
+      });
+   });
    
 </script>
 </head>

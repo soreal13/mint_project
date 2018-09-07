@@ -63,11 +63,11 @@
    </select>
 <!--    이메일체크 0-->
    <select id="chkEmail" parameterType="UserDto" resultMap="UserDto">
-      SELECT UEMAIL AS COUNT FROM USER_TABLE WHERE UEMAIL=#{uemail}
+      SELECT UEMAIL FROM USER_TABLE WHERE UEMAIL=#{uemail}
    </select>
 <!--    별명 체크  0-->
    <select id="chkNick" parameterType="UserDto" resultMap="UserDto" >
-      SELECT UNICK AS COUNT FROM USER_TABLE WHERE UNICK=#{unick}
+      SELECT UNICK FROM USER_TABLE WHERE UNICK=#{unick}
    </select>
 <!--    회원 정보 가져오기 0-->
    <select id="getUserinfo" parameterType="UserDto" resultMap="UserDto">

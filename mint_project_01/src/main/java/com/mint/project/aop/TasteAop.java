@@ -44,9 +44,11 @@ public class TasteAop {
 	//한글로 된 키워드에 맞게 tdto의 키워드값에 별점 넣기
 	public TasteDto pointToTaste (TasteDto tdto, String[] keyword, int starpoint) {		
 		
+		tdto.toString();
 		for(int i=0; i<keyword.length; i++) {
 			
 			if(keyword[i].equals("액션")) {
+				
 				int score=tdto.getTaction();
 				score= score + starpoint;
 				tdto.setTaction(score);
@@ -190,6 +192,118 @@ public class TasteAop {
 		}
 	
 		return initmap; 
+	}
+	
+	
+	
+	//취향 점수 중 높은 값 골라내서 그 이름 반납하기
+	public String getKeyw(TasteDto tdto) {
+		System.out.println("aop:getKey 들어옴");
+		//회원 취향 가져오기		
+		
+		//배열 생성  (17개 장르 단 국내/외 장르 제외임
+		int [] num = new int[27];
+		
+		num[0]=tdto.getTaction();
+		num[1]=tdto.getTcomedy();
+		num[2]=tdto.getTcrime();
+		num[3]=tdto.getTdocumentary();
+		num[4]=tdto.getTdrama();
+		num[5]=tdto.getTfamily();
+		num[6]=tdto.getTfantasy();
+		num[7]=tdto.getTnoir();
+		num[8]=tdto.getThorror();
+		num[9]=tdto.getTmusical();
+		num[10]=tdto.getTmystery();
+		num[11]=tdto.getTromance();
+		num[12]=tdto.getTsf();
+		num[13]=tdto.getTsports();
+		num[14]=tdto.getTthriller();
+		num[15]=tdto.getTwar();
+		num[16]=tdto.getTcar();
+		num[17]=tdto.getTrabbit();
+		num[18]=tdto.getTanimation();
+		num[19]=tdto.getTchildren();
+		num[20]=tdto.getThistory();
+		num[21]=tdto.getTroco();
+		num[22]=tdto.getTdisaster();
+		num[23]=tdto.getTwuxia();
+		num[24]=tdto.getTwestern();
+		num[25]=tdto.getThotguy();
+		num[26]=tdto.getThighteen();
+				
+		//배열값 초기화		
+		int max= num[0];
+		int trace= 0;
+		String keyw="";
+				
+		//num[i]값 max보다 크면 max에 담는다.
+		for(int i=1; i<num.length; i++) {
+			if(num[i]>max) {
+				max=num[i];
+				trace=i;
+			}
+		}
+		
+		if (trace==0) {
+			keyw="액션";
+		}else if(trace==1) {
+			keyw="코미디";
+		}else if(trace==2) {
+			keyw="범죄";
+		}else if(trace==3) {
+			keyw="다큐멘터리";
+		}else if(trace==4) {
+			keyw="드라마";
+		}else if(trace==5) {
+			keyw="가족";
+		}else if(trace==6) {
+			keyw="판타지";
+		}else if(trace==7) {
+			keyw="느와르";
+		}else if(trace==8) {
+			keyw="공포";
+		}else if(trace==9) {
+			keyw="뮤지컬";
+		}else if(trace==10) {
+			keyw="미스터리";
+		}else if(trace==11) {
+			keyw="로맨스";
+		}else if(trace==12) {
+			keyw="SF";
+		}else if(trace==13) {
+			keyw="스포츠";
+		}else if(trace==14) {
+			keyw="스릴러";
+		}else if(trace==15) {
+			keyw="전쟁";
+		}else if(trace==16) {
+			keyw="자동차";
+		}else if(trace==17) {
+			keyw="토끼";
+		}else if(trace==18) {
+			keyw="애니메이션";
+		}else if(trace==19) {
+			keyw="아동";
+		}else if(trace==20) {
+			keyw="역사";
+		}else if(trace==21) {
+			keyw="로코";
+		}else if(trace==22) {
+			keyw="재난";
+		}else if(trace==23) {
+			keyw="무협";
+		}else if(trace==24) {
+			keyw="서부";
+		}else if(trace==25) {
+			keyw="미남";
+		}else if(trace==26) {
+			keyw="하이틴";
+		}
+		
+		System.out.println("keyw="+keyw);
+		return keyw;
+		
 	}
 
 

@@ -1,3 +1,4 @@
+<%@page import="com.mint.project.dtos.UserDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=utf-8"); %>
@@ -19,11 +20,11 @@
 <title>Mint header</title>
 <style type="text/css">
 
-	@font-face{     font-family:"mint_bodyfont";     src: url("resources/font/DXKPGB-KSCpc-EUC-H.ttf") format("truetype");       }
-	@font-face{     font-family:"mint_catefont";     src: url("resources/font/DXMobrRExtraBold-KSCpc-EUC-H.ttf") format("truetype");       }
-	.logo{
-	text-align: center;
-	}
+   @font-face{     font-family:"mint_bodyfont";     src: url("resources/font/DXKPGB-KSCpc-EUC-H.ttf") format("truetype");       }
+   @font-face{     font-family:"mint_catefont";     src: url("resources/font/DXMobrRExtraBold-KSCpc-EUC-H.ttf") format("truetype");       }
+   .logo{
+   text-align: center;
+   }
 
  .genre_category{
    margin: auto;
@@ -53,9 +54,10 @@
    float: right;
    }
   
-	body{
-	font-family: 'mint_bodyfont';
-	}
+   body{
+   font-family: 'mint_bodyfont';
+   
+   }
    a{
    text-decoration:none;
    color: black;
@@ -75,9 +77,11 @@ function keyword_check(){
      else return true;
     }
 </script>
+
 </head>
 <body>
 <!-- 민지코드 -->
+   
 <div class="logo">
    <img id="logo" alt="" src="resources/img/MINTlogo2.png" onclick="location.href='index.jsp'" />
 </div><br>
@@ -86,7 +90,7 @@ function keyword_check(){
    <a href="movie_search.do?search=액션">액션</a>
    <a href="movie_search.do?search=코미디">코미디</a>
    <a href="movie_search.do?search=범죄">범죄</a>
-   <a href="movie_search.do?search=다큐멘터리">다큐멘터리</a>
+   <a href="movie_search.do?search=다큐">다큐멘터리</a>
    <a href="movie_search.do?search=드라마">드라마</a>
    <a href="movie_search.do?search=가족">가족</a>
    <a href="movie_search.do?search=판타지">판타지</a>
@@ -95,14 +99,14 @@ function keyword_check(){
    <a href="movie_search.do?search=뮤지컬">뮤지컬</a><br>
    <a href="movie_search.do?search=미스테리">미스테리</a>
    <a href="movie_search.do?search=로맨스">로맨스</a>
-   <a href="movie_search.do?search=공상과학">공상과학</a>
+   <a href="movie_search.do?search=SF">공상과학</a>
    <a href="movie_search.do?search=스포츠">스포츠</a>
    <a href="movie_search.do?search=스릴러">스릴러</a>
    <a href="movie_search.do?search=전쟁">전쟁</a>
    <a href="movie_search.do?search=애니메이션">애니메이션</a>
    <a href="movie_search.do?search=어린이">어린이</a>
    <a href="movie_search.do?search=사극">사극</a><br>
-   <a href="movie_search.do?search=로맨스코미디">로맨스코미디</a>
+   <a href="movie_search.do?search=로코">로맨스코미디</a>
    <a href="movie_search.do?search=하이틴">하이틴</a>
    <a href="movie_search.do?search=재난">재난</a>
    <a href="movie_search.do?search=무협">무협</a>
@@ -116,7 +120,9 @@ function keyword_check(){
 </div>
 <div class="btn_box">
 
-<img alt="loginimg" src="resources/img/login.png" onclick="location.href='login_user.do'">
+      <img alt="loginimg" src="resources/img/logout.png" onclick="location.href='login.do'">
+
+
 <div class="searchbox">
 <form name="search_form" align="right" method = "post"  
 action ="movie_search.do" onsubmit="return keyword_check()">
@@ -131,3 +137,5 @@ action : submit 시 이동 경로 ,onsubmit : submit 클릭시 호출 조건 (tr
 </form>
 </div>
 </div>
+</body>
+</html>

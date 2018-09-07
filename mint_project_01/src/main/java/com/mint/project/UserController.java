@@ -16,11 +16,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mint.project.aop.TasteAop;
 import com.mint.project.dtos.MovieDto;
 import com.mint.project.dtos.ReviewDto;
+import com.mint.project.dtos.TasteDto;
 import com.mint.project.dtos.UserDto;
 import com.mint.project.service.IMovieService;
 import com.mint.project.service.IReviewService;
+import com.mint.project.service.ITasteService;
 import com.mint.project.service.IUserService;
 
 
@@ -35,6 +38,8 @@ public class UserController {
    private IReviewService reviewService;
    @Autowired
    private IMovieService movieService;
+   @Autowired
+   private ITasteService tasteService;
 
    // 홍익작성코드 -->
  
@@ -48,9 +53,20 @@ public class UserController {
 
     	  
     	  List<UserDto>lldto=userService.getUserReview(ldto.getUseq());
-    	  System.out.println(lldto.size());
           model.addAttribute("lldto", lldto);
-      	  
+          
+          //소진작성
+          TasteDto tdto=tasteService.getTaste(ldto.getUseq());
+          model.addAttribute("tdto", tdto);
+
+          TasteAop taop = new TasteAop();
+          String keyw = taop.getKeyw(tdto);
+          List<MovieDto> tmlist= movieService.getCertainMovieinfo(keyw);
+          
+          model.addAttribute("tmlist", tmlist);
+          model.addAttribute("keyw", keyw);
+          
+          
              return "user/user_main";
             }
          
