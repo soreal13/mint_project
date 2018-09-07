@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
-#abc{
+#abc img{
 list-style: none;float: left;margin-left: 50px;
 border:1px solid red; width: 200px; height: 250px;
 }
@@ -16,9 +16,7 @@ border:1px solid red; width: 200px; height: 250px;
 </style>
 <title>글목록보기</title>
 <script type="text/javascript">
-  $( function() {
-    $( "#tabs" ).tabs();
-  } );
+
   </script>
 </head>
 <body>
@@ -34,7 +32,7 @@ border:1px solid red; width: 200px; height: 250px;
 </table>
 
 <table class="table table-striped"  class="abc" >
-      <col width="100px" />
+      <col width="10px" />
       <col width="50px" />
 
       <c:choose>

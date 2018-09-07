@@ -38,12 +38,12 @@ public interface IUserDao {
    public List<UserDto> getUserReview(int useq);
    
    //유저가 쓴 리뷰삭제
-//   public boolean delRe(int useq);
+   public boolean delRe(int useq);
 
 //	-------------------------------------------------------
    
    //즐겨찾기한 영화 가져오기
-   public List<UserDto> getFavoriteMovie(int useq);
+   public List<UserDto> getFavoriteMovie(String[] seqs);
    
 //	-------------------------------------------------------
 

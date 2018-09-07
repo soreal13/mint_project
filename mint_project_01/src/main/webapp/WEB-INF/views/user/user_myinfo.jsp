@@ -25,8 +25,9 @@
       </tr>
       <tr>
          <td colspan="2">
-            <button onclick="location.href='user_updateform.do'">수정</button>
+            <button onclick="location.href='user_updateform.do?useq=${ldto.useq}'">수정</button>
             <button onclick="location.href='deluser.do?useq=${ldto.useq}'">탈퇴</button>
+            <button onclick="location.href='usermain_user.do?useq=${ldto.useq}'">메인으로</button>
          </td>
       </tr>
    </table>

@@ -1,6 +1,8 @@
 package com.mint.project.daos;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,11 +69,18 @@ public class UserDaoImp implements IUserDao {
       return sqlSession.selectList(namespace+"getUserReview",useq);
    }
 
-
+   @Override
+   public boolean delRe(int useq) {
+	   int count=0;
+	      count=sqlSession.update(namespace+"delRe",useq);
+	      return count>0?true:false;
+   }
    
    @Override
-   public List<UserDto> getFavoriteMovie(int useq) {
-      return sqlSession.selectList(namespace+"getFavoriteMovie",useq);
+   public List<UserDto> getFavoriteMovie(String[] seqs) {
+	   Map<String, String[]> map=new HashMap<>();
+		map.put("seqs",seqs);
+      return sqlSession.selectList(namespace+"getFavoriteMovie",map);
    }
   
 

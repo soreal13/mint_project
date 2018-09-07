@@ -60,9 +60,9 @@ public class UserServiceImp implements IUserService {
    }
 
    @Override
-   public List<UserDto> getFavoriteMovie(int useq) {
+   public List<UserDto> getFavoriteMovie(String[] seqs) {
       
-      return udao.getFavoriteMovie(useq);
+      return udao.getFavoriteMovie(seqs);
    }
    
    @Override
@@ -70,6 +70,16 @@ public class UserServiceImp implements IUserService {
       
       return udao.getUserReview(useq);
    }
+   
+   
+   @Override
+   public boolean delRe(int useq) {
+	   
+	   return udao.delRe(useq);
+   }
+   
+   
+   
 
    @Transactional
    @Override

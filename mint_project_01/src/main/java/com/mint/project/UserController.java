@@ -16,11 +16,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mint.project.aop.TasteAop;
 import com.mint.project.dtos.MovieDto;
 import com.mint.project.dtos.ReviewDto;
+import com.mint.project.dtos.TasteDto;
 import com.mint.project.dtos.UserDto;
 import com.mint.project.service.IMovieService;
 import com.mint.project.service.IReviewService;
+import com.mint.project.service.ITasteService;
 import com.mint.project.service.IUserService;
 
 
@@ -35,6 +38,9 @@ public class UserController {
    private IReviewService reviewService;
    @Autowired
    private IMovieService movieService;
+   @Autowired
+   private ITasteService tasteService;
+
 
    // 홍익작성코드 -->
  
@@ -47,10 +53,23 @@ public class UserController {
 //      	  model.addAttribute("ldto", ldto);
 
     	  
+    	  
+    	  
     	  List<UserDto>lldto=userService.getUserReview(ldto.getUseq());
     	  System.out.println(lldto.size());
           model.addAttribute("lldto", lldto);
       	  
+          //소진작성
+          TasteDto tdto=tasteService.getTaste(ldto.getUseq());
+          model.addAttribute("tdto", tdto);
+
+          TasteAop taop = new TasteAop();
+          String keyw = taop.getKeyw(tdto);
+          List<MovieDto> tmlist= movieService.getCertainMovieinfo(keyw);
+          
+          model.addAttribute("tmlist", tmlist);
+          model.addAttribute("keyw", keyw);
+          
              return "user/user_main";
             }
          
@@ -77,7 +96,7 @@ public class UserController {
 //   회원정보수정 (완료-but 닉넴 중복체크 해야함 )
       @RequestMapping(value = "/userupdate.do", method = RequestMethod.POST)
          public String updateUser(String unick, String upwd, HttpSession session, Locale locale, Model model) throws Exception{
-            UserDto loginUser = (UserDto)session.getAttribute("udto");
+            UserDto loginUser = (UserDto)session.getAttribute("ldto");
             loginUser.setUnick(unick);
             loginUser.setUpwd(upwd);
        
@@ -109,7 +128,7 @@ public class UserController {
     	  List<UserDto>ldto=userService.getUserReview(udto.getUseq());
     	  
           model.addAttribute("lists", ldto);
-          System.out.println(ldto.size());
+//          System.out.println(ldto.size());
           
           return "user/user_review";
 
@@ -118,9 +137,9 @@ public class UserController {
    }
 
 //리뷰 삭제 (수정중)
-      @RequestMapping(value="/delReview.do?", method =RequestMethod.POST)
-      public String delRiview(HttpSession session,int rseq,Model model) {
-    	  boolean isS = reviewService.delReview(rseq);
+      @RequestMapping(value="/delReview.do", method =RequestMethod.POST)
+      public String delRiview(HttpSession session,int useq,Model model) {
+    	  boolean isS = userService.delRe(useq);
     	  if(isS) {
               return "userreview.do";
            }else {
@@ -139,7 +158,7 @@ public class UserController {
       
       
       
-//   즐겨찾기 정보창으로 이동
+//   즐겨찾기 정보창으로 이동(완료)
       @RequestMapping(value="/user_favoritelist.do", method =RequestMethod.GET)
       public String userupdate(UserDto udto, Locale locale, Model model) {
 
@@ -147,15 +166,17 @@ public class UserController {
       }
    
 
-//	  즐겨찾기 영화 (수정중)
+//	  즐겨찾기 영화 (9/7 완료)
 	      @RequestMapping(value="/userfavoriteMovie.do", method =RequestMethod.GET)
-	      public String uerfavoriteMovie(HttpSession session,UserDto udto, Model model) {
-	    	  
-	    	  List<UserDto>ldto=userService.getFavoriteMovie(udto.getUseq());
-	    	  
-	          model.addAttribute("lists", ldto);
-	          System.out.println(ldto.size());
-	    	  
+	      public String uerfavoriteMovie(HttpSession session, Model model) {
+	    	   UserDto lldto=(UserDto)session.getAttribute("ldto");
+	           UserDto ldto=userService.getUserinfo(lldto);
+	           String[] seqs =ldto.getUfmseq().split(":");
+	           System.out.println("ㅎㅎㅎ="+seqs);
+	           List<UserDto>dto=userService.getFavoriteMovie(seqs);
+	           model.addAttribute("lists", dto);
+	           System.out.println("출력="+dto.size());
+	           
 	    	  
 	         return "user/user_favorite";
 	}

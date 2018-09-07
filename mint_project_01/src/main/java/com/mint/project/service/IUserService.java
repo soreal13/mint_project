@@ -41,12 +41,13 @@ public interface IUserService {
 	//회원정보가져오기(pwd제외)
 	public UserDto getUserinfo(UserDto udto);
 		   
-//	//즐겨찾는 영화,유저 칼럼 가져오기
-	public UserDto getUserFavorite(int useq);
+
 		   
 	//유저가 쓴 리뷰 가져오기
 	public List<UserDto> getUserReview(int useq);
 
+	   //유저가 쓴 리뷰삭제
+	public boolean delRe(int useq);
 
 	//회원가입
 	public boolean register(UserDto udto, TasteDto dto);
@@ -60,7 +61,7 @@ public interface IUserService {
 	//------------------------------------------------
 	//홍익
 	//즐겨찾기한 영화 가져오기
-		public List<UserDto> getFavoriteMovie(int useq);
+		public List<UserDto> getFavoriteMovie(String[] seqs);
 
 		//영화 추가
 		 public boolean updateFavoriteMovie (UserDto udto);

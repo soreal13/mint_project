@@ -24,49 +24,95 @@
       if (form.upwd.value == form.pwdchk.value) {
                return true;   
          } else {
-             msg2.innerHTML="비밀번호가 일치하지않아용";
+            $('#pucheck').html("암호가 일치하지 않습니다.");
               return false;
           }
       }
+    
+    function nnchk() {
+      var unick=document.getElementsByName("unick")[0].value;
+      if(unick==null||unick==""||unick==undefined){
+         alert("별명을 입력하세요");
+         document.getElementsByName("unick")[0].focus();
+      }else{
+         
+//             window.open("emchk.do?uemail=" +uemail, "이메일중복체크", "width=400px, height=200px, top=200px, left=400px");
+//ajax 처리 부분.
+      $.ajax({
+         url : "nnchk.do",
+         method : "POST",
+         data : "unick="+unick,
+         dataType : "json",
+         success : function(obj){
+            var isS1=obj.isS;
+            
+            if(isS1=='y'){
+               $("#nucheck").text("사용가능한 별명입니다.");
+               $("#upwd").focus();
+               $(".chkstatus").eq(1).val("y");
+            }else{
+               $("#nucheck").text("중복된 별명 입니다.");
+               $("#unick").focus().val("");
+               $(".chkstatus").eq(1).val("n");
+            }
+         },
+         error : function(){
+            alert("서버통신실패");
+         }
+      });
+         }
+   }   
+    
+    
+//    별명 중복체크 버튼 옆에 text로 사용 여부 나타내기
+    $(function(){
+       $('#unick').keyup(function(){
+          $('#nucheck').text('');
+       }) //#email.keyup
+       
+       $('#ncheck').keyup(function(){
+          if($('#unick').val()!=$('#ncheck').val()){
+             $('#nucheck').text('');
+             $('#nucheck').html("별명이 일치하지 않습니다.");
+             $('#ncheck').attr('title', 'nn');
+          } else {
+             $('#nucheck').text('');
+             $('#nucheck').html("별명이 일치합니다.");
+             $('#ncheck').attr('title', 'y');
+          } //#ncheck.keyup
+       });
+    });
+
+
      
-
-
-// $(function(){
-//    $("input[name]").not("[name=unick]").focus(function(){
-//       var nickTitle=document.getElementsByName("unick")[0].title;
-//       if(nickTitle=="n"){
-//          alert("닉네임 중복체크를 먼저 해주세요!");
-//          document.getElementsByName("unick")[0].focus();
-//       }
-//    })
-// });
 
 </script>
 </head>
 <body>
 <%@include file="../header.jsp"%>
 <h1>나의정보수정하기</h1>
-<form id="userupdateForm" action="userupdate.do" method="post" onsubmit="return check()">
-<table border="2">
+<form id="userupdateForm" action="userupdate.do" method="post" onsubmit="return check()" >
+<table>
       <tr>
-         <th>이메일</th>
-         <td>${ldto.uemail}</td>
+         <td>이메일</td>
+         <td><input value=" ${ldto.uemail}" readonly="readonly"/></td>
       </tr>
       <tr>
-         <th>별명</th>
+         <td>별명</td>
          <td>
-         <input type="text" name="unick" title="n" value="${ldto.unick}">
-         <a><input type="button" value="중복확인" onclick="nickChk()"/></a>
-         <a id="chkmsg"></a>
+         <input type="text" name="unick" id="unick" title="n" value="${ldto.unick}" required="required" autocomplete="off">
+         <input type="button" value="중복확인" id="ncheck" onclick="nnchk()"/>       
          </td>
+         <td><font id="nucheck" size="2" color="red"></font></td>
       </tr>
       <tr>
-         <th>비밀번호</th>
-         <td><input type="password" name="upwd"></td> <!-- <확인!> 여기 </a>태그만 있었는데 지웠음, 위에 html5로 dtd 재정의함 -->
+         <td>비밀번호</td>
+         <td><input type="password" name="upwd" required="required"></td> <!-- <확인!> 여기 </a>태그만 있었는데 지웠음, 위에 html5로 dtd 재정의함 -->
       </tr>
       <tr>
-         <th>비밀번호확인</th>
-         <td><input type="password" name="pwdchk"><a id="chkmsg2"></a></td>
+         <td>비밀번호확인</td>
+         <td><input type="password" name="password" id="pwdchk" required="required"></td>
+         <td colspan="2"><font id="pucheck" size="2" color="red"></font></td>
       </tr>
 
 <!--       <tr> -->
