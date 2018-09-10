@@ -65,7 +65,6 @@ response.setContentType("text/html;charset=UTF-8");
 
    List<MovieDto> smlist=(List<MovieDto>)request.getAttribute("smlist");
    String search =(String)request.getAttribute("search");
-   UserDto ldto=(UserDto)session.getAttribute("ldto");
 %>
 
 <%@include file="header.jsp"%>

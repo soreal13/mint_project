@@ -139,7 +139,7 @@ span{
 }
 
 /* 포스터이미지크기*/
-img {
+.poster {
 	width: 304px;
 	height: 435px;
 	

@@ -1,6 +1,7 @@
 
 package com.mint.project;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -47,21 +48,43 @@ public class  TasteController {
 	
 	// <-- 김소진 작성 코드 -->
 	
-	@RequestMapping(value="/testpage.do", method =RequestMethod.GET)
-	public String testpage(Locale locale, Model model, HttpServletRequest request) {
-		
-		String[] result = taop.askKeyword("코미디, 드라마, 로맨스, ");
-		System.out.println(result);
-		
+	@RequestMapping(value = "/index.do")
+	public String index(Locale locale, Model model, HttpSession session,UserDto udto) {
+		logger.info("진짜 인덱스페이지 {}.", locale);
+  	  UserDto ldto=(UserDto)session.getAttribute("ldto");
+
+	  
+	  //소진작성
+	  TasteDto tdto=tService.getTaste(ldto.getUseq());
+	  model.addAttribute("tdto", tdto);
+	
+	  TasteAop taop = new TasteAop();
+	  String keyw = taop.getKeyw(tdto);
+	  List<MovieDto> tmlist= mService.getCertainMovieinfo(keyw);
+	  Collections.shuffle(tmlist);
+	  model.addAttribute("tmlist", tmlist);
+	  model.addAttribute("keyw", keyw);
+	  
+			
+				
 		return "index";
 	}
-		
 	
-	@RequestMapping(value="/taste.do", method =RequestMethod.GET)
-	public String taste(Locale locale, Model model) {
-		
-		return "taste";
+	@RequestMapping(value = "/genresearch.do")
+	public String search(Locale locale, Model model) {
+		logger.info("카테고리 창으로{}.", locale);
+				
+		return "search";
 	}
+	
+	@RequestMapping(value = "/mintci.do")
+	public String ci(Locale locale, Model model) {
+		logger.info("ci페이지가기", locale);
+				
+		return "mint_ci";
+	}
+	
+
 	
 
 //	@RequestMapping(value="/taste_init.do")
@@ -222,7 +245,7 @@ public class  TasteController {
 	public String tasteMake(Locale locale, Model model, HttpServletRequest request, HttpSession session) {
 		logger.info("초기 취향 생성완료", locale);
 
-		return "user/user_main";
+		return "redirect:usermain_user.do";
 	}
 	
 	

@@ -1,6 +1,7 @@
 package com.mint.project;
 
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -62,7 +63,7 @@ public class UserController {
           TasteAop taop = new TasteAop();
           String keyw = taop.getKeyw(tdto);
           List<MovieDto> tmlist= movieService.getCertainMovieinfo(keyw);
-          
+          Collections.shuffle(tmlist);
           model.addAttribute("tmlist", tmlist);
           model.addAttribute("keyw", keyw);
           
@@ -163,18 +164,20 @@ public class UserController {
       }
    
 
-//	  즐겨찾기 영화 (수정중)
-	      @RequestMapping(value="/userfavoriteMovie.do", method =RequestMethod.GET)
-	      public String uerfavoriteMovie(HttpSession session,UserDto udto, Model model) {
-	    	  
-	    	  List<UserDto>ldto=userService.getFavoriteMovie(udto.getUseq());
-	    	  
-	          model.addAttribute("lists", ldto);
-	          System.out.println(ldto.size());
-	    	  
-	    	  
-	         return "user/user_favorite";
-	}
+//    즐겨찾기 영화 (9/7 완료)
+      @RequestMapping(value="/userfavoriteMovie.do", method =RequestMethod.GET)
+      public String uerfavoriteMovie(HttpSession session, Model model) {
+          UserDto lldto=(UserDto)session.getAttribute("ldto");
+           UserDto ldto=userService.getUserinfo(lldto);
+           String[] seqs =ldto.getUfmseq().split(":");
+           System.out.println("ㅎㅎㅎ="+seqs);
+           List<UserDto>dto=userService.getFavoriteMovie(seqs);
+           model.addAttribute("lists", dto);
+           System.out.println("출력="+dto.size());
+           
+         
+         return "user/user_favorite";
+}
    
    
 

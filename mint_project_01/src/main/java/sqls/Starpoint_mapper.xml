@@ -10,7 +10,9 @@
      	<result property="sgrade" column="sgrade" />
       	<result property="smseq" column="smseq" />
       	<result property="suseq" column="suseq" />
+      	<collection property="mdto" resultMap="MovieDto" />
 	</resultMap>
+
 	
 <!-- 	초기별점정보생성 -->
 	<insert id="insertStarpoint" parameterType="StarpointDto">
@@ -36,4 +38,17 @@
 	<select id="getAllstarpoint" parameterType="int" resultType="StarpointDto">
 	SELECT * FROM STARPOINT_TABLE
 	</select>
+	
+<!-- 별점 순 검색 10점 만점으로 뱉어냄 별점 4점이상만 가져옴  resultType="StarpointDto"  -->
+	<select id="getHighpointmovie" resultType="StarpointDto">
+		SELECT SMSEQ, ROUND(AVG(sgrade)) AS SGRADE 
+		FROM STARPOINT_TABLE
+		WHERE SGRADE>=8
+		GROUP BY SMSEQ
+		ORDER BY sgrade DESC;
+	</select>
+	
+		
+	
+	
 </mapper>

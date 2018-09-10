@@ -53,5 +53,11 @@ public class StarpointServiceImp implements IStarpointService {
 	public List<StarpointDto> getAllstarpoint() {
 		return starpointDao.getAllstarpoint();
 	}
+	
+	//별점 8점이상 영화번호/평점 가져오기
+	@Override
+	public List<StarpointDto> getHighpointMovie(){
+		return starpointDao.getHighpointMovie();
+	}
 
 }

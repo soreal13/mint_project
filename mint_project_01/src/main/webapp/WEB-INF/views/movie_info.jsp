@@ -15,7 +15,6 @@
    List<ReviewDto> rlist=(List<ReviewDto>)request.getAttribute("rlist");
    String chkF=(String)request.getAttribute("chkF");
    StarpointDto sdto=(StarpointDto)request.getAttribute("sdto");
-   UserDto ldto=(UserDto)session.getAttribute("ldto");
    
    
 %>
@@ -161,6 +160,34 @@
    height: auto;
    }
 </style>
+
+<style type="text/css">
+.mimg>li{
+list-style: none;float: left;margin-left: 50px;
+border:1px solid red; width: 130px; height: 180px;
+}
+
+
+.reviewtext>li{
+width:400px; height:30px;; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+list-style: none; float: left; margin-left: 30px;
+}
+
+#recmovie{
+border:1px solid red; width: 130px; height: 180px;
+}
+
+</style>
+
+<style type="text/css">
+
+.table img{
+	width: 203px;
+	height: 290px;
+	
+	}
+</style>
+
 <script type="text/javascript" >
 
 //star rating
@@ -493,7 +520,12 @@ List<MovieDto> tmlist=(List<MovieDto>)request.getAttribute("tmlist");
 String keyw =(String)request.getAttribute("keyw");
 
 %>
-<h5>이 영화와 비슷한 장르(<%=keyw%>)의 영화입니다.</h5>
+<h4>이 영화와 비슷한 장르(<%=keyw%>)의 영화입니다.</h4>
+   <table>
+   <tr>
+     <td>
+         <ul class="mimg">
+
 <%
    
    for(int i=0;i<tmlist.size();i++){
@@ -501,12 +533,20 @@ String keyw =(String)request.getAttribute("keyw");
 	   if(i<6){
 		   
 		  %>		 
-		
+			<li>
 				<a href="movie_info.do?mseq=<%=tmdto.getMseq()%>&useq=${ldto.useq}"><img src="<%=tmdto.getMimg()%>" id="recmovie"></a><br/>
 				<a href="movie_info.do?mseq=<%=tmdto.getMseq()%>&useq=${ldto.useq}"><%=tmdto.getMtitle()%></a>				
+		 	</li>
 		 <%		   
 	   	}		   				   
 	   }
 %>
+</ul>
+     </td>
+   </tr>
+</table>
 </div>
+<br/><br/>
+<%@include file="footer.jsp"%>
 </body>
+</html>

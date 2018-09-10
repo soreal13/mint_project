@@ -33,6 +33,9 @@ public interface IStarpointDao {
 	//전체 별점목록
 	public List<StarpointDto> getAllstarpoint();
 	
+	//별점 높은 순대로 가져오기
+	public List<StarpointDto> getHighpointMovie();
+	
 	
 	
 }

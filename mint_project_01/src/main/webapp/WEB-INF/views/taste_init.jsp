@@ -89,7 +89,7 @@
 <!-- 	피씨방 작성코드 -->
 	<div id=mseq class="mseq"  >
 	    <h3 class="fs-subtitle">p.s 선택한 장르가 아닌 영화도 나와요^^; 당황하지 마셔요!</h3>	 
-		<img src="http://" alt="mimg" id="mimg">
+		<img src="http://" alt="mimg" id="mimg" class="poster">
 		<input type="hidden" id="count" value=0 />
 		<input type="hidden" id="userseq" value="${ldto.useq}" />
 		<br/>

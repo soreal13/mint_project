@@ -39,5 +39,7 @@ public interface IMovieDao {
    //팔로우 삭제
    public boolean delFollow(MovieDto mDto);
    
+
+   
    
 }

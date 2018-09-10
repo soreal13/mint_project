@@ -1,5 +1,7 @@
 package com.mint.project;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -57,7 +59,7 @@ public class  MovieController {
 		   // 영화한편정보
 	
 	@RequestMapping(value="/movie_info.do")
-	   public String getMovieinfo(Modelmap model, int mseq, int useq,HttpSession session) {
+	   public String getMovieinfo(ModelMap model, int mseq, int useq,HttpSession session) {
 	      //영화 정보 페이지 로딩시 불러올것
 	      
 	      //1 해당 영화 정보
@@ -111,14 +113,17 @@ public class  MovieController {
 	      //소진 작성 	      
           //관련 영화 추천 메소드
 			//1. 키워드(장르) 알아내기
-			 String mkeyw = mdto.getMkeyw();			 
+			 String mkeyw = mdto.getMkeyw();
+			 System.out.println("ddddd"+mkeyw);
+			
 			 //2. ',' 기준으로 키워드 나누기.
-			 String[] keyword= taop.askKeyword(mkeyw);
-
-          List<MovieDto> tmlist= movieServiceImp.getCertainMovieinfo(keyword[1]);
-         
-          model.addAttribute("tmlist", tmlist);
-         model.addAttribute("keyw", keyword[1]);
+		String[] keyword= taop.askKeyword(mkeyw);
+		Collections.shuffle(Arrays.asList(keyword));
+          List<MovieDto> tmlist= movieServiceImp.getCertainMovieinfo(keyword[0]);
+         Collections.shuffle(tmlist);
+          
+         model.addAttribute("tmlist", tmlist);
+         model.addAttribute("keyw", keyword[0]);
 	      	      
 	      return "movie_info";
 	      

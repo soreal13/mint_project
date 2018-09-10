@@ -1,6 +1,8 @@
 package com.mint.project.daos;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,12 +70,12 @@ public class UserDaoImp implements IUserDao {
    }
 
 
-   
    @Override
-   public List<UserDto> getFavoriteMovie(int useq) {
-      return sqlSession.selectList(namespace+"getFavoriteMovie",useq);
+   public List<UserDto> getFavoriteMovie(String[] seqs) {
+      Map<String, String[]> map=new HashMap<String, String[]>();
+      map.put("seqs",seqs);
+      return sqlSession.selectList(namespace+"getFavoriteMovie",map);
    }
-  
 
    //영화 즐찾추가
    public boolean  updateFavoriteMovie (UserDto udto) {
@@ -98,6 +100,13 @@ public class UserDaoImp implements IUserDao {
    @Override
    public List<UserDto> getAlluserinfo() {
 	   return sqlSession.selectList(namespace+"getAlluserinfo");
+   }
+   
+   @Override
+   public boolean delRe(int useq) {
+      int count=0;
+         count=sqlSession.update(namespace+"delRe",useq);
+         return count>0?true:false;
    }
 
 }

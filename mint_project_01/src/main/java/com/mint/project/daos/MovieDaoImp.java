@@ -79,5 +79,8 @@ public class MovieDaoImp implements IMovieDao {
       int count=sqlSession.update(namespace+"delfollow",mdto);
       return count>0?true:false;
    }
+   
+
+   
 
 }

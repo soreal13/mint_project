@@ -129,7 +129,7 @@ $(".unseen").click(function(){
 		success:function(obj){
 			var mdto=obj["mdto"];
 			if(mdto["mseq"] == "-1"){
-				alert("다음버튼 클릭");
+				//alert("다음버튼 클릭");
 				$("#mimg").attr("src", "#");
 				$("#mseq").attr("hidden", true);
 				$("#form2-next").attr("type", "button");

@@ -60,9 +60,9 @@ public class UserServiceImp implements IUserService {
    }
 
    @Override
-   public List<UserDto> getFavoriteMovie(int useq) {
+   public List<UserDto> getFavoriteMovie(String[] seqs) {
       
-      return udao.getFavoriteMovie(useq);
+      return udao.getFavoriteMovie(seqs);
    }
    
    @Override
@@ -91,7 +91,7 @@ public class UserServiceImp implements IUserService {
    
    @Override
    //영화추가
-   public boolean  updateFavoriteMovie(UserDto udto) {
+   public boolean updateFavoriteMovie(UserDto udto) {
 	   return udao.updateFavoriteMovie(udto);
    }
    
