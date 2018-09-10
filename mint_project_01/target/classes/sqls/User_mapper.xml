@@ -59,15 +59,15 @@
 <!--    로그인  0-->
    <select id="login" parameterType="UserDto" resultMap="UserDto">
       SELECT USEQ,UEMAIL,UNICK,UIMG,UDELFLAG,UMSEQ,UFMSEQ,UFUSEQ,URSEQ,USESSIONKEY,
-      USESSIONLIMIT,UUPRSEQ,UDOWNRSEQ FROM USER_TABLE WHERE UEMAIL=#{uemail} AND UPWD=#{upwd}
+      USESSIONLIMIT,UUPRSEQ,UDOWNRSEQ FROM USER_TABLE WHERE UEMAIL=#{uemail} AND UPWD=#{upwd} AND UDELFLAG='N'
    </select>
 <!--    이메일체크 0-->
    <select id="chkEmail" parameterType="UserDto" resultMap="UserDto">
-      SELECT UEMAIL AS COUNT FROM USER_TABLE WHERE UEMAIL=#{uemail}
+      SELECT UEMAIL FROM USER_TABLE WHERE UEMAIL=#{uemail}
    </select>
 <!--    별명 체크  0-->
    <select id="chkNick" parameterType="UserDto" resultMap="UserDto" >
-      SELECT UNICK AS COUNT FROM USER_TABLE WHERE UNICK=#{unick}
+      SELECT UNICK FROM USER_TABLE WHERE UNICK=#{unick}
    </select>
 <!--    회원 정보 가져오기 0-->
    <select id="getUserinfo" parameterType="UserDto" resultMap="UserDto">
@@ -92,35 +92,16 @@
 
 <!--    유저가 쓴 리뷰 불러오기 0  resultType="UserDto"  -->
    <select id="getUserReview" parameterType="int" resultMap="UserDto">
-        SELECT MTITLE,RCONTENT,RDATE,RUP FROM USER_TABLE, REVIEW_TABLE, MOVIE_TABLE 
-      WHERE REVIEW_TABLE.RUSEQ=USER_TABLE.USEQ AND MOVIE_TABLE.MSEQ=REVIEW_TABLE.RMSEQ AND USEQ=#{useq} ORDER BY RSEQ DESC
+        SELECT MTITLE,RCONTENT,RDATE,RDELFLAG FROM USER_TABLE, REVIEW_TABLE, MOVIE_TABLE 
+      WHERE REVIEW_TABLE.RUSEQ=USER_TABLE.USEQ AND MOVIE_TABLE.MSEQ=REVIEW_TABLE.RMSEQ 
+      AND USEQ=#{useq} AND REVIEW_TABLE.RDELFLAG='N' ORDER BY RSEQ DESC
    </select>
-   
-<!--    리뷰추가 -->
 
-<!-- 	<update id="insertReview_user" parameterType="int"> -->
-<!-- 		UPDATE USER_TABLE SET URSEQ=(URSEQ||#{urseq})||':' WHERE USEQ=#{useq} -->
-<!-- 	</update> -->
-   
-<!--         후기삭제 DELFLAG N =삭제되기전 Y = 삭제된후-->
+<!-- 리뷰삭제 -->
 		<update id="delRe" parameterType="int">
 		UPDATE REVIEW_TABLE SET RDELFLAG='Y'
 		WHERE RSEQ=#{rseq}
-		
-<!-- 		UPDATE REVIEW_TABLE R INNER JOIN USER_TABLE U -->
-<!-- 		ON R.RUSEQ= U.USEQ -->
-<!-- 		SET RDELFLAG= 'Y' -->
-<!-- 		WHERE USEQ=#{useq} AND RSEQ=#{rseq} -->
-		
-<!-- 		UPDATE REVIEW_TABLE  -->
-<!-- 		SET RDELFLAG='Y' WHERE RUSEQ IN  -->
-<!-- 		(SELECT USEQ FROM USER_TABLE  -->
-<!-- 		WHERE USER=${USEQ}) AND RSEQ={RSEQ} -->
-		
-		
-<!-- 		UPDATE REVIEW_TABLE SET RDELFLAG='Y'이걸 해야 하는데 -->
-<!-- 		REVIEW_TABLE (URSEQ)랑 USER_TABLE (USEQ)랑 같아야 한다.  -->
-		
+
 		</update>
    
    
@@ -145,6 +126,14 @@
        <update id="delFavoriteMovie" parameterType="UserDto">
        UPDATE USER_TABLE SET UFMSEQ=REPLACE(UFMSEQ,#{ufmseq},':') WHERE USEQ=#{useq}
        </update>
+       
+       <select id="detailAjax" parameterType="int" resultType="UserDto">
+		SELECT *
+		FROM REVIEW_TABLE WHERE USEQ=#{useq}
+	</select>	
+	<sql id="paramseq">
+		USEQ=#{useq}
+	</sql>
        
 </mapper>
 

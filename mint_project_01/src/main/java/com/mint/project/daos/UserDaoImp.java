@@ -69,6 +69,7 @@ public class UserDaoImp implements IUserDao {
       return sqlSession.selectList(namespace+"getUserReview",useq);
    }
 
+   //리뷰삭제
    @Override
    public boolean delRe(int useq) {
 	   int count=0;
@@ -108,5 +109,11 @@ public class UserDaoImp implements IUserDao {
    public List<UserDto> getAlluserinfo() {
 	   return sqlSession.selectList(namespace+"getAlluserinfo");
    }
+   
+   @Override
+	public UserDto getBoardAjax(int useq) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"detailAjax", useq);
+	}
 
 }

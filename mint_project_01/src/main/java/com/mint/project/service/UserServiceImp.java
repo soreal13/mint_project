@@ -71,7 +71,7 @@ public class UserServiceImp implements IUserService {
       return udao.getUserReview(useq);
    }
    
-   
+   //리뷰삭제...
    @Override
    public boolean delRe(int useq) {
 	   
@@ -117,5 +117,10 @@ public class UserServiceImp implements IUserService {
    public boolean delFavoriteMovie(UserDto udto) {
 	   return udao.delFavoriteMovie(udto);
    }
+   
+   @Override
+	public UserDto getBoardAjax(int useq) {
+		return udao.getBoardAjax(useq);
+	}
   
 }

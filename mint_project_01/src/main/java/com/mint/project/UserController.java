@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mint.project.aop.TasteAop;
 import com.mint.project.dtos.MovieDto;
@@ -138,12 +139,14 @@ public class UserController {
 
 //리뷰 삭제 (수정중)
       @RequestMapping(value="/delReview.do", method =RequestMethod.POST)
-      public String delRiview(HttpSession session,int useq,Model model) {
-    	  boolean isS = userService.delRe(useq);
+      public String delReview(HttpSession session,ReviewDto rdto,Model model) {
+    	  boolean isS =reviewService.delReview(rdto.getRseq());
+    	  System.out.println("ㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹ");
     	  if(isS) {
-              return "userreview.do";
+              return "redirect:userreview.do";
            }else {
               model.addAttribute("msg","글삭제실패");
+              System.out.println("실패스~~~~~~~");
              return "user/user_main";
           }
       }
@@ -151,6 +154,16 @@ public class UserController {
 //추천영화 모아보기
       @RequestMapping(value="/usergrade.do", method =RequestMethod.GET)
       public String 추천천영화(UserDto udto, Model model) {
+    	   //소진작성
+          TasteDto tdto=tasteService.getTaste(udto.getUseq());
+          model.addAttribute("tdto", tdto);
+
+          TasteAop taop = new TasteAop();
+          String keyw = taop.getKeyw(tdto);
+          List<MovieDto> tmlist= movieService.getCertainMovieinfo(keyw);
+          
+          model.addAttribute("tmlist", tmlist);
+          model.addAttribute("keyw", keyw);
     	  
           return "user/user_grade";
    }
@@ -180,7 +193,15 @@ public class UserController {
 	    	  
 	         return "user/user_favorite";
 	}
-   
-   
+	      @ResponseBody
+	  	@RequestMapping(value = "/contentAjax.do", method = RequestMethod.POST)
+	  	public Map<String, UserDto> contentAjax(UserDto udto, Locale locale, Model model) {
+	  		logger.info("ajax처리: 글내용보기{}.", locale);
+	  		UserDto ddto=userService.getBoardAjax(udto.getUseq());
+	  		Map<String, UserDto>map=new HashMap<>();
+	  		map.put("dto", ddto);
+	  		return map;
+	  	}
+
 
 }

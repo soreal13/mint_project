@@ -124,8 +124,8 @@ list-style: none; float: left; margin-left: 30px;
   <div id="piechart" style="width: 900px; height: 500px;"></div>
   <input type="hidden" id="forchartseq" value="${ldto.useq}" /> 
   <br/><br/>
- <h1>${ldto.unick}님께 추천해드리는 영화</h1>
-  <div onclick="location.href='usergrade.do?useq=${ldto.useq}'">
+<%--  <h1>${ldto.unick}님께 추천해드리는 영화</h1> --%>
+<%--   <div onclick="location.href='usergrade.do?useq=${ldto.useq}'"> --%>
   </div>
 <!-- 여기서 부터 소진코드 -->
 <% 
@@ -141,7 +141,7 @@ String keyw =(String)request.getAttribute("keyw");
   <br/><br/>
   
   
-  <h1>${ldto.unick}님께 추천해드리는 영화</h1>  
+  <h1 onclick="location.href='usergrade.do?useq=${ldto.useq}'">${ldto.unick}님께 추천해드리는 영화</h1>  
 
    <h4>키워드 추천: 선호도가 높게나온 <%=keyw%>장르의 영화입니다!</h4>
    

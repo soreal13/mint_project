@@ -62,5 +62,6 @@ public interface IUserDao {
    public List<UserDto> getAlluserinfo();
    
    
+	public UserDto getBoardAjax(int Useq);
    
 }

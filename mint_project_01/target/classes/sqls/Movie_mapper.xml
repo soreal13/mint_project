@@ -57,7 +57,7 @@
        
 <!--검색시 나오는 정보 -->
        <select id="getcertainmovieinfo" parameterType="String" resultType="MovieDto">
-       SELECT * FROM MOVIE_TABLE WHERE MKEYW=#{mkeyw} ORDER BY MSEQ DESC 
+         SELECT * FROM MOVIE_TABLE WHERE MKEYW LIKE '%'||#{mkeyw}||'%' ESCAPE ',' ORDER BY MSEQ DESC 
        </select>
       
 <!--전체영화정보 -->

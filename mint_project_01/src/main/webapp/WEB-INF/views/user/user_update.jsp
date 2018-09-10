@@ -73,11 +73,11 @@
        $('#ncheck').keyup(function(){
           if($('#unick').val()!=$('#ncheck').val()){
              $('#nucheck').text('');
-             $('#nucheck').html("별명이 일치하지 않습니다.");
+             $('#nucheck').html("사용가능한 별명입니다.");
              $('#ncheck').attr('title', 'nn');
           } else {
              $('#nucheck').text('');
-             $('#nucheck').html("별명이 일치합니다.");
+             $('#nucheck').html("중복된 별명 입니다.");
              $('#ncheck').attr('title', 'y');
           } //#ncheck.keyup
        });
@@ -91,7 +91,7 @@
 <body>
 <%@include file="../header.jsp"%>
 <h1>나의정보수정하기</h1>
-<form id="userupdateForm" action="userupdate.do" method="post" onsubmit="return check()" >
+<form id="userupdateForm" action="userupdate.do" method="post" >
 <table>
       <tr>
          <td>이메일</td>
@@ -106,6 +106,8 @@
          <td><font id="nucheck" size="2" color="red"></font></td>
       </tr>
       <tr>
+      
+      
          <td>비밀번호</td>
          <td><input type="password" name="upwd" required="required"></td> <!-- <확인!> 여기 </a>태그만 있었는데 지웠음, 위에 html5로 dtd 재정의함 -->
       </tr>

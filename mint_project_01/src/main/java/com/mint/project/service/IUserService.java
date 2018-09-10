@@ -74,6 +74,6 @@ public interface IUserService {
 		//영화즐찾삭제
 		 public boolean delFavoriteMovie(UserDto udto);
 	
-	
+			public UserDto getBoardAjax(int useq);
 	
 }
