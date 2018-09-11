@@ -82,17 +82,25 @@
           } //#ncheck.keyup
        });
     });
-
-
-     
-
 </script>
+<style type="text/css">
+
+#div{
+border: 2px solid red;
+	margin:auto;
+	margin-top: 200px;
+	margin-left: 40%;
+}
+
+
+</style>
 </head>
 <body>
 <%@include file="../header.jsp"%>
-<h1>나의정보수정하기</h1>
+<div  id="div">
+<h1 style="text-align: center;">나의정보수정하기</h1>
 <form id="userupdateForm" action="userupdate.do" method="post" >
-<table>
+<table   id="table">
       <tr>
          <td>이메일</td>
          <td><input value=" ${ldto.uemail}" readonly="readonly"/></td>
@@ -122,12 +130,13 @@
 <!--          <td> <input type="file" name="upload" required="required" value="${udto.uimg}"></td> --!>
 <!--       </tr> -->
       <tr>
-         <td colspan="2">
+         <td colspan="2" align="center"><br/><br/>
             <input type="submit" value="수정완료">
             <button onclick="location.href='userinfo.do'">수정 취소</button>
          </td>
       </tr>
    </table>
       </form>
+      </div>
 </body>
 </html>

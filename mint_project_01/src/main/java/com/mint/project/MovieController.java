@@ -118,18 +118,25 @@ public class  MovieController {
 	//팔로우 하기 (좋아요 되어있지 않는 상태에서 보이는 메소드)
 	@RequestMapping(value="/updateFollow.do")
 	public String updateFollow(Model model,int useq, int mseq) {
+		System.out.println("useq="+useq+"mseq="+mseq);
 		String mfollow=""+useq;
+		String ufmseq=""+mseq;
 		System.out.println("mseq?"+mseq);
 		MovieDto mDto=new MovieDto();
 		mDto.setMfollow(mfollow);
 		mDto.setMseq(mseq);
-		boolean isS=movieServiceImp.updateFollow(mDto);
+		
+		UserDto uDto=new UserDto();
+		uDto.setUseq(useq);
+		uDto.setUfmseq(ufmseq);
+		
+		boolean isS=movieServiceImp.updateFollow(uDto,mDto);
 		System.out.println(isS);
-		
-		
 		if(isS) {
-			return "redirect:movie_info.do?mseq="+mseq+"&useq="+useq;
-		
+			
+				return "redirect:movie_info.do?mseq="+mseq+"&useq="+useq;
+			
+			
 		} else {
 			model.addAttribute("msg","팔로우 해제 실패1");
 			return "error";
@@ -143,12 +150,18 @@ public class  MovieController {
 	public String delFollow(Model model,int useq,int mseq) {
 		
 		String mfollow=":"+useq+":";
+		String ufmseq=":"+mseq+":";
 		MovieDto mdto=new MovieDto();
 		mdto.setMfollow(mfollow);
 		mdto.setMseq(mseq);
-				boolean isS=movieServiceImp.delFollow(mdto);
+
+		UserDto udto=new UserDto();
+		udto.setUseq(useq);
+		udto.setUfmseq(ufmseq);
+		
+				boolean isS=movieServiceImp.delFollow(udto,mdto);
 				if(isS) {
-					return "redirect:movie_info.do?mseq="+mseq+"&useq="+useq;
+						return "redirect:movie_info.do?mseq="+mseq+"&useq="+useq;
 				
 				} else {
 					model.addAttribute("msg","팔로우 해제 실패1");

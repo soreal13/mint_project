@@ -69,10 +69,6 @@ public interface IUserService {
 		//영화 추가
 		 public boolean updateFavoriteMovie (UserDto udto);
 		 
-		 
-		//유저 즐찾 확인
-		public UserDto chkFavorite(int useq);
-		   
 
 		//영화즐찾삭제
 		 public boolean delFavoriteMovie(UserDto udto);

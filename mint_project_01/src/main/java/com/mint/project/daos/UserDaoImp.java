@@ -96,19 +96,14 @@ public class UserDaoImp implements IUserDao {
 
    //영화 즐찾추가
    public boolean  updateFavoriteMovie (UserDto udto) {
-	   int count=sqlSession.update(namespace+"updatefavoritemovie",udto);
+	   int count=sqlSession.update(namespace+"updateFavoriteMovie",udto);
 	      return count>0?true:false;
    }
    
-   //유저 즐찾 확인
-   public UserDto chkFavorite(int useq) {
-	   return sqlSession.selectOne(namespace+"chkfavorite",useq);
-   }
-   
-
+ 
    //영호 즐찾 삭제
    public boolean delFavoriteMovie(UserDto udto) {
-	   int count=sqlSession.update(namespace+"delfavoritemovie",udto);
+	   int count=sqlSession.update(namespace+"delFavoriteMovie",udto);
 	      return count>0?true:false;
    
    }

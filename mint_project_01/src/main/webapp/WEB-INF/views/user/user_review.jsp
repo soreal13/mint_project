@@ -34,13 +34,14 @@
 <%@include file="../header.jsp"%>
 <table>
    <tr>
-<%--      <td style="border: 1px solid red; height: 70px; width: 70px;">${ldto.uimg}</td> --%>
+     <td style="border: 1px solid red; height: 70px; width: 70px;">${ldto.uimg}</td>
      <td>
        <input type="button" value="내 정보 관리" onclick="location.href='userinfo_user.do'">
-       <input type="button" value="즐겨찾기 목록" onclick="location.href='user_favoritelist.do'">
+       <input type="button" value="메인으로" onclick="location.href='usermain_user.do?useq=${ldto.useq}'">
      </td>
    </tr>
-</table>
+ </table>
+
 
 <!-- 객체생성과 마찬가지 -->
 <div id="container">

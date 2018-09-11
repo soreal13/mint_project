@@ -109,14 +109,7 @@ public class UserServiceImp implements IUserService {
    public boolean  updateFavoriteMovie(UserDto udto) {
 	   return udao.updateFavoriteMovie(udto);
    }
-   
-   @Override
-   //유저 즐찾 확인
-   public UserDto chkFavorite(int useq) {
-	   return udao.chkFavorite(useq);
-   }
-   
-   
+
    @Override
    //유저 즐찾 삭제
    public boolean delFavoriteMovie(UserDto udto) {

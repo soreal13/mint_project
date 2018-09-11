@@ -183,11 +183,9 @@ public class UserController {
 	    	   UserDto lldto=(UserDto)session.getAttribute("ldto");
 	           UserDto ldto=userService.getUserinfo(lldto);
 	           String[] seqs =ldto.getUfmseq().split(":");
-	           System.out.println("ㅎㅎㅎ="+seqs);
 	           List<UserDto>dto=userService.getFavoriteMovie(seqs);
 	           model.addAttribute("lists", dto);
-	           System.out.println("출력="+dto.size());
-	           
+	           model.addAttribute("lldto", ldto);
 	    	  
 	         return "user/user_favorite";
 	}

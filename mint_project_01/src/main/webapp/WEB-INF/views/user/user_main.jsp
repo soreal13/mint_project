@@ -19,6 +19,10 @@
    height: 290px;
    
    }
+   
+#reviewtag{
+	font: 20px bold #5D5D5D;
+}
 </style>
 <script type="text/javascript">
 google.charts.load('current', {'packages':['corechart']});
@@ -83,7 +87,7 @@ list-style: none; float: left; margin-left: 30px;
    </tr>
 </table>
 
-
+<div id="all">
   <h1>${ldto.unick}님의 선호영화</h1>
 
 
@@ -112,7 +116,7 @@ list-style: none; float: left; margin-left: 30px;
          <c:otherwise>
             <c:forEach var = "ldto" items="${lists}">
              <ul>
-        	 <li>● ${ldto.mdto.mtitle} - ${ldto.rdto.rcontent}</li>
+        	 <li>● <a id="reviewtag">${ldto.mdto.mtitle}</a> - ${ldto.rdto.rcontent}</li>
      		 </ul>
             </c:forEach>            
          </c:otherwise>
@@ -168,6 +172,7 @@ String keyw =(String)request.getAttribute("keyw");
    </tr>
 </table>
 <br/><br/>
+</div>
 <%@include file="../footer.jsp"%>
 </body>
 </html>

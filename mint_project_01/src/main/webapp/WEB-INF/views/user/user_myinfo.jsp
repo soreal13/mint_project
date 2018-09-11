@@ -6,9 +6,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+#div{
+border: 2px solid red;
+	margin:auto;
+	margin-top: 200px;
+	margin-left: 40%;
+	position: fixed;
+}
+
+
+</style>
 </head>
 <body>
 <%@include file="../header.jsp"%>
+<div id="div">
 <h1>나의정보</h1>
 <table border="2">
       <tr>
@@ -31,5 +44,6 @@
          </td>
       </tr>
    </table>
+</div>
 </body>
 </html>

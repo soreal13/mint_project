@@ -84,7 +84,7 @@
    </update>
 <!--    즐겨찾기한 영화 가져오기-->
    <select id="getFavoriteMovie" parameterType="Map" resultMap="UserDto">
-      SELECT MTITLE,MIMG FROM MOVIE_TABLE WHERE MSEQ IN 
+      SELECT * FROM MOVIE_TABLE WHERE MSEQ IN 
       <foreach collection="seqs" item="mseq" open="(" close=")" separator=",">
 			#{mseq}
 		</foreach>
