@@ -71,11 +71,20 @@ public class UserDaoImp implements IUserDao {
 
    //리뷰삭제
    @Override
-   public boolean delRe(int useq) {
+   public boolean delRe(String[] chk) {
 	   int count=0;
-	      count=sqlSession.update(namespace+"delRe",useq);
+	   Map<String,String[]>map=new HashMap<>();
+	   map.put("rseq", chk);
+	   System.out.println(chk[0]);
+	      count=sqlSession.update(namespace+"delRe",map);
 	      return count>0?true:false;
    }
+   
+   @Override
+   public List<UserDto> printReview(int useq) {
+      return sqlSession.selectList(namespace+"printReview",useq);
+   }
+   
    
    @Override
    public List<UserDto> getFavoriteMovie(String[] seqs) {
@@ -110,10 +119,5 @@ public class UserDaoImp implements IUserDao {
 	   return sqlSession.selectList(namespace+"getAlluserinfo");
    }
    
-   @Override
-	public UserDto getBoardAjax(int useq) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace+"detailAjax", useq);
-	}
 
 }

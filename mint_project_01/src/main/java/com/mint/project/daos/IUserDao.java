@@ -38,7 +38,10 @@ public interface IUserDao {
    public List<UserDto> getUserReview(int useq);
    
    //유저가 쓴 리뷰삭제
-   public boolean delRe(int useq);
+   public boolean delRe(String[] chk);
+   
+   //화면에 뿌릴 리뷰
+   public List<UserDto> printReview(int useq);
 
 //	-------------------------------------------------------
    
@@ -61,7 +64,6 @@ public interface IUserDao {
 
    public List<UserDto> getAlluserinfo();
    
-   
-	public UserDto getBoardAjax(int Useq);
+
    
 }

@@ -106,18 +106,17 @@ list-style: none; float: left; margin-left: 30px;
 
 <!-- <table  onclick="location.href='userreview.do'"> -->
 <div onclick="location.href='userreview.do?useq=${ldto.useq}'">
-   <ul class="reviewtext">
-      <li>●${lldto[0].mdto.mtitle} ${lldto[0].rdto.rcontent}</li>
-      <li>●${lldto[1].mdto.mtitle} ${lldto[1].rdto.rcontent}</li>
-      <li>●${lldto[2].mdto.mtitle} ${lldto[2].rdto.rcontent}</li>
-   </ul>
-   <br/>
-   <ul class="reviewtext">
-      <li>●${lldto[3].mdto.mtitle} ${lldto[3].rdto.rcontent}</li>
-      <li>●${lldto[4].mdto.mtitle} ${lldto[4].rdto.rcontent}</li>
-      <li>●${lldto[5].mdto.mtitle} ${lldto[5].rdto.rcontent}</li>
-   </ul>
-   <br/>
+      <c:choose>
+         <c:when test="${empty lists}">
+         </c:when>
+         <c:otherwise>
+            <c:forEach var = "ldto" items="${lists}">
+             <ul>
+        	 <li>● ${ldto.mdto.mtitle} - ${ldto.rdto.rcontent}</li>
+     		 </ul>
+            </c:forEach>            
+         </c:otherwise>
+      </c:choose>
 </div>
 <br/><br/><br/>
   <h1>${ldto.unick}님의 영화 통계</h1>

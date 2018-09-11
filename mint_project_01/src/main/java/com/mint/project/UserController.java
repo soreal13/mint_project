@@ -51,14 +51,13 @@ public class UserController {
       @RequestMapping(value="/usermain_user.do", method =RequestMethod.GET)
             public String usermain(HttpSession session,UserDto udto, Model model) {
     	  UserDto ldto=(UserDto)session.getAttribute("ldto");
-//      	  model.addAttribute("ldto", ldto);
+      	  model.addAttribute("ldto", ldto);
 
     	  
     	  
-    	  
-    	  List<UserDto>lldto=userService.getUserReview(ldto.getUseq());
-    	  System.out.println(lldto.size());
-          model.addAttribute("lldto", lldto);
+    	  //리뷰출력
+    	  List<UserDto>lldto=userService.printReview(ldto.getUseq());
+          model.addAttribute("lists", lldto);
       	  
           //소진작성
           TasteDto tdto=tasteService.getTaste(ldto.getUseq());
@@ -124,11 +123,10 @@ public class UserController {
       
 //   리뷰 불러오기(완료_개 힘들었네 ㅂㄷㅂㄷ)
       @RequestMapping(value="/userreview.do", method =RequestMethod.GET)
-      public String review(UserDto udto, Model model) {
-    	  
+      public String review( HttpSession session,UserDto udto, Model model) {
     	  List<UserDto>ldto=userService.getUserReview(udto.getUseq());
-    	  
           model.addAttribute("lists", ldto);
+       
 //          System.out.println(ldto.size());
           
           return "user/user_review";
@@ -139,14 +137,14 @@ public class UserController {
 
 //리뷰 삭제 (수정중)
       @RequestMapping(value="/delReview.do", method =RequestMethod.POST)
-      public String delReview(HttpSession session,ReviewDto rdto,Model model) {
-    	  boolean isS =reviewService.delReview(rdto.getRseq());
-    	  System.out.println("ㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹㄹ");
+      public String delReview(HttpSession session,String[] chk,Model model)throws Exception {
+    	  UserDto loginUser = (UserDto)session.getAttribute("ldto");
+    	  boolean isS =userService.delRe(chk);
+    	
     	  if(isS) {
-              return "redirect:userreview.do";
+              return "redirect:userreview.do?useq="+loginUser.getUseq();
            }else {
               model.addAttribute("msg","글삭제실패");
-              System.out.println("실패스~~~~~~~");
              return "user/user_main";
           }
       }
@@ -193,15 +191,6 @@ public class UserController {
 	    	  
 	         return "user/user_favorite";
 	}
-	      @ResponseBody
-	  	@RequestMapping(value = "/contentAjax.do", method = RequestMethod.POST)
-	  	public Map<String, UserDto> contentAjax(UserDto udto, Locale locale, Model model) {
-	  		logger.info("ajax처리: 글내용보기{}.", locale);
-	  		UserDto ddto=userService.getBoardAjax(udto.getUseq());
-	  		Map<String, UserDto>map=new HashMap<>();
-	  		map.put("dto", ddto);
-	  		return map;
-	  	}
 
 
 }

@@ -92,19 +92,28 @@
 
 <!--    유저가 쓴 리뷰 불러오기 0  resultType="UserDto"  -->
    <select id="getUserReview" parameterType="int" resultMap="UserDto">
-        SELECT MTITLE,RCONTENT,RDATE,RDELFLAG FROM USER_TABLE, REVIEW_TABLE, MOVIE_TABLE 
+        SELECT MTITLE,RCONTENT,RDATE,RDELFLAG,RSEQ,RUSEQ FROM USER_TABLE, REVIEW_TABLE, MOVIE_TABLE 
       WHERE REVIEW_TABLE.RUSEQ=USER_TABLE.USEQ AND MOVIE_TABLE.MSEQ=REVIEW_TABLE.RMSEQ 
       AND USEQ=#{useq} AND REVIEW_TABLE.RDELFLAG='N' ORDER BY RSEQ DESC
    </select>
 
 <!-- 리뷰삭제 -->
-		<update id="delRe" parameterType="int">
+		<update id="delRe" parameterType="Map">
 		UPDATE REVIEW_TABLE SET RDELFLAG='Y'
-		WHERE RSEQ=#{rseq}
-
+		WHERE RSEQ IN
+		<foreach collection="rseq" item="rseqs" open="(" close=")" separator=",">
+			#{rseqs}
+		</foreach>
 		</update>
    
-   
+<!--  화면에 뿌릴 리뷰 -->
+		<select id="printReview" parameterType="int">
+		SELECT RNUM,RSEQ,RCONTENT FROM 
+		(SELECT ROWNUM AS RNUM,RSEQ,RCONTENT 
+		FROM (SELECT * FROM REVIEW_TABLE 
+		WHERE RUSEQ=#{ruseq} ORDER BY RDATE DESC)) 
+		WHERE RNUM BETWEEN 1 AND 6;
+		</select>   
 <!--    회원탈퇴  0-->
    <update id="delUser" parameterType="int">
       UPDATE USER_TABLE SET UDELFLAG='Y' WHERE USEQ=#{useq}
@@ -126,14 +135,7 @@
        <update id="delFavoriteMovie" parameterType="UserDto">
        UPDATE USER_TABLE SET UFMSEQ=REPLACE(UFMSEQ,#{ufmseq},':') WHERE USEQ=#{useq}
        </update>
-       
-       <select id="detailAjax" parameterType="int" resultType="UserDto">
-		SELECT *
-		FROM REVIEW_TABLE WHERE USEQ=#{useq}
-	</select>	
-	<sql id="paramseq">
-		USEQ=#{useq}
-	</sql>
+      
        
 </mapper>
 

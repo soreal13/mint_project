@@ -47,7 +47,10 @@ public interface IUserService {
 	public List<UserDto> getUserReview(int useq);
 
 	   //유저가 쓴 리뷰삭제
-	public boolean delRe(int useq);
+	public boolean delRe(String[] chk);
+	
+	//화면에 뿌릴 리뷰
+	   public List<UserDto> printReview(int useq);
 
 	//회원가입
 	public boolean register(UserDto udto, TasteDto dto);
@@ -73,7 +76,6 @@ public interface IUserService {
 
 		//영화즐찾삭제
 		 public boolean delFavoriteMovie(UserDto udto);
-	
-			public UserDto getBoardAjax(int useq);
+
 	
 }
