@@ -90,6 +90,7 @@ border: 2px solid red;
 	margin:auto;
 	margin-top: 200px;
 	margin-left: 40%;
+	position: fixed;
 }
 
 

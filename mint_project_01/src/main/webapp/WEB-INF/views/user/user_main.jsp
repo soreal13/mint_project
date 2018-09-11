@@ -23,6 +23,11 @@
 #reviewtag{
 	font: 20px bold #5D5D5D;
 }
+
+
+#all{
+	align-content: center;
+}
 </style>
 <script type="text/javascript">
 google.charts.load('current', {'packages':['corechart']});
