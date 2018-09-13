@@ -46,16 +46,17 @@ public class UserController {
  
    
    
-//   유저메인으로 이동 (완료)
+//   유저메인으로 이동 ($$$)
       @RequestMapping(value="/usermain_user.do", method =RequestMethod.GET)
             public String usermain(HttpSession session,UserDto udto, Model model) {
     	  UserDto ldto=(UserDto)session.getAttribute("ldto");
-//      	  model.addAttribute("ldto", ldto);
+      	  model.addAttribute("ldto", ldto);
 
     	  
-    	  List<UserDto>lldto=userService.getUserReview(ldto.getUseq());
-          model.addAttribute("lldto", lldto);
-          
+    	//리뷰출력
+    	  List<UserDto>lldto=userService.printReview(ldto.getUseq());
+          model.addAttribute("lists", lldto);
+      	  
           //소진작성
           TasteDto tdto=tasteService.getTaste(ldto.getUseq());
           model.addAttribute("tdto", tdto);
@@ -94,7 +95,7 @@ public class UserController {
 //   회원정보수정 (완료-but 닉넴 중복체크 해야함 )
       @RequestMapping(value = "/userupdate.do", method = RequestMethod.POST)
          public String updateUser(String unick, String upwd, HttpSession session, Locale locale, Model model) throws Exception{
-            UserDto loginUser = (UserDto)session.getAttribute("udto");
+            UserDto loginUser = (UserDto)session.getAttribute("ldto");
             loginUser.setUnick(unick);
             loginUser.setUpwd(upwd);
        
@@ -119,14 +120,12 @@ public class UserController {
          }
        
       
-//   리뷰 불러오기(완료_개 힘들었네 ㅂㄷㅂㄷ)
+ //   리뷰 불러오기(완료_개 힘들었네 ㅂㄷㅂㄷ)
       @RequestMapping(value="/userreview.do", method =RequestMethod.GET)
-      public String review(UserDto udto, Model model) {
-    	  
+      public String review( HttpSession session,UserDto udto, Model model) {
     	  List<UserDto>ldto=userService.getUserReview(udto.getUseq());
-    	  
           model.addAttribute("lists", ldto);
-          System.out.println(ldto.size());
+       
           
           return "user/user_review";
 
@@ -134,21 +133,33 @@ public class UserController {
          
    }
 
-//리뷰 삭제 (수정중)
-      @RequestMapping(value="/delReview.do?", method =RequestMethod.POST)
-      public String delRiview(HttpSession session,int rseq,Model model) {
-    	  boolean isS = reviewService.delReview(rseq);
+    //리뷰 삭제 ($$$)
+      @RequestMapping(value="/delReview.do", method =RequestMethod.POST)
+      public String delReview(HttpSession session,String[] chk,Model model)throws Exception {
+    	  UserDto loginUser = (UserDto)session.getAttribute("ldto");
+    	  boolean isS =userService.delRe(chk);
+    	
     	  if(isS) {
-              return "userreview.do";
+              return "redirect:userreview.do?useq="+loginUser.getUseq();
            }else {
               model.addAttribute("msg","글삭제실패");
              return "user/user_main";
           }
       }
       
-//추천영화 모아보기
+    //추천영화 모아보기($$$)
       @RequestMapping(value="/usergrade.do", method =RequestMethod.GET)
       public String 추천천영화(UserDto udto, Model model) {
+    	   //소진작성
+          TasteDto tdto=tasteService.getTaste(udto.getUseq());
+          model.addAttribute("tdto", tdto);
+
+          TasteAop taop = new TasteAop();
+          String keyw = taop.getKeyw(tdto);
+          List<MovieDto> tmlist= movieService.getCertainMovieinfo(keyw);
+          
+          model.addAttribute("tmlist", tmlist);
+          model.addAttribute("keyw", keyw);
     	  
           return "user/user_grade";
    }
@@ -164,18 +175,16 @@ public class UserController {
       }
    
 
-//    즐겨찾기 영화 (9/7 완료)
+//	  즐겨찾기 영화 (9/7 완료)($$$)
       @RequestMapping(value="/userfavoriteMovie.do", method =RequestMethod.GET)
       public String uerfavoriteMovie(HttpSession session, Model model) {
-          UserDto lldto=(UserDto)session.getAttribute("ldto");
+    	   UserDto lldto=(UserDto)session.getAttribute("ldto");
            UserDto ldto=userService.getUserinfo(lldto);
            String[] seqs =ldto.getUfmseq().split(":");
-           System.out.println("ㅎㅎㅎ="+seqs);
            List<UserDto>dto=userService.getFavoriteMovie(seqs);
            model.addAttribute("lists", dto);
-           System.out.println("출력="+dto.size());
-           
-         
+           model.addAttribute("lldto", ldto);
+    	  
          return "user/user_favorite";
 }
    

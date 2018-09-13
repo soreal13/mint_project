@@ -5,10 +5,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mint.project.daos.IGenreDao;
 import com.mint.project.daos.IMovieDao;
+import com.mint.project.daos.IUserDao;
 import com.mint.project.dtos.MovieDto;
+import com.mint.project.dtos.UserDto;
 
 @Service
 public class MovieServiceImp implements IMovieService {
@@ -18,6 +21,10 @@ public class MovieServiceImp implements IMovieService {
    private IGenreDao gdao;
    @Autowired
    private IMovieDao mdao;
+   //$$$
+   @Autowired
+   private IUserDao udao;
+   
    
    @Override
    public boolean insertMovie(MovieDto mdto) {
@@ -51,9 +58,11 @@ public class MovieServiceImp implements IMovieService {
 
    }
 
+   //$$$
+   @Transactional
    @Override
-   public boolean updateFollow(MovieDto mdto) {
-//      return mdao.updateFollow(mfollow,mseq);
+   public boolean updateFollow(UserDto udto,MovieDto mdto) {
+	   		 udao.updateFavoriteMovie(udto);
       return mdao.updateFollow(mdto);
    }
    
@@ -62,11 +71,13 @@ public class MovieServiceImp implements IMovieService {
       return mdao.chkFollow(useq);
    }
    
+   //$$$
+   @Transactional
    @Override
-   public boolean delFollow(MovieDto mdto) {
+   public boolean delFollow(UserDto udto,MovieDto mdto) {
+	   udao.delFavoriteMovie(udto);
       return mdao.delFollow(mdto);
    }
-
 
    
 

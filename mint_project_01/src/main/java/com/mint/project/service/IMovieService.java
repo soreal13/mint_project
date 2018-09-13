@@ -3,6 +3,7 @@ package com.mint.project.service;
 import java.util.List;
 
 import com.mint.project.dtos.MovieDto;
+import com.mint.project.dtos.UserDto;
 
 public interface IMovieService {
 
@@ -25,14 +26,14 @@ public interface IMovieService {
    // 영화전체정보
    public List<MovieDto> getAllMovieinfo();
    
-   // 팔로우 유저 추가
-   public boolean updateFollow(MovieDto mdto);
+   // 팔로우 유저 추가 ($$$)
+   public boolean updateFollow(UserDto udto,MovieDto mdto);
    
    //팔로우 했는지 확인
    public MovieDto chkFollow(int useq);
       
-   //팔로우 삭제
-   public boolean delFollow(MovieDto mdto);
+   //팔로우 삭제 ($$$)
+   public boolean delFollow(UserDto udto,MovieDto mdto);
 
       
    

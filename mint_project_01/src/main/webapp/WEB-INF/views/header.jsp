@@ -23,104 +23,126 @@
 
    @font-face{     font-family:"mint_bodyfont";     src: url("resources/font/DXKPGB-KSCpc-EUC-H.ttf") format("truetype");       }
    @font-face{     font-family:"mint_catefont";     src: url("resources/font/tvN Enjoystories Bold.ttf") format("truetype");       }
-
-    .logo{ 
-    text-align: center; 
-
-    } 
-
- .genre_category{
-   margin: auto;
-   text-align: center;
-   font-family: 'mint_catefont' !important;
-   font-size: 20pt;
-   margin-right: auto;
-   margin-left: auto;
-   font-color :  #595959;
-   
+   *{
+   margin: 0px;
    }
-   
    .mainmenu{
+   float: left;
 
-    margin: auto;
-   font-family: 'mint_catefont' !important;
-   font-size: 26pt;
-    margin-right: auto; 
-    margin-left: auto;    
-    text-align: left;
-    margin-left:50px;
-	float: left;  
-	clear: both;
+   width: 700px;
+   height: 500px;
+
    }
-     
-   .logo img{
-    margin: auto; 
-    width: 250px;
-    display: box; 
-    margin-top: 10px;
-    margin-right: auto; 
-    margin-left: auto; 
-    float: none;
+   .logo{
+   width: 500px;
+   height: 480px;
+   margin-left: 700px; 
+   position: absolute;
+   }
+    .logo img{ 
+/*     text-align: center;  */
+     margin:170px 40px;  
+/*    border:1px solid white; */
+/*    margin-top:150px; */
+     width: 400px; 
+/*     display: box;  */
+/*     margin-top: 150px; */
+/*     margin-right: auto;  */
+/*     margin-left: auto;  */
+/*     float: none; */
     cursor:pointer;
+    } 
+  
+     .search_h img{
+     width: 280px; 
+   }
+   
+   .login_h img{
+     width: 220px; 
    } 
- .btn_box{
-   text-align: right;
-   margin-right:70px;
+ 
+   .myinfo_h img{
+     width: 280px; 
    }
-   .btn_box img{
-      width: 50px;
-   height: auto;
+   
+   .logout_h img{
+    width: 260px; 
    }
+   
+   .mainmenu div{text-align: center;
+      margin-top: 60px;
+   }
+   .play_h img{
+     width: 200px; 
+   }
+    .keyword_h img{
+     width: 360px; 
+   }
+   .keyword_h:hover img:last-child{
+    display:inline-block; 
+   }
+   .about_h img{
+     width: 270px; 
+   } 
+  .about_h img:last-child, .play_h img:last-child, .login_h img:last-child, .myinfo_h img:last-child,.logout_h img:last-child, .keyword_h img:last-child, .search_h img:last-child{
+    display:none;
+   }
+   .about_h:hover img:first-child, .play_h:hover img:first-child, .login_h:hover img:first-child,.myinfo_h:hover img:first-child,.logout_h:hover img:first-child,  .keyword_h:hover img:first-child, .search_h:hover img:first-child{
+    display:none;
+   }
+   .about_h:hover img:last-child, .play_h:hover img:last-child,.login_h:hover img:last-child,.myinfo_h:hover img:last-child,.logout_h:hover img:last-child, .search_h:hover img:last-child{
+   display:inline-block;
+   }
+    .btn_box div{text-align: center;
+      margin-top: 60px;
+   }
+    .btn_box{
+/*    text-align: right; */
+/*    margin-right:70px; */
+/*    clear: both; */
+   float:right;
+    width: 700px;
+   height: 500px;
+/*    height: 480px; */
+
+   }
+
    
    .login{
    float: right;
-   
    }
  
-   .header{
-   background-color: #e0e0e0 !important;
-   
-   }
-   .header a{
-   color :  #595959;
-   }
    body{
    font-family: 'mint_bodyfont';
-   background-color: #e0e0e0;
-   color: #595959 !important;
+   color:  #e0e0e0 !important;
    }
    
    a{
-  
-  color: #595959;
+  color: #e0e0e0;
   text-decoration: none;
-   
    }
    a:hover{
-   color:#99cccc;
+   color:#96ffd4;
    text-decoration: none;
-   
    }
-
-	.header {
-	height:260px;
-	clear: both;
-	}
+   .header {
+   background-image:url("resources/img/bricks1.jpg");
+   height:510px;
+   width: 1900px;
+/*    clear: both; */
+/*    overflow: auto; */
+   position: relative;
+   }
+   .header:after {
+   content: ""; clear: both;
+}
+   body{
+   background-image: url("resources/img/bricks1.jpg");
+   }
    
 </style>
 <script type="text/javascript">
-function keyword_check(){
-     if(document.search_form.serach.value==''){ //검색어가 없을 경우  
-     alert('검색어를 입력하세요'); //경고창 띄움 
-     document.search_form.serach.focus(); //다시 검색창으로 돌아감 
-     return false; 
-     }
-     else return true;
-    }
-    
-    function search1() {
-      document.getElementById('form').submit();
-   }
+
 </script>
 
 </head>
@@ -130,17 +152,26 @@ function keyword_check(){
 %>
 <!-- 민지코드 -->
 <div class="header">
-<div class="logo">
-   <img id="logo" alt="" src="resources/img/MINTlogo2.png" onclick="location.href='index.jsp'" />
-</div><br>
+
 
 <div class="mainmenu">
-<a href="index.do">PLAY</a>&nbsp;
-<a href="genresearch.do">GENRE/KEYWORD</a>&nbsp;
-<a href="mintci.do">ABOUT</a>&nbsp;
+   <div class="play_h">
+      <img alt="" src="resources/img/PLAY1.png" onclick="location.href='index.do'" />
+      <img alt="" src="resources/img/PLAY2.png" onclick="location.href='index.do'" />
+   </div>
+    <div class="keyword_h">
+       <img alt="" src="resources/img/KEYWORD1.png" onclick="location.href='genresearch.do'" />
+       <img alt="" src="resources/img/KEYWORD2.png" onclick="location.href='genresearch.do'" />
+    </div>
+    <div class="about_h">
+        <img alt="" src="resources/img/ABOUT1.png" onclick="location.href='mintci.do'" />
+        <img alt="" src="resources/img/ABOUT2.png" onclick="location.href='mintci.do'" />
+    </div>
 </div>
 
-
+<div class="logo">
+   <img id="logo" alt="" src="resources/img/LOGO1.png" onclick="location.href='index.jsp'" />
+</div>
 
 <!-- <div class="genre_category"> -->
 <!--    <a href="movie_search.do?search=액션">액션</a> -->
@@ -175,34 +206,36 @@ function keyword_check(){
    
 <!-- </div> -->
 <div class="btn_box">
+    <div class="search_h">
+       <img alt="" src="resources/img/SEARCH1.png" onclick="location.href='search.do'" />
+        <img alt="" src="resources/img/SEARCH2.png" onclick="location.href='search.do'" />
+    </div>
    <%
    if(ldto==null){
       %>
-      <img alt="loginimg" src="resources/img/login.png" onclick="location.href='login.do'">
+      <div class="login_h">
+         <img alt="loginimg" src="resources/img/LOGIN1.png" onclick="location.href='login.do'">
+         <img alt="loginimg" src="resources/img/LOGIN2.png" onclick="location.href='login.do'"> 
+      </div>
+     
       <%
    } else if(ldto!=null){
    %>
-      <img alt="myinfoimg" src="resources/img/MYINFO.png" onclick="location.href='usermain_user.do'">
-      <img alt="loginimg" src="resources/img/logout.png" onclick="location.href='logout.do'">
+         <div class="myinfo_h">
+            <img alt="loginimg" src="resources/img/LOGOUT1.png" onclick="location.href='logout.do'">
+         <img alt="loginimg" src="resources/img/LOGOUT2.png" onclick="location.href='logout.do'">
+         </div>
+         <div class="logout_h">
+            <img alt="myinfoimg" src="resources/img/MYINFO1.png" onclick="location.href='usermain_user.do'">
+            <img alt="myinfoimg" src="resources/img/MYINFO2.png" onclick="location.href='usermain_user.do'">
+         </div>
+
    <%   
    }
    %>
-      
+</div>
 
-<div class="searchbox">
-<form name="search_form" align="right" method = "post"  
-action ="movie_search.do" onsubmit="return keyword_check()" id="form">
-<!-- align : 정렬 , style : 스타일 정보 포함 (margin : 여백 설정) , method : 전달 방식 ,  
-action : submit 시 이동 경로 ,onsubmit : submit 클릭시 호출 조건 (true 일 때 action으로 넘어감 )-->
-<td>
-  <input type="text" name="search"> 
-</td>
-<td>
-   <img alt="searchimg" src="resources/img/search.png" onclick="search1()">
-</td>  
-</form>
-</div>
-</div>
+
 </div>
 </body>
 </html>

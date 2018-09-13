@@ -43,7 +43,12 @@ public interface IUserService {
 		   
 	//유저가 쓴 리뷰 가져오기
 	public List<UserDto> getUserReview(int useq);
-
+	
+	//유저가 쓴 리뷰삭제 ($$$)
+	public boolean delRe(String[] chk);
+	
+	//화면에 뿌릴 리뷰 ($$$)
+	public List<UserDto> printReview(int useq);
 
 	//회원가입
 	public boolean register(UserDto udto, TasteDto dto);

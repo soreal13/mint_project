@@ -71,6 +71,21 @@ public class UserServiceImp implements IUserService {
       return udao.getUserReview(useq);
    }
 
+   //리뷰삭제... ($$$)
+   @Override
+   public boolean delRe(String[] chk) {
+	   
+	   return udao.delRe(chk);
+   }
+   
+   //화면출력 리뷰 ($$$)
+   @Override
+   public List<UserDto> printReview(int useq) {
+      
+      return udao.getUserReview(useq);
+   }
+   
+   
    @Transactional
    @Override
 	public boolean register(UserDto udto, TasteDto tdto) {
