@@ -54,115 +54,150 @@ function drawChart() {
 </script>
 
 <style type="text/css">
-.mimg li{
-text-align: center;
-list-style: none;
-	float: left;
-	margin-right: 20px;
-	left: auto; 
-	font-size: 22px;
-}
+@font-face{     font-family:"mint_catefont";     src: url("resources/font/tvN Enjoystories Bold.ttf") format("truetype");       }
+	button{
+		width: 110px;
+		float:left;
+		left: 20px;
+		border-radius:20px 20px 20px 20px;
+		font-family:"mint_catefont"; 
+		  background:#595959;
+		  color:#96ffd4;
+		  border:none;
+		  position:relative;
+		  height:50px;
+		  font-size:25px;
+		  cursor:pointer;
+		  transition:800ms ease all;
+		  outline:none;
+		}
+	button:hover{
+		  background:#96ffd4 ;
+		  color:#595959;
+		}
+	button:before, button:after{
+		  content:'';
+		  position:absolute;
+		  top:0;
+		  right:0;
+		  height:2px;
+		  width:0; 
+		  background: #1AAB8A;
+		  transition:400ms ease all;
+		}
+	button:after{
+		  right:inherit;
+		  top:inherit;
+		  left:0;
+		  bottom:0;
+		}
+	button:hover:before,button:hover:after{
+		  width:100%;
+		  transition:800ms ease all;
+		      }
+	#reviewtext{
+		width:600px; height:50px; overflow:hidden; text-overflow: ellipsis; white-space:nowrap;
+		list-style: none;
+		}
+		
+	#reviewtag{
+		 color: #96ffd4;
+		}
+		
+	#reviewdiv{
+		font-size:30px;
+		border: 1px solid red;
+		margin: auto;
+		width: 700px;
+		}
 
-#img{
- float: left; margin-left: 20px;
- border:1px solid red; width: 200px; height: 300px;
-}
+	h1{
+	 	font-size: 90px;
+		}
+		
+	.mimg li{
+		text-align: center;
+		list-style: none;
+		float: left;
+		margin-right: 20px;
+		left: auto; 
+		font-size: 22px;
+	
+		}
+	#img{
+		 float: left; margin-left: 20px;
+		 border:1px solid red; width: 200px; height: 300px;
+	}
+	
+	
+	
+	#piechart{
+	 	margin: auto;
+	}
+	
+	 .배경div{
+	       font-family:mint_catefont;
+	       position:relative;
+	       width: 1600px;
+	       height:auto;
+	       margin-left:auto;
+	       margin-right:auto;
+	       text-align: center;
+	       margin-bottom: auto;
+	       padding-top: 80px;
+	       font-size: 20px;
+	      }
+	       
+	       .배경div:after{
+	              content: "";
+	              background-color:#595959;
+	              display: block;
+	              width: 1600px;
+	              height: 100%;
+	              position: absolute;
+	              left: 0px;
+	              top:0px;
+	              opacity:0.7;
+	              z-index: -1;
+	       }
+
+	#aaa{
+		margin-top: 250px;
+	
+	}
+	
+	.grade{
+			padding-bottom: 100px;
+	}
+	
+	#title{
+		width:200px; height:30px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+		list-style: none;float: left;margin-left: 30px;
+		}
 
 
-.reviewtext>li{
-width:400px; height:30px;; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-list-style: none; float: left; margin-left: 30px;
-}
-
-
-#reviewtag{
-	font: 1px bold #5D5D5D;
-	height: 900px;
-width: 100px;
-}
-
-
-.all{
-text-align: center;
-	border: 3px solid red;
-	margin: 0 auto;
-	background-color:#595959;
-   width: 1600px;
-   margin-left:auto;
-   margin-right:auto;
-   text-align: center;
-   position:relative;
-}
-
-.all:after{
-              content: "";	
-              background-color:#595959;
-              display: block;
-              width: 1600px;
-              height: 100%;
-              position: absolute;
-              left: 0px;
-              top:0px;
-              opacity:0.7;
-              z-index: -1;
-       }
-#reviewdiv{
-border:1px solid black;
-height: 60px;
-
-}
-#reviewdiv ul li{
-float: left;
-margin-right: 100px;
-
-}
-   
-
-#title{
-   
-	height: 50px;
-}
-
-#aaa{
-	margin-top: 200px;
-	margin-bottom: 100px;
-}
-
-.grade{
-	margin-bottom: 300px;
-    align-content: center;
-    align-items: center;
-    align-self: center;
-}
-
-#title{
-width:200px; height:30px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-list-style: none;float: left;margin-left: 30px;
-}
 </style>
 
 </head>
 
 <body>
 <%@include file="../header.jsp"%>
-<div class="all">
+<div class="배경div">
 <br/><br/><br/>
-<div id="back">
-<table id="userheader">
+<div>
+<table style="margin-left: 30px;">
    <tr>
-     <td style="border: 1px solid red; height: 70px; width: 70px;">${ldto.uimg}</td>
+  <td style="border: 1px solid red; height: 70px; width: 70px;"><img src="resources/img/${ldto.uimg}" alt="profile"></td>
      <td>
-       <input type="button" value="내 정보 관리" onclick="location.href='userinfo_user.do'">
-       <input type="button" value="즐겨찾기 목록" onclick="location.href='userfavoriteMovie.do?useq=${ldto.useq}'">
+       <button style="margin-right:25px;" onclick="location.href='userinfo_user.do'">내 정보 관리</button>
+       <button  onclick="location.href='userfavoriteMovie.do?useq=${ldto.useq}'">즐겨찾기 목록</button>
      </td>
    </tr>
 </table>
 </div>
 
 
-
-<div id="aaa">
-  <h1>${ldto.unick}님의 선호영화</h1>
+  <h1 style="margin-top: 50px;">${ldto.unick}님의 선호영화</h1>
 <br/><br/><br/><br/><br/>
 <table>
    <tr>
@@ -178,93 +213,31 @@ list-style: none;float: left;margin-left: 30px;
      </td>
    </tr>
 </table>
-</div>
 
 
 
 
-<div id="aaa" class="re">
+<div id="aaa">
  <h1>${ldto.unick}님의 한줄평</h1>
 <br/><br/><br/><br/><br/>
 <!-- <table  onclick="location.href='userreview.do'"> -->
-<div onclick="location.href='userreview.do?useq=${ldto.useq}'" id="reviewdiv">
-<table border="1">
+<div  onclick="location.href='userreview.do?useq=${ldto.useq}'"  id="reviewdiv">
+<table  border="1">
       <c:choose>
          <c:when test="${empty lists}">
          </c:when>
          <c:otherwise>
             <c:forEach var = "ldto" items="${lists}">
-             <ul style=" list-style: none;">
+             <ul style=" list-style: none;" id="reviewtext">
         	 <li>● <a id="reviewtag">${ldto.mdto.mtitle}</a> - ${ldto.rdto.rcontent}</li>
      		 </ul>
+     		 <br/>
             </c:forEach>            
          </c:otherwise>
       </c:choose>
-
-
-
-
-
-<%--    <c:forEach var="ldto" items="${list}" varStatus="status"> --%>
-<%--    <c:choose> --%>
-<%--    <c:when test="${(status.count) eq 1}"> --%>
-<!--       <tr> -->
-<%--          <td>● <a id="reviewtag">${ldto.mdto.mtitle}</a> - ${ldto.rdto.rcontent}</td> --%>
-<%--    </c:when> --%>
-<%--    <c:when test="${(status.count) eq 2}"> --%>
-<%--          <td>● <a id="reviewtag">${ldto.mdto.mtitle}</a> - ${ldto.rdto.rcontent}</td> --%>
-<%--    </c:when> --%>
-<%--    <c:when test="${(status.count) eq 3}"> --%>
-<%--       <td>● <a id="reviewtag">${ldto.mdto.mtitle}</a> - ${ldto.rdto.rcontent}</td> --%>
-<!--    </tr> -->
-<%--    </c:when> --%>
-<%--    </c:choose> --%>
-<%-- </c:forEach> --%>
-
-
 </table>
 </div>
 </div>
-
-<!-- <table border="1"> -->
-<%--    <c:forEach var="i" begin="1" end="25" step="1"> --%>
-<%--    <c:choose> --%>
-<%--    <c:when test="${i%5 eq 1}"> --%>
-<!--       <tr> -->
-<%--          <td><input type="image" id="${i}" src="icon/${i}.png" width="100px" height="100px" onclick="ff('icon/${i}.png')"/></td> --%>
-<%--    </c:when> --%>
-<%--    <c:when test="${i%5 eq 2 ||i%5 eq 3 || i%5 eq 4}"> --%>
-<%--          <td><input type="image" id="${i}" src="icon/${i}.png" width="100px" height="100px" onclick="ff('icon/${i}.png')"/></td> --%>
-<%--    </c:when> --%>
-<%--    <c:when test="${i%5 eq 0}"> --%>
-<%--       <td><input type="image" id="${i}" src="icon/${i}.png" width="100px" height="100px" onclick="ff('icon/${i}.png')"/></td> --%>
-<!--    </tr> -->
-<%--    </c:when> --%>
-<%--    </c:choose> --%>
-<%-- </c:forEach> --%>
-<!-- </table> -->
-
-  
-
-<!-- <table border="1"> -->
-<%--    <c:forEach var="ldto" items="${list}" varStatus="status"> --%>
-<%--    <c:choose> --%>
-<%--    <c:when test="${empty lists}"> --%>
-<!--       <tr> -->
-<%--          <td>● <a id="reviewtag">${ldto.mdto.mtitle}</a> - ${ldto.rdto.rcontent}</td> --%>
-<%--    </c:when> --%>
-<%--    <c:when test="${empty lists}"> --%>
-<%--          <td>● <a id="reviewtag">${ldto.mdto.mtitle}</a> - ${ldto.rdto.rcontent}</td> --%>
-<%--    </c:when> --%>
-<%--    <c:when test="${empty lists}"> --%>
-<%--       <td>● <a id="reviewtag">${ldto.mdto.mtitle}</a> - ${ldto.rdto.rcontent}</td> --%>
-<!--    </tr> -->
-<%--    </c:when> --%>
-<%--    </c:choose> --%>
-<%-- </c:forEach> --%>
-<!-- </table> -->
-
-
 
 <!-- 여기서 부터 소진코드 -->
 <% 
@@ -283,7 +256,7 @@ String keyw =(String)request.getAttribute("keyw");
 <div id="aaa" class="grade">
   <h1  onclick="location.href='usergrade.do?useq=${ldto.useq}'">${ldto.unick}님께 추천해드리는 영화</h1>  
 
-   <h4>키워드 추천: 선호도가 높게나온 <%=keyw%>장르의 영화입니다!</h4>
+   <h3>키워드 추천: 선호도가 높게나온 <%=keyw%>장르의 영화입니다!</h3>
    <br/><br/><br/><br/><br/>
    <table>
    <tr>

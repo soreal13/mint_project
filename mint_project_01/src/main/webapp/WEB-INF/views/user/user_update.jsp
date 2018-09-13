@@ -84,59 +84,178 @@
     });
 </script>
 <style type="text/css">
+@font-face{     font-family:"mint_catefont";     src: url("resources/font/tvN Enjoystories Bold.ttf") format("truetype");       }
 
-#div{
-border: 2px solid red;
-	margin:auto;
-	margin-top: 200px;
-	margin-left: 40%;
-	position: fixed;
+       .배경div{
+       font-family:mint_catefont;
+       position:relative;
+       width: 1600px;
+       height:1000px;
+       margin-left:auto;
+       margin-right:auto;
+       text-align: center;
+       margin-bottom: auto;
+       padding-top: 200px;
+       font-size: 20px;
+       }
+       
+       .배경div:after{
+              content: "";
+              background-color:#595959;
+              display: block;
+              width: 1600px;
+              height: 100%;
+              position: absolute;
+              left: 0px;
+              top:0px;
+              opacity:0.7;
+              z-index: -1;
+       }
+      
+       
+       #table{
+       border-bottom-style: dotted; 
+       font-size: 40px;
+	   margin: auto;
+       height: 200px;
+       }
+       #table:after{
+       }
+       
+	button{
+		width: 110px;
+		float:left;
+/* 		top:50px; */
+/* 		left:670px; */
+margin:auto;
+		border-radius:20px 20px 20px 20px;
+		font-family:"mint_catefont"; 
+		  background:#595959;
+		  color:#96ffd4;
+		  border:none;
+		  position:relative;
+		  height:50px;
+		  font-size:30px;
+		  cursor:pointer;
+		  transition:800ms ease all;
+		  outline:none;
+		}
+	button:hover{
+		  background:#96ffd4 ;
+		  color:#595959;
+		}
+	button:before, button:after{
+		  content:'';
+		  position:absolute;
+		  top:0;
+		  right:0;
+		  height:2px;
+		  width:0; 
+		  background: #1AAB8A;
+		  transition:400ms ease all;
+		}
+	button:after{
+		  right:inherit;
+		  top:inherit;
+		  left:0;
+		  bottom:0;
+		}
+	button:hover:before,button:hover:after{
+		  width:100%;
+		  transition:800ms ease all;
+		      }
+ .even{
+  color: #CEF6D8;
+ }
+ 
+ input {
+	left:200px;
+	float:left;
+	width: 200px;
+	height: 30px;
 }
 
+.button2{
 
+		width: 90px;
+		float:left;
+		border-radius:20px 20px 20px 20px;
+		font-family:"mint_catefont"; 
+		  background:#595959;
+		  color:#96ffd4;
+		  border:none;
+		  position:relative;
+		  height:40px;
+		  font-size:25px;
+		  cursor:pointer;
+		  transition:800ms ease all;
+		  outline:none;
+		}
+	button.button2:hover{
+		  background:#96ffd4 ;
+		  color:#595959;
+		}
+	button.button2:before, button.button2:after{
+		  content:'';
+		  position:absolute;
+		  top:0;
+		  right:0;
+		  height:2px;
+		  width:0; 
+		  background: #1AAB8A;
+		  transition:400ms ease all;
+		}
+	button.button2:after{
+		  right:inherit;
+		  top:inherit;
+		  left:0;
+		  bottom:0;
+		}
+	button.button2:hover:before, button.button2:hover:after{
+		  width:100%;
+		  transition:800ms ease all;
+		      }
+		      
+	#bts{
+		 		top:50px;
+ 		left:670px;
+	}
 </style>
 </head>
 <body>
 <%@include file="../header.jsp"%>
-<div  id="div">
-<h1 style="text-align: center;">나의정보수정하기</h1>
+<div  id="div" class="배경div">
+<h1 style="font-size: 90px;">나의정보수정하기</h1><br/><br/><br/>
 <form id="userupdateForm" action="userupdate.do" method="post" >
-<table   id="table">
+<table id="table">
+		<col width="400px">
+		<col width="500px">
       <tr>
          <td>이메일</td>
-         <td><input value=" ${ldto.uemail}" readonly="readonly"/></td>
+         <td><input class="text" value=" ${ldto.uemail}" readonly="readonly"/></td>
       </tr>
       <tr>
          <td>별명</td>
          <td>
-         <input type="text" name="unick" id="unick" title="n" value="${ldto.unick}" required="required" autocomplete="off">
-         <input type="button" value="중복확인" id="ncheck" onclick="nnchk()"/>       
+         <input class="text" type="text" name="unick" id="unick" title="n" value="${ldto.unick}" required="required" autocomplete="off">
+         <button class="button2" id="ncheck" onclick="nnchk()">중복확인</button>       
          </td>
          <td><font id="nucheck" size="2" color="red"></font></td>
       </tr>
       <tr>
-      
-      
          <td>비밀번호</td>
-         <td><input type="password" name="upwd" required="required"></td> <!-- <확인!> 여기 </a>태그만 있었는데 지웠음, 위에 html5로 dtd 재정의함 -->
+         <td><input class="text" type="password" name="upwd" required="required"></td> <!-- <확인!> 여기 </a>태그만 있었는데 지웠음, 위에 html5로 dtd 재정의함 -->
       </tr>
+      
       <tr>
          <td>비밀번호확인</td>
-         <td><input type="password" name="password" id="pwdchk" required="required"></td>
+         <td><input type="password" class="text" name="password" id="pwdchk" required="required"></td>
          <td colspan="2"><font id="pucheck" size="2" color="red"></font></td>
       </tr>
-
-<!--       <tr> -->
-<!--          <th>프로필사진</th> -->
-<!--          <td> <input type="file" name="upload" required="required" value="${udto.uimg}"></td> --!>
-<!--       </tr> -->
-      <tr>
-         <td colspan="2" align="center"><br/><br/>
-            <input type="submit" value="수정완료">
-            <button onclick="location.href='userinfo_user.do'">수정 취소</button>
-         </td>
-      </tr>
    </table>
+            <button id="bts" type="submit">수정완료</button>
+            <button id="bts" style="margin-left: 50px;"  onclick="location.href='userinfo_user.do'">수정 취소</button>
+
       </form>
       </div>
 </body>

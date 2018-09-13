@@ -8,15 +8,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
-li {
 
-	text-align:center;
-	font-size: 25px;
-	color: black;
-	list-style: none;
-	float: left;
-	margin-right: 50px;
-}
+@font-face{     font-family:"mint_catefont";     src: url("resources/font/tvN Enjoystories Bold.ttf") format("truetype");       }
+
+
 
 li img{
 	width: 250px;
@@ -25,6 +20,7 @@ li img{
 
 
 .배경div{
+ 		font-family:mint_catefont;
        position:relative;
        width: 1600px;
        height:1600px;
@@ -53,7 +49,25 @@ li img{
        
  .ul태그{
  	margin-top: 60px;
+ 	margin-left: 30px;
  }
+ 
+ 	h1{
+	 	font-size: 90px;
+		}
+	
+li {
+
+	text-align:center;
+	font-size: 25px;
+	color: black;
+	list-style: none;
+	float: left;
+	margin-right: 50px;
+	left: auto; 
+	margin-top: 60px;
+}
+	
 </style>
 <title>글목록보기</title>
 
@@ -61,19 +75,10 @@ li img{
 <body>
 <%@include file="../header.jsp"%>
 <div class="배경div">
-<table id="회원정보">
-   <tr>
-     <td style="border: 1px solid red; height: 70px; width: 70px;">${ldto.uimg}</td>
-     <td>
-       <input type="button" value="내 정보 관리" onclick="location.href='userinfo_user.do'">
-       <input type="button" value="메인으로" onclick="location.href='usermain_user.do?useq=${ldto.useq}'">
-     </td>
-   </tr>
- </table>
+<h1>팔로우한 영화 전체</h1>
+ 
+ 
 <br/><br/><br/><br/><br/>
-<table class="table table-striped"  class="abc" >
-      <col width="10px" />
-      <col width="50px" />
 
       <c:choose>
          <c:when test="${empty lists}">
@@ -81,7 +86,7 @@ li img{
          <c:otherwise>
             <c:forEach var = "ldto" items="${lists}">
              <ul class="ul태그">
-        	 	<li>
+        	 	<li >
         	 		<a href="movie_info.do?mseq=${ldto.mdto.mseq}&useq=${lldto.useq}"><img src="${ldto.mdto.mimg}" alt="포스터"/></a><br/>
                  	<a href="movie_info.do?mseq=${ldto.mdto.mseq}&useq=${lldto.useq}">${ldto.mdto.mtitle}</a></li>
                </ul>
@@ -89,7 +94,6 @@ li img{
          </c:otherwise>
       </c:choose>
      
-   </table>
  </div>
  
 </body>

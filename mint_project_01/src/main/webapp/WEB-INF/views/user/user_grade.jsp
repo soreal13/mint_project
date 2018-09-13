@@ -9,6 +9,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+@font-face{     font-family:"mint_catefont";     src: url("resources/font/tvN Enjoystories Bold.ttf") format("truetype");       }
+
+
 li {
 
 	text-align:center;
@@ -32,6 +35,8 @@ list-style: none;float: left;
 }
 
 .배경div{
+
+	font-family:mint_catefont;
        position:relative;
        width: 1600px;
        height:auto;
@@ -57,22 +62,21 @@ list-style: none;float: left;
               z-index: -1;
        }
        
-       
+.imgtable{
+	padding-left: 75px;
+}
+
+h1{
+ padding-bottom: 70px;
+}
 </style>
 </head>
 <body>
 <%@include file="../header.jsp"%>
 <div class="배경div">
-<table>
-   <tr>
-     <td style=" height: 70px; width: 70px;">${ldto.uimg}</td>
-     <td>
-       <input type="button" value="내 정보 관리" onclick="location.href='userinfo_user.do'">
-       <input type="button" value="메인으로" onclick="location.href='usermain_user.do?useq=${ldto.useq}'">
-     </td>
-   </tr>
- </table>
-<table>
+<h1 style="font-size: 90px;">회원님께 추천해드리는 영화</h1>
+ 
+<table class="imgtable">
    <tr>
      <td>
          <ul class="mimg">

@@ -77,7 +77,7 @@ public class MemberController {
 		boolean isS=userService.register(udto, tdto);
 		if(isS) {
 			
-				return "member/login";
+				return "login.do";
 			
 		}else {
 			model.addAttribute("msg","가입 실패");

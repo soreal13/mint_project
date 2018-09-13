@@ -3,6 +3,7 @@
 <%request.setCharacterEncoding("utf-8"); %>
 <%response.setContentType("text/html; charset=utf-8"); %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html">
 <html>
 <head>
@@ -22,6 +23,7 @@
 
 </script>
 <style type="text/css">
+@font-face{     font-family:"mint_catefont";     src: url("resources/font/tvN Enjoystories Bold.ttf") format("truetype");       }
    input[type=checkbox]{width: 15px; height: 15px;}
    textarea[name=testAjax] {
    position: fixed;
@@ -29,22 +31,22 @@
    border-radius: 10px;
 }
 
-.container{
-       position:relative;
-       width: 1600px;
-       height:1600px;
-       margin-left:auto;
-       margin-right:auto;
-       text-align: center;
-       margin-bottom: auto;
-       padding-top: 100px;
-       font-size: 20px;
-       margin: auto;
-       border: 1px solid red;
-       font-size: 20px;
-       }
+	.container{
+	       position:relative;
+	       width: 1600px;
+	       height:1600px;
+	       margin-left:auto;
+	       margin-right:auto;
+	       text-align: center;
+	       margin-bottom: auto;
+	       padding-top: 100px;
+	       font-size: 20px;
+	       margin: auto;
+	       border: 1px solid red;
+	       font-size: 20px;
+	      }
        
- .container:after{
+	 .container:after{
               content: "";
               background-color:#595959;
               display: block;
@@ -62,53 +64,101 @@
        }
        
        table{
+       
+       background-color:#595959 ;
+        background-color: rgba( 89, 89, 89, 0.8 );
+       border-radius:20px 20px 20px 20px;
+        height: 40px;
         margin: auto;
+        font-family:mint_catefont;
+        font-size: 30px;
        }
+
+       
+       .wrap{
+       margin-left:30px;
+       text-align: left;
+       }
+       
+	input.button{
+		width: 110px;
+		float:left;
+		top:20px;
+		left:115px;
+		border-radius:20px 20px 20px 20px;
+		font-family:"mint_catefont"; 
+		  background:#595959;
+		  color:#96ffd4;
+		  border:none;
+		  position:relative;
+		  height:50px;
+		  font-size:30px;
+		  cursor:pointer;
+		  transition:800ms ease all;
+		  outline:none;
+		}
+	input.button:hover{
+		  background:#96ffd4 ;
+		  color:#595959;
+		}
+	input.button:before,input.button:after{
+		  content:'';
+		  position:absolute;
+		  top:0;
+		  right:0;
+		  height:2px;
+		  width:0; 
+		  background: #1AAB8A;
+		  transition:400ms ease all;
+		}
+	input.button:after{
+		  right:inherit;
+		  top:inherit;
+		  left:0;
+		  bottom:0;
+		}
+	input.button:hover:before,input.button:hover:after{
+		  width:100%;
+		  transition:800ms ease all;
+		      }
+	 table.rtable{
+		    width: 70%;
+		    border-top: 4px solid #EFFBF2;
+		    border-collapse: collapse;
+		  }
+	  th,td {
+		    border-bottom: 2px dotted #EFFBF2;
+		    padding: 10px;
+		  }
 </style>
 </head>
 <body>
 <%@include file="../header.jsp"%>
-<table>
-   <tr>
-     <td style="border: 1px solid red; height: 70px; width: 70px;">${ldto.uimg}</td>
-     <td>
-       <input type="button" value="내 정보 관리" onclick="location.href='userinfo_user.do'">
-       <input type="button" value="메인으로" onclick="location.href='usermain_user.do?useq=${ldto.useq}'">
-     </td>
-   </tr>
- </table>
-
-
 <!-- 객체생성과 마찬가지 -->
 <div class="container">
-<h1>한줄평 모아보기</h1>
-<br/><br/><br/><br/>
+<h1 style="font-family:mint_catefont; font-size: 70px;" >한줄평 모아보기</h1>
+<br/><br/><br/><br/><br/><br/>
 <form id="reviewform" action="delReview.do" method="POST">
-	<table class="table table-striped" style="text-align: center;" border="1">
+	<table class="table table-striped" style="text-align: center;" class="rtable">
 		<col width="100px" />
-      <col width="400px" />
-      <col width="500px" />
-      <col width="100px" />
-		<tr>
-			<th>삭제<input type="checkbox" id="all" onclick="allSel(this.checked)"/></th>
+      <col width="250px" />
+      <col width="850px" />
+      <col width="150px" />
+		<tr height="100px;" style="font-size: 40px;">
+			<th><input type="checkbox" id="all" onclick="allSel(this.checked)"/></th>
          <th>제목</th>
          <th>한줄평 내용</th>
          <th>작성일</th>
 		</tr>
-<!-- 		ifelse기능을하는 choose -> choose, when, otherwise가 한 세트 -->
 		<c:choose>
 			<c:when test="${empty lists}">
 				<tr><td colspan="4">---작성된 글이 없습니다.---</td></tr>
 			</c:when>
 			<c:otherwise>
-<!-- 			위의 when을 만족하지 않으면 실행되는 otherwise(otherwise안에 when을 다시 사용할 수 있음) -->
-<!-- 처음과 끝값 입력 없이 자동으로 구해서 반복 -->
 				<c:forEach var = "ldto" items="${lists}">
-					<tr>
-<!-- 					value안에 출력한 멤버필드의 이름입력 -->
+					<tr height="60px;">
 						<td><input type="checkbox" name="chk" value="${ldto.rdto.rseq}"/></td>
-<!-- 						글번호 출력 -->
-						<td>${ldto.mdto.mtitle}</td>
+						<td style="color: #96ffd4;">${ldto.mdto.mtitle}</td>
 						<c:choose>
 							<c:when test="${ldto.rdto.rdelflag=='Y'}">
 								<td class="delboard">---삭제된 글입니다.---</td>
@@ -126,14 +176,8 @@
 				</c:forEach>				
 			</c:otherwise>
 		</c:choose>
-		<tr>
-         <td colspan="4">
-
-            <input style="text-align: left;" type="submit" class="btn btn-danger" value="선택삭제"/>
-         </td>
-         
-      </tr>
 	</table>
+	  <input width="10px;" class="button" id="submit" type="submit" value="삭제"/>
    </form>
 </div>
 </body>
