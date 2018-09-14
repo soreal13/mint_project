@@ -68,6 +68,23 @@ h2{
    align-self: left;
 }
 
+#titleneon1 {
+ width: 500px;
+ margin: 50px;
+}
+#titleneon2 {
+ width: 700px;
+ margin: 50px;
+}
+#titleneon3 {
+ width: 450px;
+ margin: 50px;
+}
+#titleneon4 {
+ width: 500px;
+ margin: 50px;
+}
+
 </style>
 
 
@@ -81,8 +98,7 @@ h2{
       <div class="col-md-12 heroSlider-fixed">
         <div class="overlay">        
       </div>
-      <img src="resources/images/index01.png">
-      <h2>지금 봐야할 이 영화</h2>
+      <img src="resources/images/index01.png" alt="ttneon" id="titleneon1"><br/>
          <!-- Slider -->
         <div class="slider responsive r1">
           <div>
@@ -140,8 +156,7 @@ h2{
       <div class="col-md-12 heroSlider-fixed">
         <div class="overlay">
       </div>
-      	<img src="resources/images/index02.png">
-        <h2>이런 영화 어때요? MD PICK!</h2>
+      	<img src="resources/images/index02.png" id="titleneon2">
          <!-- Slider -->
         <div class="slider responsive r2">
          	<div>
@@ -198,8 +213,7 @@ h2{
       <div class="col-md-12 heroSlider-fixed">
         <div class="overlay">
       </div>
-      	<img src="resources/images/index03.png">
-        <h2>개봉예정작</h2>
+      	<img src="resources/images/index03.png" id="titleneon3">
          <!-- Slider -->
         <div class="slider responsive r3">
           <div>
@@ -255,8 +269,7 @@ h2{
       <div class="col-md-12 heroSlider-fixed">
         <div class="overlay">
       </div>
-      <img src="resources/images/index04.png">
-        <h2>내 취향 저격! 별점 4점 이상 영화 추천!</h2>
+      <img src="resources/images/index04.png" id="titleneon4">
          <!-- Slider -->
         <div class="slider responsive r4">
       <div>

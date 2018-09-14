@@ -73,7 +73,7 @@ list-style: none;float: left;
 }
 	
 </style>
-<title>글목록보기</title>
+<title>MINT!! ::글목록보기</title>
 
 </head>
 <body>

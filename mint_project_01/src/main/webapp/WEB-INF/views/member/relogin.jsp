@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>로그인</title>
+<title>MINT!! :: 로그인</title>
 <style type="text/css">
 
    @font-face{     font-family:"mint_catefont";     src: url("resources/font/tvN Enjoystories Bold.ttf") format("truetype");       }
@@ -64,7 +64,7 @@
 </form>
 <h4><a href="findemail.do" ><h3>이메일이 기억나지 않습니다.</h3></a></h4> 
 <h4><a href="findpwd.do"><h3>비밀번호가 기억나지 않습니다.</h3></a></h4>        
-<font size="4">아직 아이디가 없으시다면,</font><a class="b" href="signin.do" style="font-size: 28px; color: #96ffd4">회원가입하기!!</a>
+<font size="4">아직 아이디가 없으시다면,</font><a class="b" href="signin.do" style="font-size: 28px; color: #96ffd4">회원가입하기</a>
 </div>
 </div>
 <%@include file="../footer.jsp"%>

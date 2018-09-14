@@ -14,7 +14,7 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src='<c:url value="/js/bootstrap.min.js"  />'></script>
 
-<title>아이디 찾기</title>
+<title>MINT!! :이메일을 잊어버리셨나요?</title>
 <style type="text/css">
 
    @font-face{     font-family:"mint_catefont";     src: url("resources/font/tvN Enjoystories Bold.ttf") format("truetype");       }
@@ -41,28 +41,32 @@
               opacity:0.7;
               z-index: -1;
        }   
+      .title{
+   text-align: center;
+   color: #96ffd4;
+    font-family:"mint_catefont"; 
+/*     margin-top: 50px; */
+   padding-top:50px;
+    font-size: 40px;
    
+   }
 </style>
 </head>
 <body>
 <%@include file="../header.jsp"%>
 <div id="u">
 <div id="i">
-<h1 align="center" style="color: #96ffd4;">이메일 찾기</h1>
+<p class="title">이메일 찾기</p>
 <form action="findemail_user.do" method="post">
+<input type="hidden" name="tomail"  value="ejswhp@gmail.com" />
 <table id="o">
    <tr>
-      <th>MINT관리자 메일</th>
-      <td><input type="email" name="tomail"  value="ejswhp@gmail.com" readonly="readonly" style="text-align: letter-spacing;width:300px;height: 25px; " /> </td>
-      
-   </tr>
-   <tr>
       <th>제목</th>
-      <td><input type="text" name="title" placeholder="을 입력해 주세요" required="required" style="text-align: letter-spacing;width:300px;height: 25px; "> </td>      
+      <td><input type="text" name="title" placeholder="입력해 주세요" required="required" style="text-align: letter-spacing;width:300px;height: 25px; "> </td>      
    </tr>   
    <tr>
       <th>답변받을 이메일</th>
-      <td><textarea rows="10" cols="40" name="content" placeholder="별명&답변받을 이메일을 적어주세요." class="form-control" required="required" ></textarea></td>
+      <td><textarea rows="10" cols="40" name="content" placeholder="별명&답변받을 이메일을 적어주세요." class="form-control" required="required" style="resize: none;" ></textarea></td>
    </tr>
    <tr>
       <td colspan="2" align="right"><input type="submit" value="문의보내기" class="btn btn-warning" >
@@ -70,8 +74,8 @@
    </tr>   
 </table>
 </form>
-<h3><font color="orange">고객님. 확인 후에 메일을 보내드리겠습니다</h3>
-<h4><font color="orange">답변에는 일주일이상 소요될 수 있습니다.</h4>
+<h3><font color="orange">고객님. 확인 후에 메일을 보내드리겠습니다</font></h3>
+<h4><font color="orange">답변에는 일주일이상 소요될 수 있습니다.</font></h4>
 </div>
 </div>
 <%@include file="../footer.jsp"%>

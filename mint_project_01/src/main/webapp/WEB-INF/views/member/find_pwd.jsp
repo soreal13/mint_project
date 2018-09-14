@@ -17,10 +17,11 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src='<c:url value="/js/bootstrap.min.js"  />'></script>
 
-<title>아이디 찾기</title>
+<title>MINT!! :: 비밀번호 찾기</title>
 <style type="text/css">
    @font-face{     font-family:"mint_catefont";     src: url("resources/font/tvN Enjoystories Bold.ttf") format("truetype");       }
 
+   
    #i{ width: 1000px; height: 300px; margin: 0 auto;}
    #o{ width: 430px; height: 130px; margin-left: 300px; margin-top: 20px; margin-bottom: 20px;}
 
@@ -43,6 +44,15 @@
               opacity:0.7;
               z-index: -1;
        }   
+   .title{
+   text-align: center;
+   color: #96ffd4;
+    font-family:"mint_catefont"; 
+/*     margin-top: 50px; */
+   padding-top:50px;
+    font-size: 40px;
+   
+   }
 
 </style>
 </head>
@@ -50,14 +60,12 @@
 <%@include file="../header.jsp"%>
 <div id="u">
 <div id="i">
-<h1 align="center" style="color: #96ffd4;">비밀번호 찾기</h1>
+<p class="title">비밀번호 찾기</p>
+
 <form action="findemail_user.do" method="post">
+<input type="hidden" name="tomail"  value="ejswhp@gmail.com" />
 <table id="o">
-   <tr>
-      <th>MINT관리자 메일</th>
-      <td><input type="email" name="tomail"  value="ejswhp@gmail.com" readonly="readonly" style="text-align: letter-spacing;width:300px;height: 25px; " /> </td>
-      
-   </tr>
+  
    <tr>
       <th>제목</th>
       <td><input type="text" name="title" placeholder="을 입력해 주세요" required="required" style="text-align: letter-spacing;width:300px;height: 25px; "> </td>      

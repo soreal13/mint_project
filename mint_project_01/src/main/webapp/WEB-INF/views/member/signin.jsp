@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원 가입</title>
+<title>MINT!!:: 회원 가입</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <style type="text/css">
     #i{ width: 1000px; height: 300px; margin: 0 auto;} 
@@ -32,9 +32,16 @@
               opacity:0.7;
               z-index: -1;
        }
-     h1{margin-top: 50px;
-       font-family: 'mint_bodyfont'}      
-    a{text-decoration: none;}
+    .title{
+   text-align: center;
+   color: #96ffd4;
+    font-family:"mint_catefont"; 
+/*     margin-top: 50px; */
+   padding-top:50px;
+    font-size: 40px;
+   
+   }    
+    a{text-decoration: none; color: green;}
 </style>
 <script type="text/javascript">
 //이메일 중복체크하기
@@ -198,7 +205,7 @@
 <%@include file="../header.jsp"%>
 <div id="u">
 <div id="i"  >
-<h1 align="center" style="color: #96ffd4;">LET'S MINT</h1>
+<p class="title">LET'S MINT</p>
 <form id="loginForm" action="sign.do" method="POST">
 <table id="o" >   
 <col width="130px;"><col width="160px;"><col width="30px;"><col width="280px;">

@@ -306,6 +306,45 @@ clear: both;
 	
 </style>
 
+<style type="text/css">
+input{
+		width: 90px;
+		border-radius:20px 20px 20px 20px;
+		font-family:"mint_catefont"; 
+		  background:#595959;
+		  color:#96ffd4;
+		  border:none;
+		  position:relative;
+		  height:30px;
+		  font-size:30px;
+		  cursor:pointer;
+		  transition:800ms ease all;
+		  outline:none;
+		}
+	input:hover{
+		  background:#96ffd4 ;
+		  color:#595959;
+		}
+	input:before, input:after{
+		  content:'';
+		  top:0;
+		  right:0;
+		  height:2px;
+		  width:0; 
+		  background: #1AAB8A;
+		  transition:400ms ease all;
+		}
+	input:after{
+		  right:inherit;
+		  top:inherit;
+		  left:0;
+		  bottom:0;
+		}
+	input:hover:before,input:hover:after{
+		  transition:800ms ease all;
+		      }
+</style>
+
 
 <script type="text/javascript" >
 
@@ -581,7 +620,7 @@ $(function(){
 				<col width="80"><col width="80"><col width="100">
 				<tr>
 					<td><input type="hidden" name="runick" value="${ldto.unick}">${ldto.unick}</td>
-					<td><textarea rows="3" cols="59" name="rcontent" placeholder="한줄평을 입력해주세요."></textarea></td>
+					<td><textarea rows="3" cols="59" name="rcontent" placeholder="한줄평을 입력해주세요." style="resize: none;"></textarea></td>
 					<td><input type="submit" value="입력"></td>
 				</tr>
 					
@@ -672,7 +711,7 @@ $(function(){
 	}
 %>
 
-<p class="rcbox" style="margin-bottom:20px;">관련영화추천</p>
+<p class="rcbox">관련영화추천</p>
 <% 
 List<MovieDto> tmlist=(List<MovieDto>)request.getAttribute("tmlist");
 String keyw =(String)request.getAttribute("keyw");

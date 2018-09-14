@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>글목록보기</title>
+<title>MINT!! :: 내 리뷰 모아보기</title>
 <script type="text/javascript">
       
 

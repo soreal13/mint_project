@@ -134,7 +134,8 @@
 	body{
 	background-image: url("resources/img/bricks1.jpg");
 	}
-   
+	
+
 </style>
 </head>
 <body>
