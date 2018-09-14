@@ -654,7 +654,7 @@ $(function(){
    <tr>
       <td><%=rdto.getRunick()%> : </td>
       <td>  <%=rdto.getRcontent()%></td>
-      <td><%=rdto.getRdate()%></td>
+      <td><%=rdto.getRdate()%>&nbsp;</td>
      <td>
 	       <%
 	       //만약에 로그인한 유저가 좋아요를 눌렀다면 색깔있는거. 아님 없는거... 체크 해서 다르게 해야함
