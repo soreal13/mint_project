@@ -10,30 +10,49 @@
      	<result property="sgrade" column="sgrade" />
       	<result property="smseq" column="smseq" />
       	<result property="suseq" column="suseq" />
+      	<collection property="mdto" resultMap="MovieDto" />
 	</resultMap>
+
 	
 <!-- 	초기별점정보생성 -->
 	<insert id="insertStarpoint" parameterType="StarpointDto">
-	INSERT INTO STARPOINT_TABLE (SSEQ, SGRADE, SMSEQ, SUSEQ) VALUES (STARPOINT_TABLE_SEQ.NEXTVAL, #{sgrade}, #{mseq}, #{useq})
+	INSERT INTO STARPOINT_TABLE (SSEQ, SGRADE, SMSEQ, SUSEQ) VALUES (STARPOINT_TABLE_SEQ.NEXTVAL, #{sgrade}, #{smseq}, #{suseq})
 	</insert>
 <!--       별점 정보 수정 -->
     <update id="updateStarpoint" parameterType="StarpointDto">
     UPDATE STARPOINT_TABLE SET SGRADE=#{sgrade} WHERE SSEQ=#{sseq}
     </update>
 <!--     유저&영화로 별점셀렉 -->
-	<select id="getOneStarpoint" parameterType="int">
-	SELECT SGRADE FROM STARPOINT_TABLE WHERE SUSEQ=#{useq} AND SMSEQ=#{mseq}
+	<select id="getOneStarpoint" parameterType="Map"  resultType="StarpointDto">
+	SELECT SGRADE, SSEQ FROM STARPOINT_TABLE WHERE SUSEQ=#{suseq} AND SMSEQ=#{smseq}
 	</select>
 <!-- 유저가 평가한 별점목록 -->
-	<select id="getUserStarpoint" parameterType="int">
-	SELECT * FROM STARPOINT_TABLE WHERE SUSEQ=#{useq}
+	<select id="getUserStarpoint" parameterType="int" resultType="StarpointDto">
+	SELECT * FROM STARPOINT_TABLE WHERE SUSEQ=#{suseq}
 	</select>
 <!-- 영화별 별점목록 -->
-	<select id="getMovieStarpoint" parameterType="int">
-	SELECT * FROM STARPOINT_TABLE WHERE SMSEQ=#{mseq}
+	<select id="getMovieStarpoint" parameterType="int" resultType="StarpointDto">
+	SELECT * FROM STARPOINT_TABLE WHERE SMSEQ=#{smseq}
 	</select>
 <!-- 전체 별점목록 -->
-	<select id="getAllstarpoint" parameterType="int">
+	<select id="getAllstarpoint" parameterType="int" resultType="StarpointDto">
 	SELECT * FROM STARPOINT_TABLE
 	</select>
+	
+<!-- 별점 순 검색 10점 만점으로 뱉어냄 별점 4점이상만 가져옴  resultType="StarpointDto"  -->
+	<select id="getHighpointmovie" resultType="StarpointDto">
+		SELECT SMSEQ, ROUND(AVG(sgrade)) AS SGRADE 
+		FROM STARPOINT_TABLE
+		WHERE SGRADE>=8
+		GROUP BY SMSEQ
+		ORDER BY sgrade DESC
+	</select>
+	
+	<select id="getUserhighmovie" parameterType="int" resultType="StarpointDto">
+			SELECT * FROM STARPOINT_TABLE
+			WHERE SUSEQ=#{SUSEQ, jdbcType=INTEGER} AND SGRADE>=6
+			ORDER BY SGRADE DESC		
+	</select>
+	
+	
 </mapper>

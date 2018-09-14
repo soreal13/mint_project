@@ -13,13 +13,14 @@
        	<result property="rdate" column="rdate" />
        	<result property="rdelflag" column="rdelflag"/>
         <result property="rupuseq" column="rupuseq" />
+        <result property="runick" column="runick" />
 	</resultMap>
 	
 	
 <!--        후기작성 -->
        <insert id="insertReview" parameterType="ReviewDto">
-    	INSERT INTO REVIEW_TABLE (RSEQ, RMSEQ, RUSEQ, RCONTENT, RUP, RDATE, RDELFLAG)
-    	VALUES (REVIEW_TABLE_SEQ.nextval,#{mseq},#{useq},#{rcontent},'0',SYSDATE, 'N')   
+    	INSERT INTO REVIEW_TABLE (RSEQ, RMSEQ, RUSEQ, RCONTENT, RUP, RDATE, RDELFLAG, RUNICK)
+    	VALUES (REVIEW_TABLE_SEQ.nextval,#{rmseq},#{ruseq},#{rcontent},'0',SYSDATE, 'N', #{runick})   
        </insert>
 <!--        후기수정 -->
        <update id="updateReview" parameterType="ReviewDto">
@@ -34,28 +35,28 @@
 		
 <!-- 		영화별 후기 리스트 -->
 		<select id="getMovieReview" parameterType="int" resultType="ReviewDto">
-		SELECT RSEQ, RMSEQ, RUSEQ, RCONTENT, RUP, RDATE, RDELFLAG, RUPUSEQ FROM REVIEW_TABLE WHERE RMSEQ=#{mseq} AND RDELFLAG='N'
+		SELECT RSEQ, RMSEQ, RUSEQ, RCONTENT, RUP, RDATE, RDELFLAG, RUPUSEQ, RUNICK FROM REVIEW_TABLE WHERE RMSEQ=#{rmseq} AND RDELFLAG='N'
 		</select>
 <!-- 유저별 후기 리스트 -->
 		<select id="getUserReview" parameterType="int" resultMap="ReviewDto">
-		SELECT RSEQ, RMSEQ, RUSEQ, RCONTENT, RUP, RDATE, RDELFLAG, RUPUSEQ FROM REVIEW_TABLE WHERE RUSEQ=#{useq} AND RDELFLAG='N'
+		SELECT RSEQ, RMSEQ, RUSEQ, RCONTENT, RUP, RDATE, RDELFLAG, RUPUSEQ, RUNICK FROM REVIEW_TABLE WHERE RUSEQ=#{ruseq} AND RDELFLAG='N'
 		</select>
 <!-- 모든 후기 리스트 -->
 		<select id="getAllReview" resultMap="ReviewDto">
-		SELECT * FROM REVIEW_TABLE
+		SELECT * FROM REVIEW_TABLE ORDER BY RSEQ DESC
 		</select>
 
 <!-- 후기 공감-->
-		<update id="updateUp" parameterType="Map">
-		UPDATE REVIEW_TABLE SET RUPUSEQ=(RUPUSEQ||'#{useq}')|| ':', RUP=(rup+1) WHERE RSEQ=#{rseq}
+		<update id="updateUp" parameterType="ReviewDto">
+		UPDATE REVIEW_TABLE SET RUPUSEQ=(RUPUSEQ||#{rupuseq})|| ':', RUP=(rup+1) WHERE RSEQ=#{rseq}
 		</update>
 <!-- 후기 비공감 -->
-		<update id="updateDown" parameterType="Map">
-		UPDATE REVIEW_TABLE SET RUPUSEQ=REPLACE(RUPUSEQ,':#{useq}:',':'), RUP=(rup-1) WHERE RSEQ=#{rseq}
+		<update id="updateDown" parameterType="ReviewDto">
+		UPDATE REVIEW_TABLE SET RUPUSEQ=REPLACE(RUPUSEQ,#{rupuseq},':'), RUP=(rup-1) WHERE RSEQ=#{rseq}
 		</update>
 <!-- 공감 눌렀는지 확인용 쿼리!! 반환된 rseq에는 공감취소버튼을, 나머지에 공감버튼을 줌 -->
 		<select id="chkReview" parameterType="int" resultMap="ReviewDto">
-		SELECT RSEQ FROM REVIEW_TABLE WHERE RUPUSEQ LIKE '%:#{useq}:%'
+		SELECT RSEQ FROM REVIEW_TABLE WHERE RUPUSEQ LIKE '%:#{ruseq}:%'
 		</select>
 		
 

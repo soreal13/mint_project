@@ -30,59 +30,9 @@
     <servlet-name>appServlet</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>MovieController</display-name>
-    <servlet-name>MovieController</servlet-name>
-    <servlet-class>com.mint.project.MovieController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>MovieController</servlet-name>
-    <url-pattern>/MovieController.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>UserController</display-name>
-    <servlet-name>UserController</servlet-name>
-    <servlet-class>com.mint.project.UserController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UserController</servlet-name>
-    <url-pattern>/UserController.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>MemberController</display-name>
-    <servlet-name>MemberController</servlet-name>
-    <servlet-class>com.mint.project.MemberController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>MemberController</servlet-name>
-    <url-pattern>/MemberController.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>AdminController</display-name>
-    <servlet-name>AdminController</servlet-name>
-    <servlet-class>com.mint.project.AdminController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminController</servlet-name>
-    <url-pattern>/AdminController.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>TasteController</display-name>
-    <servlet-name>TasteController</servlet-name>
-    <servlet-class>com.mint.project.TasteController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>TasteController</servlet-name>
-    <url-pattern>/TasteController.do</url-pattern>
-  </servlet-mapping>
- 
- 
   
+ 
+ 
   <!--한글 설정-->
        <filter>
               <filter-name>encodingFilter</filter-name>

@@ -5,8 +5,9 @@ public class StarpointDto {
 	   private int sgrade;
 	   private int smseq;
 	   private int suseq;
-	  
-	   public StarpointDto() {
+
+
+	public StarpointDto() {
 	      super();
 	      // TODO Auto-generated constructor stub
 	   }
@@ -44,10 +45,13 @@ public class StarpointDto {
 	   public void setSuseq(int suseq) {
 	      this.suseq = suseq;
 	   }
+
+
+	   
 	   @Override
-	   public String toString() {
-	      return "StarpointDto [sseq=" + sseq + ", sgrade=" + sgrade + ", smseq=" + smseq + ", suseq=" + suseq + "]";
-	   }
+	public String toString() {
+		return "StarpointDto [sseq=" + sseq + ", sgrade=" + sgrade + ", smseq=" + smseq + ", suseq=" + suseq + "]";
+	}
 	  
 
 }
