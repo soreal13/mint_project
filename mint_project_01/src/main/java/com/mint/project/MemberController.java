@@ -1,8 +1,6 @@
 package com.mint.project;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -10,35 +8,26 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.connector.Request;
+import org.apache.catalina.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.mint.project.aop.TasteAop;
-import com.mint.project.dtos.MovieDto;
 import com.mint.project.dtos.TasteDto;
 import com.mint.project.dtos.UserDto;
-import com.mint.project.service.IUserService;
 import com.mint.project.service.MovieServiceImp;
 import com.mint.project.service.TasteServiceImp;
 import com.mint.project.service.UserServiceImp;
 
-import javax.mail.internet.MimeMessage;
 
-import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
@@ -51,9 +40,6 @@ public class MemberController {
 	private UserServiceImp userService;
 	@Autowired
 	private TasteServiceImp tService;
-	@Autowired
-	private MovieServiceImp mService;
-	
    @Autowired
    private JavaMailSender mailSender;
    
@@ -66,25 +52,33 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	//회원가입
-	@RequestMapping(value="/sign.do", method =RequestMethod.POST)
-	public @ResponseBody String register(UserDto udto ,Locale locale, Model model) {
+	@RequestMapping(value="/logout.do")
+	public String logout(HttpSession session) {
+		session.invalidate();
 		
-		TasteDto tdto = new TasteDto();
-		String img = "default.png";
-		udto.setUimg(img);
 		
-		boolean isS=userService.register(udto, tdto);
-		if(isS) {
-			
-				return "member/login";
-			
-		}else {
-			model.addAttribute("msg","가입 실패");
-			return "member/signin";
-		}
+		return "redirect:index.jsp";
 	}
 	
+	//회원가입
+		@RequestMapping(value="/sign.do", method =RequestMethod.POST)
+		public String register(UserDto udto ,Locale locale, Model model) {
+			
+			TasteDto tdto = new TasteDto();
+			String img = "default.png";
+			udto.setUimg(img);
+			
+			boolean isS=userService.register(udto, tdto);
+			if(isS) {
+					return "member/login";
+				
+			}else {
+				model.addAttribute("msg","가입 실패");
+				return "member/signin";
+			}
+		}
+		
+		
 	//회원가입 창으로
 	@RequestMapping(value="/signin.do", method =RequestMethod.GET)
 	public String signin(Locale locale, Model model) {
@@ -107,21 +101,12 @@ public class MemberController {
 	            	return "taste_init";
 	            	
 	            } else {
-//	            	System.out.println(tdto.toString());
-//	            	System.out.println("로그인직전");
-//	            	model.addAttribute("tdto", tdto);
-//	            	System.out.println("취향 메소드 시작");	        		
-//	        		//2. 유저의 취향점수 중 제일 높은 것 뽑아내기(=tdto주고 한글키워드 받아옴)
-//	        		String keyw = taop.getKeyw(tdto);
-//	        		System.out.println(keyw);
-//	        		//3. 키워드로 영화 검색하기
-//	        		List<MovieDto> tmlist= mService.getCertainMovieinfo(keyw);
-//	        		model.addAttribute("tmlist", tmlist);		
-//	            	model.addAttribute("keyw", keyw);
+
 	            	return "redirect:usermain_user.do";
 	            }		            
 	            
 	        } else {
+	        	System.out.println("null임.");
 	        	  return "member/login";
 	        }
 		}
@@ -207,3 +192,4 @@ public class MemberController {
 	}
 	
 }
+

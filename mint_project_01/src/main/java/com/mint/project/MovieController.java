@@ -59,9 +59,15 @@ public class  MovieController {
 		   // 영화한편정보
 	
 	@RequestMapping(value="/movie_info.do")
-	   public String getMovieinfo(ModelMap model, int mseq, int useq,HttpSession session) {
+	   public String getMovieinfo(ModelMap model, int mseq, HttpSession session) {
 	      //영화 정보 페이지 로딩시 불러올것
-	      
+		int useq=0;
+	       UserDto ldto2=(UserDto)session.getAttribute("ldto");
+	      if(session.getAttribute("ldto")==null) {
+	         useq=0;
+	      } else if(session.getAttribute("ldto")!=null){
+	         useq=ldto2.getUseq();
+	      }
 	      //1 해당 영화 정보
 	      MovieDto mdto=new MovieDto();
 	      mdto=movieServiceImp.getMovieinfo(mseq);
@@ -119,7 +125,7 @@ public class  MovieController {
 			 //2. ',' 기준으로 키워드 나누기.
 		String[] keyword= taop.askKeyword(mkeyw);
 		Collections.shuffle(Arrays.asList(keyword));
-          List<MovieDto> tmlist= movieServiceImp.getCertainMovieinfo(keyword[0]);
+        List<MovieDto> tmlist= movieServiceImp.getCertainMovieinfo(keyword[0], "basic");
          Collections.shuffle(tmlist);
           
          model.addAttribute("tmlist", tmlist);
@@ -130,24 +136,34 @@ public class  MovieController {
 	   }
 	
 	   
+
 	   // 특정 영화 정보(검색어 나오는 메소드)
 	@RequestMapping(value="/movie_search.do",produces="text/plain;charset=UTF-8")
-	public String getCertainMovieinfo(Model model,String search){
-
-		System.out.println("search는?"+search);
-		String mkeyw=search;
-		
-		System.out.println("mkeyw = "+mkeyw);
-		List<MovieDto> smlist=movieServiceImp.getCertainMovieinfo(mkeyw);
-		model.addAttribute("smlist", smlist);
-		model.addAttribute("search", search);
-		
+	public String getCertainMovieinfo(Model model,String search, String desc){
+	
+			List<MovieDto> smlist=movieServiceImp.getCertainMovieinfo(search,desc);
+			model.addAttribute("smlist", smlist);
+			model.addAttribute("search", search);
+			
+	
 		return "movie_search";
+		
+	};
+	
+	//180903 추가
+	@RequestMapping(value="/search.do",produces="text/plain;charset=UTF-8")
+	public String searchMovie(){
+		return "search";
+		
+	};
+	@RequestMapping(value="/searchgenre.do",produces="text/plain;charset=UTF-8")
+	public String searchGenre(){
+		return "movie_keyword";
 		
 	};
 	    
 	   // 영화전체정보...쓸일없는듯
-	@RequestMapping(value="/.do", method =RequestMethod.GET)
+	@RequestMapping(value="/allmovieinfo.do", method =RequestMethod.GET)
 	public String getAllMovieinfo(Model model){
 		List<MovieDto> mlist=movieServiceImp.getAllMovieinfo();
 		model.addAttribute("mlist", mlist);
@@ -157,149 +173,171 @@ public class  MovieController {
 	
 	   
 	//팔로우 하기 (좋아요 되어있지 않는 상태에서 보이는 메소드)
-	@RequestMapping(value="/updateFollow.do")
-	public String updateFollow(Model model,int useq, int mseq) {
-		String mfollow=""+useq;
-		System.out.println("mseq?"+mseq);
-		MovieDto mDto=new MovieDto();
-		mDto.setMfollow(mfollow);
-		mDto.setMseq(mseq);
-		boolean isS=movieServiceImp.updateFollow(mDto);
-		System.out.println(isS);
-		
-		
-		if(isS) {
-			return "redirect:movie_info.do?mseq="+mseq+"&useq="+useq;
-		
-		} else {
-			model.addAttribute("msg","팔로우 해제 실패1");
-			return "error";
-		}
-	
-		
-	}
+	   @RequestMapping(value="/updateFollow.do")
+	   public String updateFollow(Model model,int useq, int mseq) {
+	      System.out.println("useq="+useq+"mseq="+mseq);
+	      String mfollow=""+useq;
+	      String ufmseq=""+mseq;
+	      System.out.println("mseq?"+mseq);
+	      MovieDto mDto=new MovieDto();
+	      mDto.setMfollow(mfollow);
+	      mDto.setMseq(mseq);
+	      
+	      UserDto uDto=new UserDto();
+	      uDto.setUseq(useq);
+	      uDto.setUfmseq(ufmseq);
+	      
+	      boolean isS=movieServiceImp.updateFollow(uDto,mDto);
+	      System.out.println(isS);
+	      if(isS) {
+	         
+	            return "redirect:movie_info.do?mseq="+mseq+"&useq="+useq;
+	         
+	         
+	      } else {
+	         model.addAttribute("msg","팔로우 해제 실패1");
+	         return "error";
+	      }
+	   
+	      
+	   }
 	   
 	   //팔로우 삭제
-	@RequestMapping(value="/delFollow.do")
-	public String delFollow(Model model,int useq,int mseq) {
-		
-		String mfollow=":"+useq+":";
-		MovieDto mdto=new MovieDto();
-		mdto.setMfollow(mfollow);
-		mdto.setMseq(mseq);
-				boolean isS=movieServiceImp.delFollow(mdto);
-				if(isS) {
-					return "redirect:movie_info.do?mseq="+mseq+"&useq="+useq;
-				
-				} else {
-					model.addAttribute("msg","팔로우 해제 실패1");
-					return "error";
-				}
+	   @RequestMapping(value="/delFollow.do")
+	   public String delFollow(Model model,int useq,int mseq) {
+	      
+	      String mfollow=":"+useq+":";
+	      String ufmseq=":"+mseq+":";
+	      MovieDto mdto=new MovieDto();
+	      mdto.setMfollow(mfollow);
+	      mdto.setMseq(mseq);
+
+	      UserDto udto=new UserDto();
+	      udto.setUseq(useq);
+	      udto.setUfmseq(ufmseq);
+	      
+	            boolean isS=movieServiceImp.delFollow(udto,mdto);
+	            if(isS) {
+	                  return "redirect:movie_info.do?mseq="+mseq+"&useq="+useq;
+	            
+	            } else {
+	               model.addAttribute("msg","팔로우 해제 실패1");
+	               return "error";
+	            }
+	         
+	   }
+	
+
+	 //후기 생성
+		@RequestMapping(value="/insertReview.do", method =RequestMethod.POST)
+		public String insertReview(Model model,ReviewDto rdto) {
 			
-	}
-	
-
-	//후기 생성
-	@RequestMapping(value="/insertReview.do", method =RequestMethod.POST)
-	public String insertReview(Model model,ReviewDto rdto) {
-		
-		boolean isS=reviewServiceImp.insertReview(rdto);
-		if(isS) {
-			return "redirect:movie_info.do?mseq="+rdto.getRmseq()+"&useq="+rdto.getRuseq();
-		} else {
-			model.addAttribute("msg","리뷰 작성 실패");
-			return "error";
-		}
-	}
-
-	//후기수정
-	public String updateReview(Model model,ReviewDto rdto) {
-		boolean isS=reviewServiceImp.updateReview(rdto);
-		if(isS) {
-			return "redirect:movie_info.do?mseq="+rdto.getRmseq();
-		} else {
-			model.addAttribute("msg","리뷰 작성 실패");
-			return "error";
-		}
-	}
-	
-	//후기 삭제
-	public String delReview(Model model,ReviewDto rdto) {
-		boolean isS=reviewServiceImp.delReview(rdto.getRseq());
-		if(isS) {
-			return "redirect:movie_info.do?mseq="+rdto.getRmseq();
-		} else {
-			model.addAttribute("msg","리뷰 삭제 실패");
-			return "error";
-		}
-	}
-	
-	//영화별후기 전체보기.
-	@RequestMapping(value="/movie_review.do", method =RequestMethod.GET)
-	public String getMovieReview(Model model,int mseq,int useq) {
-		
-		//1 해당 영화 정보
-		MovieDto mdto=new MovieDto();
-		mdto=movieServiceImp.getMovieinfo(mseq);
-		model.addAttribute("mdto", mdto);
-		
-		//3 해당 영화 리뷰 정보  + 리뷰 불러올때 해당 리뷰들에 공감찍었는지 확인해야함. 
-		List<ReviewDto> rlist=reviewServiceImp.getMovieReview(mseq);
-		model.addAttribute("rlist", rlist);
-		
-		//4 해당 영화 팔로우 정보 null!=false입니다..
-//		아니 이미 mdto에 mfollow가 있으니까 거기서 문자열 검색으로 체크해야지
-		String str=""+mdto.getMfollow();
-		String user_useq=""+useq;
-		String target=":"+user_useq+":";
-		String chkF;
-		if(str.contains(target)) {
-			System.out.println("문자열있음");
-			model.addAttribute("chkF", "Y");
-		} else {
-			System.out.println("문자열없음");
-			model.addAttribute("chkF", "N");
+			boolean isS=reviewServiceImp.insertReview(rdto);
+			if(isS) {
+				return "redirect:movie_info.do?mseq="+rdto.getRmseq()+"&useq="+rdto.getRuseq();
+			} else {
+				model.addAttribute("msg","리뷰 작성 실패");
+				return "error";
+			}
 		}
 
-		return "movie_review.do?mseq="+mseq;
-	}
+		//후기수정
+		public String updateReview(Model model,ReviewDto rdto) {
+			boolean isS=reviewServiceImp.updateReview(rdto);
+			if(isS) {
+				return "redirect:movie_info.do?mseq="+rdto.getRmseq();
+			} else {
+				model.addAttribute("msg","리뷰 작성 실패");
+				return "error";
+			}
+		}
 	
-	//후기 공감
-	@RequestMapping(value="/updateUp.do", method =RequestMethod.GET)
-	public String updateUp(Model model, int useq, int rseq,int mseq) {
-		System.out.println("공감!!"+mseq);
-		String rupuseq=""+useq;
-		ReviewDto rdto = new ReviewDto();
-		rdto.setRupuseq(rupuseq);
-		rdto.setRseq(rseq);
-		rdto.setRmseq(mseq);
+		//후기 삭제
+		public String delReview(Model model,ReviewDto rdto) {
+			boolean isS=reviewServiceImp.delReview(rdto.getRseq());
+			if(isS) {
+				return "redirect:movie_info.do?mseq="+rdto.getRmseq();
+			} else {
+				model.addAttribute("msg","리뷰 삭제 실패");
+				return "error";
+			}
+		}
+	
+		//영화별후기 전체보기.
+		@RequestMapping(value="/movie_review.do", method =RequestMethod.GET)
+		public String getMovieReview(Model model,int mseq,int useq,HttpSession session) {
+			
+			MovieDto mdto=new MovieDto();
+			mdto=movieServiceImp.getMovieinfo(mseq);
+			model.addAttribute("mdto", mdto);
+			StarpointDto sdto= new StarpointDto();
+			String chkF;
+			if(useq==0) {
+				
+				
+				model.addAttribute("chkF", "N");
+			} else {
+				UserDto ldto=(UserDto)session.getAttribute("ldto");
+				model.addAttribute("ldto", ldto);		
+				
+				String str=""+mdto.getMfollow();
+				String user_useq=""+useq;
+				String target=":"+user_useq+":";
+				if(str.contains(target)) {
+					System.out.println("문자열있음");
+					model.addAttribute("chkF", "Y");
+				} else {
+					System.out.println("문자열없음");
+					model.addAttribute("chkF", "N");
+				}
+
+			}
 		
-		boolean isS=reviewServiceImp.updateUp(rdto);
-		if(isS) {
-			return "redirect:movie_info.do?mseq="+rdto.getRmseq()+"&useq="+useq+"&mseq"+rdto.getRmseq();
-		} else {
-			model.addAttribute("msg","공감 업데이트 실패");
-			return "error";
+		
+			
+			//3 해당 영화 리뷰 정보  + 리뷰 불러올때 해당 리뷰들에 공감찍었는지 확인해야함. 
+			List<ReviewDto> rlist=reviewServiceImp.getMovieReview(mseq);
+			model.addAttribute("rlist", rlist);
+			
+			return "movie_review.do?mseq="+mseq;
 		}
-	}
 	
-	//후기 공감 취소
-	@RequestMapping(value="/updateDown.do", method =RequestMethod.GET)
-	public String updateDown(Model model, int useq, int rseq, int mseq) {
-		String rupuseq=":"+useq+":";
-		ReviewDto rdto = new ReviewDto();
-		rdto.setRupuseq(rupuseq);
-		rdto.setRseq(rseq);
-		rdto.setRmseq(mseq);
-		boolean isS=reviewServiceImp.updateDown(rdto);
-		if(isS) {
-			return "redirect:movie_info.do?mseq="+rdto.getRmseq()+"&useq="+useq+"&mseq"+rdto.getRmseq();
-		} else {
-			model.addAttribute("msg","공감 다운 실패");
-			return "error";
+		//후기 공감
+		@RequestMapping(value="/updateUp.do", method =RequestMethod.GET)
+		public String updateUp(Model model, int useq, int rseq,int mseq) {
+			System.out.println("공감!!"+mseq);
+			String rupuseq=""+useq;
+			ReviewDto rdto = new ReviewDto();
+			rdto.setRupuseq(rupuseq);
+			rdto.setRseq(rseq);
+			rdto.setRmseq(mseq);
+			
+			boolean isS=reviewServiceImp.updateUp(rdto);
+			if(isS) {
+				return "redirect:movie_info.do?mseq="+rdto.getRmseq()+"&useq="+useq+"&mseq"+rdto.getRmseq();
+			} else {
+				model.addAttribute("msg","공감 업데이트 실패");
+				return "error";
+			}
 		}
-	}
 	
+		//후기 공감 취소
+		@RequestMapping(value="/updateDown.do", method =RequestMethod.GET)
+		public String updateDown(Model model, int useq, int rseq, int mseq) {
+			String rupuseq=":"+useq+":";
+			ReviewDto rdto = new ReviewDto();
+			rdto.setRupuseq(rupuseq);
+			rdto.setRseq(rseq);
+			rdto.setRmseq(mseq);
+			boolean isS=reviewServiceImp.updateDown(rdto);
+			if(isS) {
+				return "redirect:movie_info.do?mseq="+rdto.getRmseq()+"&useq="+useq+"&mseq"+rdto.getRmseq();
+			} else {
+				model.addAttribute("msg","공감 다운 실패");
+				return "error";
+			}
+		}
+		
 	// 별점 등록
 	@RequestMapping(value="/insertStarpoint.do")
 	public String insertStarpoint(Model model,StarpointDto sdto, int sgrade, int useq, int mseq) {
@@ -328,6 +366,9 @@ public class  MovieController {
 			return "error";
 		}
 	}
+	
+	
+	
 	//별점 수정
 	@RequestMapping(value="/updateStarpoint.do")
 	public String updateStarpoint(Model model,StarpointDto sdto, int sgrade, int sseq,int useq, int mseq) {
@@ -365,6 +406,31 @@ public class  MovieController {
 		
 	}
 	
-
+//	//별점 수정 
+//	   @RequestMapping(value="/updateStarpoint.do")
+//	   public String updateStarpoint(Model model,StarpointDto sdto, int sgrade, int sseq,int useq, int mseq) {
+//	      
+//	      //소진 작성 먼저 점수 차 구하기(현재별점-이전별점 //현재별점>이전별점 : +값, 현재별점<이전별점 : -값) 
+//	      int scale_newgrade=(sgrade-(sdto.getSgrade()));
+//	      MovieDto mdto= movieServiceImp.getMovieinfo(mseq);
+//	      String mkeyw =mdto.getMkeyw();
+//	      String[] keyword =taop.askKeyword(mkeyw);
+//	      TasteDto tdto = tasteService.getTaste(sdto.getSuseq());
+//	      tdto= taop.pointToTaste(tdto, keyword, scale_newgrade);      
+//	      
+//	      sdto.setSgrade(sgrade);
+//	      sdto.setSseq(sseq);
+//	      sdto.setSuseq(useq);
+//	      sdto.setSmseq(mseq);
+//	            
+//	      boolean isS=starpointServiceImp.updateStarpoint(sdto, tdto);
+//	      if(isS) {
+//	         return "redirect:movie_info.do?mseq="+sdto.getSmseq()+"&useq="+sdto.getSuseq();
+//	      } else {
+//	         model.addAttribute("msg","별점 수정 실패");
+//	         return "error";
+//	      }
+//	      
+//	   }
 	
 }

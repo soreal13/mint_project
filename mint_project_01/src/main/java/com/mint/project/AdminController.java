@@ -26,10 +26,10 @@ public class  AdminController {
 	private static final Logger logger = LoggerFactory.getLogger( AdminController.class);
 	
 	
-	@RequestMapping(value="/admin.do", method =RequestMethod.GET)
+	@RequestMapping(value="/goadmin.do", method =RequestMethod.GET)
 	public String Admin(Locale locale, Model model) {
 		
-		return "Admin";
+		return "admin/admin_main";
 	}
 	
 	@Autowired

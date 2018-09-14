@@ -55,9 +55,20 @@
        </select>
        
        
-<!--검색시 나오는 정보 -->
-       <select id="getcertainmovieinfo" parameterType="String" resultType="MovieDto">
-       SELECT * FROM MOVIE_TABLE WHERE MKEYW=#{mkeyw} ORDER BY MSEQ DESC 
+<!--서치 기능 : 최신 순으로 정렬 (기본)-->
+       <select id="getcertainmovieinfo" parameterType="Map" resultType="MovieDto">
+       SELECT * FROM MOVIE_TABLE WHERE MKEYW LIKE '%'||#{mkeyw}||'%' ESCAPE ','
+		<if test='desc.equals("basic")'>
+		 ORDER BY MSHOWDATE DESC
+		</if >
+		<!--서치 기능 : 오래된 순으로 정렬 -->
+		<if test='desc.equals("asc")'>
+		 ORDER BY MSHOWDATE ASC
+		</if>
+		<if test='desc.equals("mfollow")'>
+		<!--서치 기능 : 즐겨찾기 많은 순으로 정렬 -->
+		 ORDER BY LENGTH (MFOLLOW) DESC
+		</if>
        </select>
       
 <!--전체영화정보 -->

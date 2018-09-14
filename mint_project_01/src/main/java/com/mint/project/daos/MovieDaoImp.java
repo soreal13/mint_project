@@ -43,12 +43,11 @@ public class MovieDaoImp implements IMovieDao {
    }
 
    @Override
-   public List<MovieDto> getCertainMovieinfo(String search) {
+   public List<MovieDto> getCertainMovieinfo(Map<String, String> map) {
       
-      String mkeyw=search;
-      System.out.println("mkeyw 여기는다오 = "+mkeyw);
-      return sqlSession.selectList(namespace+"getcertainmovieinfo",mkeyw);
+      return sqlSession.selectList(namespace+"getcertainmovieinfo",map);
    }
+
 
    @Override
    public List<MovieDto> getAllMovieinfo() {

@@ -22,10 +22,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mint.project.aop.TasteAop;
 import com.mint.project.dtos.MovieDto;
+import com.mint.project.dtos.StarpointDto;
 import com.mint.project.dtos.TasteDto;
 import com.mint.project.dtos.UserDto;
 import com.mint.project.service.ITasteService;
 import com.mint.project.service.MovieServiceImp;
+import com.mint.project.service.StarpointServiceImp;
 import com.mint.project.service.TasteServiceImp;
 import com.mint.project.service.UserServiceImp;
 import com.sun.org.apache.xalan.internal.xsltc.runtime.Parameter;
@@ -42,7 +44,7 @@ public class  TasteController {
 	private MovieServiceImp mService;
 	
 	@Autowired
-	private UserServiceImp uService;
+	   private StarpointServiceImp sService;
 	
 	TasteAop taop = new TasteAop();
 	
@@ -51,6 +53,11 @@ public class  TasteController {
 	@RequestMapping(value = "/index.do")
 	public String index(Locale locale, Model model, HttpSession session,UserDto udto) {
 		logger.info("진짜 인덱스페이지 {}.", locale);
+		
+		 if(session.getAttribute("ldto")==null) {
+	         return "index";
+	      } 
+		 
   	  UserDto ldto=(UserDto)session.getAttribute("ldto");
 
 	  
@@ -60,7 +67,7 @@ public class  TasteController {
 	
 	  TasteAop taop = new TasteAop();
 	  String keyw = taop.getKeyw(tdto);
-	  List<MovieDto> tmlist= mService.getCertainMovieinfo(keyw);
+	  List<MovieDto> tmlist= mService.getCertainMovieinfo(keyw, "basic");
 	  Collections.shuffle(tmlist);
 	  model.addAttribute("tmlist", tmlist);
 	  model.addAttribute("keyw", keyw);
@@ -184,13 +191,19 @@ public class  TasteController {
 			System.out.println("4."+tdto); 			
 			
 			//5.useq로 userTaste에 점수 가산해 넣기(업데이트, 단 가산하는거 aop로 반영하기)
-			tService.updateTaste(tdto);						 			
-			System.out.println("5."+tdto);
+			//tService.updateTaste(tdto);						 			
+			//System.out.println("5."+tdto);
 			
 			if(starpoint!=-2) {
 				//여기서부턴 별점 평가
-				//별점 평가하기 movietable에 평균별점 나오게 넣기			 
 				//userinfo에 별점평가한 seq 넣기
+				//useq, starpoint, mseq
+				  StarpointDto sdto= new StarpointDto();
+		            sdto.setSgrade(newstarpoint);
+		            sdto.setSmseq(mseq);
+		            sdto.setSuseq(useq);
+		            sService.insertStarpoint(sdto,tdto);
+		            System.out.println("별점 들어갔는지 확인");
 				
 			}
 			 			 			 							 
@@ -226,7 +239,7 @@ public class  TasteController {
 			
 			//취향 체크 Y로 변경하여 업데이트
 			TasteDto tdtolast = tService.getTaste(useq);
-			tdtolast.setTstatus("Y");			
+			tdtolast.setTstatus("Y");			//이거 꼭 고쳐라고쳐라
 			tService.updateTaste(tdtolast);
 			
 			//무비seq -1값 주어 js메소드 동작
@@ -244,6 +257,7 @@ public class  TasteController {
 	@RequestMapping(value="/tasteMake.do")
 	public String tasteMake(Locale locale, Model model, HttpServletRequest request, HttpSession session) {
 		logger.info("초기 취향 생성완료", locale);
+		
 
 		return "redirect:usermain_user.do";
 	}
@@ -283,7 +297,7 @@ public class  TasteController {
 		String keyw = taop.getKeyw(tdto);
 		
 		//3. 키워드로 영화 검색하기
-		List<MovieDto> tmlist= mService.getCertainMovieinfo(keyw);
+		List<MovieDto> tmlist= mService.getCertainMovieinfo(keyw, "basic");
 		model.addAttribute("tmlist", tmlist);		
 				
 		

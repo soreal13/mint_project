@@ -2,6 +2,7 @@ package com.mint.project.daos;
 
 
 import java.util.List;
+import java.util.Map;
 
 import com.mint.project.dtos.MovieDto;
 
@@ -24,7 +25,7 @@ public interface IMovieDao {
    public MovieDto getMovieinfo(int mseq);
    
    // 특정 영화 정보
-   public List<MovieDto> getCertainMovieinfo(String search);
+   public List<MovieDto> getCertainMovieinfo(Map<String, String> map);
     
    // 영화전체정보
    public List<MovieDto> getAllMovieinfo();

@@ -18,39 +18,146 @@
    
    
 %>
-<title> MINT ! </title>
+<title>MINT!! : 영화 상세정보 </title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
 
 <style type="text/css">
-   .movieimg{
-   height: 630px;
-   width: 450px;
-   border: 1px solid black;
-   float: left;
-   }
-   .movieinfo{
-   border: 1px solid red;
-   height: 630px;
-   width:  800px;
-   }
-   .button_box{
-   clear: both;
-   }
-   .starpoint_box{
-   border: 1px solid green;
-   }
-   .review_box{
-   border: 1px solid blue;
-   }
-   
-   .reviewview_box{
-   border: 1px solid black;
-   }
-   .recommend_box img{
-   width: 203px;
-   height: 290px;
-   }
-   .starinput>.input,
+@font-face{     font-family:"mint_catefont";     src: url("resources/font/tvN Enjoystories Bold.ttf") format("truetype");       }
+	
+  .movieimg{
+    text-align: center;
+	float: left;
+	}
+	.movieimg img{
+	height: 630px;
+	width: 450px;
+	margin-top: 50px;
+    margin-left:200px;
+	}
+
+	.movieinfo{
+	text-align:center;
+	height: 630px;
+	width:  800px;
+	margin-left: 500px;
+	}
+	p{
+	font-family:"mint_catefont"; 
+	font-size: 30px;
+	}
+	.movieinfo_title{
+/* 	margin-top: 50px; */
+	padding-top: 50px;
+	}
+	.movieinfo_title p:first-child{
+	font-size:60px;
+	color:#96ffd4;
+	}
+	.summary_box{
+	margin-top: 30px;
+	margin-left: 180px;
+	width: 600px;
+	line-height: 25px;
+	
+	}
+	.button_box{
+	margin-top:50px;
+	clear: both;
+	}
+	.keyword_box{
+	margin-top: 50px;
+	}
+	.starpoint_box{
+	height:100px;
+	width: 800px;
+	}
+	.review_table{
+	border-spacing: 0;
+	border-style: none;
+	font-family:"mint_catefont"; 
+	font-size: 30px;
+	text-align: center;
+	
+	}
+	.review_box{
+	margin-top:20px;
+	width: 800px;
+	}
+	.icon_box{
+	width: 400px;
+	padding-top:30px;
+	margin-left: 770px;
+
+	}
+
+	.reviewview_box{
+	margin-top:20px;
+	width: 800px;
+	font-family:"mint_catefont"; 
+	font-size: 30px;
+	}
+	.reviewview_box2{
+	margin-top:20px;
+	margin-bottom:80px;
+	width: 800px;
+	font-family:"mint_catefont"; 
+	font-size: 30px;
+	margin-left: 200px;
+	}
+	.recommend_box img{
+	width: 203px;
+	height: 290px;
+	}
+	.allreview_box{
+	text-align: left;
+	margin-left: 200px;
+	margin-top: 50px;
+	}
+	.allreview_box p, .recommend_box p{
+	font-size: 40px;
+	
+	}
+	.recommend_box{
+	clear:both;
+	margin-top: 20px;
+	text-align: left;
+/* 	margin-left: 200px; */
+	}
+	.reviewview_box img,.reviewview_box2 img{
+	width: 30px;
+	}
+	.reviewview_box p:first-child, .reviewview_box2 p:first-child{
+	float: left;
+/* 	margin-left: 200px; */
+	}
+	.more_review a{
+	padding-left:10px;
+	padding-top:15px;
+	font-size: 25px;
+	}
+	.before_login{
+	padding-top:20px;
+	text-align: left;
+	margin-left: 200px;
+	}
+	.recommend_box2{
+	clear:both;
+	margin-top: 40px;
+	text-align: left;
+	margin-left: 200px;
+	font-size: 30px;
+	}
+	.user_reivew{
+	clear: both;
+	margin-left: 20px;
+	}
+	.rcbox{
+	font-size: 50px;
+	}
+	.mtitle{
+	font-size: 30px;
+	}
+	.starinput>.input,
 .starinput>.input>label:hover,
 .starinput>.input>input:focus+label,
 .starinput>.input>input:checked+label{
@@ -149,44 +256,56 @@
     vertical-align: middle;
 }
 
-   .reviewview_box>h3{
-   
-   }
-   .reviewview_box>h5{
-   
-   }
-   .reviewview_box>img{
-   width: 30px;
-   height: auto;
-   }
+	
 </style>
 
 <style type="text/css">
 .mimg>li{
-list-style: none;float: left;margin-left: 50px;
-border:1px solid red; width: 130px; height: 180px;
+list-style: none; float: left; margin-left: 20px;
 }
-
-
+.mimg img{
+width: 180px;
+height: 250px;
+}
 .reviewtext>li{
 width:400px; height:30px;; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 list-style: none; float: left; margin-left: 30px;
 }
 
-#recmovie{
-border:1px solid red; width: 130px; height: 180px;
-}
-
 </style>
 
 <style type="text/css">
-
 .table img{
-	width: 203px;
-	height: 290px;
+	width: 300x;
+	height: 410px;
 	
 	}
+		.movie_info{
+	position:relative;
+   width: 1600px;
+   margin-left:auto;
+   margin-right:auto;
+   text-align: center;
+	}
+	.movie_info:after{
+		content: "";
+		background-color:#595959;
+		display: block;
+		width: 1600px;
+		height: 100%; 
+		position: absolute;
+		left: 0px;
+		top:0px;
+		opacity:0.7;
+ 		z-index: -1; 
+	}
+.button_box {
+
+clear: both;
+}
+	
 </style>
+
 
 <script type="text/javascript" >
 
@@ -223,287 +342,315 @@ var starRating = function(){
 };
 
 $(function(){
-   starRating();
-   
+	starRating();
+	
 });
 
-   function star_insert() {
-      
-      var sgrade = $(".star_b").text();
-      var mseq= document.getElementsByClassName("star_mseq")[0].value;
-      var useq= document.getElementsByClassName("star_useq")[0].value;
-       location.href="insertStarpoint.do?sgrade="+sgrade+"&mseq="+mseq+"&useq="+useq;
-      
-   }
-   
-   function star_update() {
-    
-      var sgrade = $(".star_b").text();
-      var sseq= document.getElementsByClassName("star_sseq")[0].value;
-      var mseq= document.getElementsByClassName("star_mseq")[0].value;
-      var useq= document.getElementsByClassName("star_useq")[0].value;
-       location.href="updateStarpoint.do?sgrade="+sgrade+"&sseq="+sseq+"&mseq="+mseq+"&useq="+useq;
-      
-   }   
-      
-   
-   function w_url() {
-      var newURL = window.location.href ;
-      alert(newURL);
-      
-   }
-   
+	function star_insert() {
+		
+		var sgrade = $(".star_b").text();
+		var mseq= document.getElementsByClassName("star_mseq")[0].value;
+		var useq= document.getElementsByClassName("star_useq")[0].value;
+		 location.href="insertStarpoint.do?sgrade="+sgrade+"&mseq="+mseq+"&useq="+useq;
+		
+	}
+	
+	function star_update() {
+		
+		var sgrade = $(".star_b").text();
+		var sseq= document.getElementsByClassName("star_sseq")[0].value;
+		var mseq= document.getElementsByClassName("star_mseq")[0].value;
+		var useq= document.getElementsByClassName("star_useq")[0].value;
+		 location.href="updateStarpoint.do?sgrade="+sgrade+"&sseq="+sseq+"&mseq="+mseq+"&useq="+useq;
+		
+	}	
+		
+	
+	function w_url() {
+		var newURL = window.location.href ;
+		alert(newURL);
+		
+	}
+	
 
 </script>
 
 </head>
 <%@include file="header.jsp"%>
 <body>
+<div class="movie_info">
+	<div class="movieimg"><img src="${mdto.mimg}" class="movieimg" alt="${mdto.mtitle}">
+	
+	<input type="hidden" class="star_mseq" value="${mdto.mseq}">
+	<input type="hidden" class="star_useq" value="${ldto.useq}">
+	<input type="hidden" class="star_sseq" value="<%
+		if(sdto==null){
+			%>0<%
+		} else if(sdto!=null){
+			%><%=sdto.getSseq()%>
+			<%
+		}
+		%>">
+	</div>
 
-<div class="movieimg"><img src="${mdto.mimg}" class="movieimg" alt="${mdto.mtitle}">
-<input type="hidden" class="star_mseq" value="${mdto.mseq}">
-<input type="hidden" class="star_useq" value="${ldto.useq}">
-<input type="hidden" class="star_sseq" value="<%
-   if(sdto==null){
-      %>0<%
-   } else if(sdto!=null){
-      %><%=sdto.getSseq()%>
-      <%
-   }
-   %>">
-</div>
 <div class="movieinfo">
-<h3>${mdto.mtitle}</h3>
-<h5>${mdto.mdirector}</h5>
-<h5>${mdto.mactor}</h5>
-<div class="summary_box">${mdto.msummary}</div>
-
-<div class="iconbox">
-
-<img src="resources/img/M_urlcopy.png" src="url복사" onclick="w_url()">
-
-       <%
+	<div class="movieinfo_title">
+	<p>${mdto.mtitle}
+	</p>
+	
+	<p>${mdto.mdirector}</p>
+	<p>${mdto.mactor}</p>
+	<br/>
+	<%
        if(ldto==null){
-            %>
-            <img src="resources/img/M_like1.png">
-            <%
-          } else if(ldto!=null){
-             if(chkF=="Y"){
-                    %>
-      <!--               빨간하트 -->
-                    <img src="resources/img/M_like2.png" onclick="location.href='delFollow.do?mseq=${mdto.mseq}&useq=${ldto.useq}'">
-                    <%
-             } else {
-                    %>
-      <!--               회색하트 -->
-                    <img src="resources/img/M_like1.png" onclick="location.href='updateFollow.do?mseq=${mdto.mseq}&useq=${ldto.useq}'">
-                    <%
-             }
-          }
+	    	  %>
+	    	  <img src="resources/img/M_like1.png">
+	    	  <%
+	       } else if(ldto!=null){
+		       if(chkF=="Y"){
+		              %>
+		<!--               빨간하트 -->
+		              <img src="resources/img/M_like2.png" onclick="location.href='delFollow.do?mseq=${mdto.mseq}&useq=${ldto.useq}'">
+		              <%
+		       } else {
+		              %>
+		<!--               회색하트 -->
+		              <img src="resources/img/M_like1.png" onclick="location.href='updateFollow.do?mseq=${mdto.mseq}&useq=${ldto.useq}'">
+		              <%
+		       }
+	       }
        
        %>
-
+	</div>
+<div class="summary_box">${mdto.msummary}</div>
+<div class="keyword_box">
+<p>${mdto.mkeyw}</p>
 </div>
 
-<h3>${mdto.mkeyw}</h3>
 </div>
-   <%
-   if(ldto==null){
-      
-      %>
-      <div class="button_box">
-         
-         </div>
-      <%
-   } else if(ldto!=null) {
-      if(ldto.getUnick().equals("토끼")){
-      %>
-         <div class="button_box">
-         <input type="button" value="수정" onclick="location.href='admin_movie_modify.do?mseq=${mdto.mseq}'">
-         <button>md픽선정</button>
-         </div>
-      <%
-   }
-   }
-   %>
-   
+	<%
+	if(ldto==null){
+		
+		%>
+		<div class="button_box">
+			
+			</div>
+		<%
+	} else if(ldto!=null) {
+		if(ldto.getUnick().equals("토끼")){
+		%>
+			<div class="button_box">
+				<input type="button" value="수정" onclick="location.href='admin_movie_modify.do?mseq=${mdto.mseq}'">
+				<button>md픽선정</button>
+			</div>
+		<%
+	}
+	}
+	%>
+	<div class="icon_box">    
+<!-- Share on Twitter -->
+	<a href="#" onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20'
+	+encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog',
+	 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" alt="Share on Twitter"><img src="resources/images/Twitter.png"></a>
+	
+	<!-- Share on Facebook -->
+	<a href="#" onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u='
+	+encodeURIComponent(document.URL)+'&amp;t='+encodeURIComponent(document.title), 'facebooksharedialog',
+	 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" alt="Share on Facebook">
+	<img src="resources/images/Facebook.png"></a>
+					
+	<!-- Share on Google+ -->
+	<a href="#" onclick="javascript:window.open('https://plus.google.com/share?url='+encodeURIComponent(document.URL), 'googleplussharedialog','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=600');return false;" target="_blank" alt="Share on Google+">
+	<img src="resources/images/Google_Plus.png"></a>
+	
+	<!-- Share on Kakaostory -->
+	<a href="#" onclick="javascript:window.open('https://story.kakao.com/s/share?url='+encodeURIComponent(document.URL), 'kakaostorysharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=600');return false;" target="_blank" alt="Share on kakaostory">
+	<img src="resources/images/Kakao_Story.png"></a>
+	
+	<!-- Share on Naver -->
+	<a href="#" onclick="javascript:window.open('http://share.naver.com/web/shareView.nhn?url='
+	+encodeURIComponent(document.URL)+'&amp;title='+encodeURIComponent(document.title),
+	 'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" target="_blank" alt="Share on Naver">
+	<img src="resources/images/Naver.png"></a>
+</div>
 <%
 
-   if(ldto==null){
-      
-      %>
-      <p>로그인 하시면 별점을 주실 수 있습니다.<p>
-      <%
-   } else if(ldto!=null){
-      
+	if(ldto==null){
+		
+		%>
+		<p class="before_login">로그인 하시면 별점을 주실 수 있습니다.<p>
+		<%
+	} else if(ldto!=null){
+		
 
 %>
+<div class="allreview_box">
+
 <div class="starpoint_box">
-<h3>별점주기</h3>
-         
-            <span class="starinput">
-              <span class="input">
-              
-              <%
-              
-             for(int j=1;j<11;j++){
-                
-                if(sdto==null){
-                   %>
-                   
-                   <input type="radio" name="starinput" id="p<%=j%>" value="<%=j%>">
-                   <label for="p<%=j%>"><%=j%></label>
-                   
-                   <%
-                } else if(sdto!=null) {
-                   int sample=sdto.getSgrade(); 
-                   %>
-                   <input type="radio" name="starinput" id="p<%=j%>" value="<%=j%>"
-                   <% 
-                   if(sample==j){    
-                      %>
-                      checked="checked"
-                      <%
-                   }
-                   %>
-                   
-                   ><label for="p<%=j%>"><%=j%></label>
-                   
-                   <%
-                }
-             }
-                 %>
-                
-                
-              </span>
-              <output for="starinput"><b class="star_b">
-              
-              <%
-              if(sdto==null){
-                 %>
-                 0
-                 <%
-              } else if(sdto!=null){
-                 int sample2=sdto.getSgrade(); 
-                 %>
-                 <%=sample2%>
-                 <%
-              }
-              %>
-              
-              </b>점</output>
-            </span>
-            <%
-               if(sdto==null){
-                  %>
-                     <input type="button" value="별점주기" onclick="star_insert()">
-                  <%
-               } else {
-            %>
-            <input type="button" value="별점수정" onclick="star_update()">
-            <%
-               }
-            %>
+<p>별점주기</p>
+			
+				<span class="starinput">
+				  <span class="input">
+				  
+				  <%
+				  
+				 for(int j=1;j<11;j++){
+					 
+					 if(sdto==null){
+						 %>
+						 
+						 <input type="radio" name="starinput" id="p<%=j%>" value="<%=j%>">
+						 <label for="p<%=j%>"><%=j%></label>
+						 
+						 <%
+					 } else if(sdto!=null) {
+						 int sample=sdto.getSgrade(); 
+						 %>
+						 <input type="radio" name="starinput" id="p<%=j%>" value="<%=j%>"
+						 <% 
+						 if(sample==j){	 
+							 %>
+							 checked="checked"
+							 <%
+						 }
+						 %>
+						 
+						 ><label for="p<%=j%>"><%=j%></label>
+						 
+						 <%
+					 }
+				 }
+					  %>
+					 
+					 
+				  </span>
+				  <output for="starinput"><b class="star_b">
+				  
+				  <%
+				  if(sdto==null){
+					  %>
+					  0
+					  <%
+				  } else if(sdto!=null){
+					  int sample2=sdto.getSgrade(); 
+					  %>
+					  <%=sample2%>
+					  <%
+				  }
+				  %>
+				  
+				  </b>점</output>
+				</span>
+				<%
+					if(sdto==null){
+						%>
+							<input type="button" value="별점주기" onclick="star_insert()">
+						<%
+					} else {
+				%>
+				<input type="button" value="별점수정" onclick="star_update()">
+				<%
+					}
+				%>
 
-         
-   </div>
-   <%
-   
-   }
-   
-   %>
-   <%
-   if(ldto==null||ldto.getUseq()==0){
-      %>
-      <div class="review_box">
-      <p>로그인 하시면 리뷰를 작성하실 수 있습니다.<p>
-      
-      </div>
-      <%
-   } else if(ldto!=null) {
+			
+	</div>
+	<%
+	
+	}
+	
+	%>
+	<%
+	if(ldto==null||ldto.getUseq()==0){
+		%>
+		<div class="review_box">
+		<p class="before_login">로그인 하시면 리뷰를 작성하실 수 있습니다.<p>
+		
+		</div>
+		<%
+	} else if(ldto!=null) {
 
-   
-   %>
+	
+	%>
 <div class="review_box">
-   <form action="insertReview.do" method="post">
-      <input type="hidden" name="ruseq" value="${ldto.useq}">
-      <input type="hidden" name="rmseq" value="${mdto.mseq}">
-      <h3>한줄평 작성하기</h3>
-         <table border="1">
-            <col width="50"><col width="80">
-            <tr>
-               <td><input type="hidden" name="runick" value="${ldto.unick}">${ldto.unick}</td>
-               <td><textarea rows="3" cols="59" name="rcontent">한줄평을 입력해주세요.</textarea></td>
-            </tr>
-            <tr>
-               <td colspan="2"><input type="submit" value="입력"></td>
-            </tr>
-               
-            </table>
-   </form>
+	<form action="insertReview.do" method="post">
+		<input type="hidden" name="ruseq" value="${ldto.useq}">
+		<input type="hidden" name="rmseq" value="${mdto.mseq}">
+		<p>한줄평 작성하기</p>
+			<table class="review_table">
+				<col width="80"><col width="80"><col width="100">
+				<tr>
+					<td><input type="hidden" name="runick" value="${ldto.unick}">${ldto.unick}</td>
+					<td><textarea rows="3" cols="59" name="rcontent" placeholder="한줄평을 입력해주세요."></textarea></td>
+					<td><input type="submit" value="입력"></td>
+				</tr>
+					
+				</table>
+	</form>
 </div>
 <%
-   }
+	}
 %>
-<div class="reviewview_box">
-<h3>한줄평 보기</h3><h5><a href="<%
-   if(ldto!=null){
-      %>
-      movie_review.do?mseq=${mdto.mseq}&useq=
-      <%=ldto.getUseq()%>
-      
-      <%   
-   } else if(ldto==null){
-      %>
-      movie_review.do?mseq=${mdto.mseq}&useq=0
-      <%
-      
-   }
-%>">모두 보기</a></h5>
+
+<%
+	if(ldto==null){
+		%>
+		<div class="reviewview_box2">		
+		<%
+	} else if(ldto!=null){
+		%>
+		<div class="reviewview_box">
+		<%
+	}
+%>
+<p>한줄평 보기</p>
+
 <%
 
    for(int i=0;i<rlist.size();i++){
       ReviewDto rdto=rlist.get(i);
       
    %> 
+   <div class="user_reivew">
    <tr>
-      <td>프사</td>
-      <td>글쓴이아이디:<%=rdto.getRunick()%> / 댓글내용 : <%=rdto.getRcontent()%></td>
+      <td><%=rdto.getRunick()%> : </td>
+      <td>  <%=rdto.getRcontent()%></td>
       <td><%=rdto.getRdate()%></td>
      <td>
-          <%
-          //만약에 로그인한 유저가 좋아요를 눌렀다면 색깔있는거. 아님 없는거... 체크 해서 다르게 해야함
-          //리스트에 값은 다 들어있으니까 여기서 :2: 이런식으로 잘라서 확인후 출력할것.
-          if(ldto==null){
-            %>
-            <img src="resources/img/M_b1.png">
-            <%
-          } else if(ldto!=null){
-             
-             String str=""+rdto.getRupuseq();
-             int sample_useq = ldto.getUseq(); // 로그인 한 유저의  seq 를 받아와야 함. 추후에 수정
-             String user_useq=""+sample_useq;
-             String target=":"+user_useq+":";
+	       <%
+	       //만약에 로그인한 유저가 좋아요를 눌렀다면 색깔있는거. 아님 없는거... 체크 해서 다르게 해야함
+	       //리스트에 값은 다 들어있으니까 여기서 :2: 이런식으로 잘라서 확인후 출력할것.
+	       if(ldto==null){
+	    	  %>
+	    	  <img src="resources/img/M_b1.png">
+	    	  <%
+	       } else if(ldto!=null){
+	    	   
+	    	   String str=""+rdto.getRupuseq();
+		       int sample_useq = ldto.getUseq(); // 로그인 한 유저의  seq 를 받아와야 함. 추후에 수정
+		       String user_useq=""+sample_useq;
+		       String target=":"+user_useq+":";
 
-             
-             if(str.contains(target)) {
-                System.out.println("문자열있음/이미 공감한 리뷰");
-                %>
-                <img src="resources/img/M_b2.png" onclick="location.href='updateDown.do?rseq=<%=rdto.getRseq()%>&useq=<%=ldto.getUseq()%>&mseq=<%=mdto.getMseq()%>'">
-                <%
-             } else {
-                System.out.println("문자열없음/아직 공감누르기 전인 리뷰");
-                %>
-                <img src="resources/img/M_b1.png" onclick="location.href='updateUp.do?rseq=<%=rdto.getRseq()%>&useq=<%=ldto.getUseq()%>&mseq=<%=mdto.getMseq()%>'">
-                <%
-             }
-            
-        
-   }
-          %>
+		       
+		       if(str.contains(target)) {
+		          System.out.println("문자열있음/이미 공감한 리뷰");
+		          %>
+		          <img src="resources/img/M_b2.png" onclick="location.href='updateDown.do?rseq=<%=rdto.getRseq()%>&useq=<%=ldto.getUseq()%>&mseq=<%=mdto.getMseq()%>'">
+		          <%
+		       } else {
+		          System.out.println("문자열없음/아직 공감누르기 전인 리뷰");
+		          %>
+		          <img src="resources/img/M_b1.png" onclick="location.href='updateUp.do?rseq=<%=rdto.getRseq()%>&useq=<%=ldto.getUseq()%>&mseq=<%=mdto.getMseq()%>'">
+		          <%
+		       }
+		      
+	     
+	}
+	       %>
       </td>
       <td><%=rdto.getRup()%></td>
    </tr>
+   </div>
    <br/>
    <%
 
@@ -513,15 +660,26 @@ $(function(){
 
 </div>
 
-<div class="recommend_box">
-<h3>관련영화추천</h3>
+<%
+	if(ldto==null){
+		%>
+		<div class="recommend_box2">		
+		<%
+	} else if(ldto!=null){
+		%>
+		<div class="recommend_box">
+		<%
+	}
+%>
+
+<p class="rcbox" style="margin-bottom:20px;">관련영화추천</p>
 <% 
 List<MovieDto> tmlist=(List<MovieDto>)request.getAttribute("tmlist");
 String keyw =(String)request.getAttribute("keyw");
 
 %>
-<h4>이 영화와 비슷한 장르(<%=keyw%>)의 영화입니다.</h4>
-   <table>
+<p style="margin-bottom:20px;">이 영화와 비슷한 장르(<%=keyw%>)의 영화입니다.</p>
+   <table style="margin-bottom:50px;">
    <tr>
      <td>
          <ul class="mimg">
@@ -535,7 +693,7 @@ String keyw =(String)request.getAttribute("keyw");
 		  %>		 
 			<li>
 				<a href="movie_info.do?mseq=<%=tmdto.getMseq()%>&useq=${ldto.useq}"><img src="<%=tmdto.getMimg()%>" id="recmovie"></a><br/>
-				<a href="movie_info.do?mseq=<%=tmdto.getMseq()%>&useq=${ldto.useq}"><%=tmdto.getMtitle()%></a>				
+				<p class="mtitle" style="font-size:24px;"><a href="movie_info.do?mseq=<%=tmdto.getMseq()%>&useq=${ldto.useq}"><%=tmdto.getMtitle()%></a></p>				
 		 	</li>
 		 <%		   
 	   	}		   				   
@@ -547,6 +705,8 @@ String keyw =(String)request.getAttribute("keyw");
 </table>
 </div>
 <br/><br/>
+</div>
+</div>
 <%@include file="footer.jsp"%>
 </body>
 </html>

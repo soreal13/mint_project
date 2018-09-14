@@ -14,7 +14,7 @@ public interface IReviewDao {
 //	getAllReview
 //	updateUp 공감 + -
 //	updateDown 비공감 + -
-	//asdfkasdfjklasdfjklasdfjklasdfjklasdfkl
+	
 	
 	//후기 생성
 	public boolean insertReview(ReviewDto rdto);

@@ -8,12 +8,14 @@
 <title>footer</title>
 <style type="text/css">
 #footer{
+	clear:both;
 	background-image: resources/img/bricks.jpg;
 }
 
 #footerlogo{
-width: 100px;
-height: 80px;
+vertical-align:middle;
+width: 80px;
+height: 40px;
 margin-left: 50px;
 padding: 10px;
 }
@@ -22,7 +24,7 @@ padding: 10px;
 </head>
 <body>
 <div id="footer" align="center">
-Copyright © 2018 팀프로젝트 민트.&nbsp;All rights reserved.&nbsp;&nbsp;JINY.BUNNY.CAT.Chicken.<img src="resources/img/MINTlogo2.png" alt="logo" id="footerlogo">
+Copyright © 2018 팀프로젝트 민트.&nbsp;All rights reserved.&nbsp;&nbsp;JINY.BUNNY.CAT.Chicken.<img src="resources/img/LOGO1.png" alt="logo" id="footerlogo">
 
 </div>
 

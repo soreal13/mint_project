@@ -1,6 +1,7 @@
 package com.mint.project;
 
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -20,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.mint.project.aop.TasteAop;
 import com.mint.project.dtos.MovieDto;
 import com.mint.project.dtos.ReviewDto;
+import com.mint.project.dtos.StarpointDto;
 import com.mint.project.dtos.TasteDto;
 import com.mint.project.dtos.UserDto;
 import com.mint.project.service.IMovieService;
 import com.mint.project.service.IReviewService;
+import com.mint.project.service.IStarpointService;
 import com.mint.project.service.ITasteService;
 import com.mint.project.service.IUserService;
 
@@ -41,32 +44,54 @@ public class UserController {
    private IMovieService movieService;
    @Autowired
    private ITasteService tasteService;
+   @Autowired
+   private IStarpointService starpointService;
 
    // 홍익작성코드 -->
  
    
    
-//   유저메인으로 이동 (완료)
+//   유저메인으로 이동 ($$$)
       @RequestMapping(value="/usermain_user.do", method =RequestMethod.GET)
             public String usermain(HttpSession session,UserDto udto, Model model) {
     	  UserDto ldto=(UserDto)session.getAttribute("ldto");
-//      	  model.addAttribute("ldto", ldto);
+      	  model.addAttribute("ldto", ldto);
 
     	  
-    	  List<UserDto>lldto=userService.getUserReview(ldto.getUseq());
-          model.addAttribute("lldto", lldto);
-          
+    	//리뷰출력
+    	  List<UserDto>lldto=userService.printReview(ldto.getUseq());
+          model.addAttribute("lists", lldto);
+      	  System.out.println("1");
+      	  
           //소진작성
           TasteDto tdto=tasteService.getTaste(ldto.getUseq());
           model.addAttribute("tdto", tdto);
-
           TasteAop taop = new TasteAop();
           String keyw = taop.getKeyw(tdto);
-          List<MovieDto> tmlist= movieService.getCertainMovieinfo(keyw);
+          List<MovieDto> tmlist= movieService.getCertainMovieinfo(keyw, "basic");
           Collections.shuffle(tmlist);
           model.addAttribute("tmlist", tmlist);
           model.addAttribute("keyw", keyw);
           
+          //선호별영화
+          System.out.println("선호별 영화 들어감");
+          int useq=ldto.getUseq();
+          System.out.println(useq);
+          List<StarpointDto> slist=starpointService.getUserhighmovie(useq);
+          System.out.println(slist.toString());
+          System.out.println(slist.size());
+          
+          
+          List<MovieDto> fmlists= new ArrayList<MovieDto>();	
+          
+	  		for(int i=0; i<slist.size(); i++) {
+	  			System.out.println(slist.get(i).getSmseq());
+	  			fmlists.add(i, movieService.getMovieinfo(slist.get(i).getSmseq()));
+	  			System.out.println(fmlists.toString());
+	  		}
+	  		System.out.println(fmlists.toString());
+	  		
+	  		model.addAttribute("fmlists", fmlists);
           
              return "user/user_main";
             }
@@ -94,7 +119,7 @@ public class UserController {
 //   회원정보수정 (완료-but 닉넴 중복체크 해야함 )
       @RequestMapping(value = "/userupdate.do", method = RequestMethod.POST)
          public String updateUser(String unick, String upwd, HttpSession session, Locale locale, Model model) throws Exception{
-            UserDto loginUser = (UserDto)session.getAttribute("udto");
+            UserDto loginUser = (UserDto)session.getAttribute("ldto");
             loginUser.setUnick(unick);
             loginUser.setUpwd(upwd);
        
@@ -119,14 +144,12 @@ public class UserController {
          }
        
       
-//   리뷰 불러오기(완료_개 힘들었네 ㅂㄷㅂㄷ)
+ //   리뷰 불러오기(완료_개 힘들었네 ㅂㄷㅂㄷ)
       @RequestMapping(value="/userreview.do", method =RequestMethod.GET)
-      public String review(UserDto udto, Model model) {
-    	  
+      public String review( HttpSession session,UserDto udto, Model model) {
     	  List<UserDto>ldto=userService.getUserReview(udto.getUseq());
-    	  
           model.addAttribute("lists", ldto);
-          System.out.println(ldto.size());
+       
           
           return "user/user_review";
 
@@ -134,21 +157,33 @@ public class UserController {
          
    }
 
-//리뷰 삭제 (수정중)
-      @RequestMapping(value="/delReview.do?", method =RequestMethod.POST)
-      public String delRiview(HttpSession session,int rseq,Model model) {
-    	  boolean isS = reviewService.delReview(rseq);
+    //리뷰 삭제 ($$$)
+      @RequestMapping(value="/delReview.do", method =RequestMethod.POST)
+      public String delReview(HttpSession session,String[] chk,Model model)throws Exception {
+    	  UserDto loginUser = (UserDto)session.getAttribute("ldto");
+    	  boolean isS =userService.delRe(chk);
+    	
     	  if(isS) {
-              return "userreview.do";
+              return "redirect:userreview.do?useq="+loginUser.getUseq();
            }else {
               model.addAttribute("msg","글삭제실패");
              return "user/user_main";
           }
       }
       
-//추천영화 모아보기
+    //추천영화 모아보기($$$)
       @RequestMapping(value="/usergrade.do", method =RequestMethod.GET)
       public String 추천천영화(UserDto udto, Model model) {
+    	   //소진작성
+          TasteDto tdto=tasteService.getTaste(udto.getUseq());
+          model.addAttribute("tdto", tdto);
+
+          TasteAop taop = new TasteAop();
+          String keyw = taop.getKeyw(tdto);
+          List<MovieDto> tmlist= movieService.getCertainMovieinfo(keyw, "basic");
+          
+          model.addAttribute("tmlist", tmlist);
+          model.addAttribute("keyw", keyw);
     	  
           return "user/user_grade";
    }
@@ -164,18 +199,16 @@ public class UserController {
       }
    
 
-//    즐겨찾기 영화 (9/7 완료)
+//	  즐겨찾기 영화 (9/7 완료)($$$)
       @RequestMapping(value="/userfavoriteMovie.do", method =RequestMethod.GET)
       public String uerfavoriteMovie(HttpSession session, Model model) {
-          UserDto lldto=(UserDto)session.getAttribute("ldto");
+    	   UserDto lldto=(UserDto)session.getAttribute("ldto");
            UserDto ldto=userService.getUserinfo(lldto);
            String[] seqs =ldto.getUfmseq().split(":");
-           System.out.println("ㅎㅎㅎ="+seqs);
            List<UserDto>dto=userService.getFavoriteMovie(seqs);
            model.addAttribute("lists", dto);
-           System.out.println("출력="+dto.size());
-           
-         
+           model.addAttribute("lldto", ldto);
+    	  
          return "user/user_favorite";
 }
    

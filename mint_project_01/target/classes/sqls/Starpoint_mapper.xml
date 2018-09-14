@@ -45,10 +45,14 @@
 		FROM STARPOINT_TABLE
 		WHERE SGRADE>=8
 		GROUP BY SMSEQ
-		ORDER BY sgrade DESC;
+		ORDER BY sgrade DESC
 	</select>
 	
-		
+	<select id="getUserhighmovie" parameterType="int" resultType="StarpointDto">
+			SELECT * FROM STARPOINT_TABLE
+			WHERE SUSEQ=#{SUSEQ, jdbcType=INTEGER} AND SGRADE>=6
+			ORDER BY SGRADE DESC		
+	</select>
 	
 	
 </mapper>

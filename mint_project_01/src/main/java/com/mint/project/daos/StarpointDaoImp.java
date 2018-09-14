@@ -62,5 +62,11 @@ public class StarpointDaoImp implements IStarpointDao {
  	public List<StarpointDto> getHighpointMovie(){
 	   return sqlSession.selectList(namespace+"getHighpointmovie");
    }
+   
+   @Override
+	//개인 별점 선호 높은 순	
+	public List<StarpointDto> getUserhighmovie(int suseq){
+	   return sqlSession.selectList(namespace+"getUserhighmovie", suseq);
+   }
 
 }

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>MINT!! : 리뷰관리</title>
 <style type="text/css">
 
 	h2{

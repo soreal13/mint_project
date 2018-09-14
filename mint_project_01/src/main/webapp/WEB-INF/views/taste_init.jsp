@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>영화를 평가해주세요!</title>
+<title>MINT: 초기취향창!영화를 평가해주세요!</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="resources/css/taste_init.css">
 <link rel="stylesheet" href="resources/css/starpoint.css">
@@ -128,7 +128,7 @@
     <h3 class="fs-subtitle"><b>M</b> ove <b>INt</b> o the <b>MINT!</b></h3>        
 
 <!--     <input type="button" name="previous" class="previous action-button" value="Previous" /><br/> -->
-   <input type="submit" name="submit" class="submit action-button" value="Submit" /><br/>
+   <input type="button" name="submit" class="submit action-button" value="Submit" /><br/>
   </form>
   </fieldset>
 

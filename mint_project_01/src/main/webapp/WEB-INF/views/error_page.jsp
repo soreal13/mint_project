@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Error Page</title>
+<title>MINT!! :Error Page</title>
 </head>
 <body>
 <h2>시스템 오류: ${msg}</h2>

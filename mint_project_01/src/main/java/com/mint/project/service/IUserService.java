@@ -18,10 +18,7 @@ public interface IUserService {
 	
 //getUserFavorite 즐겨찾는 영화, 유저 정보(해당유저칼럼임)
 //getUserReview 리뷰	(해당유저가 남긴 리뷰)
-	
 
-	
-	
 	
 	//이메일중복체크	
 	public UserDto chkEmail(String uemail);
@@ -44,6 +41,11 @@ public interface IUserService {
 	//유저가 쓴 리뷰 가져오기
 	public List<UserDto> getUserReview(int useq);
 
+	//유저가 쓴 리뷰삭제 ($$$)
+	public boolean delRe(String[] chk);
+	
+	//화면에 뿌릴 리뷰 ($$$)
+	public List<UserDto> printReview(int useq);
 
 	//회원가입
 	public boolean register(UserDto udto, TasteDto dto);

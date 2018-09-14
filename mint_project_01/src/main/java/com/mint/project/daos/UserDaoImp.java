@@ -69,7 +69,24 @@ public class UserDaoImp implements IUserDao {
       return sqlSession.selectList(namespace+"getUserReview",useq);
    }
 
+   //리뷰삭제 ($$$)
+   @Override
+   public boolean delRe(String[] chk) {
+	   int count=0;
+	   Map<String,String[]>map=new HashMap<String, String[]>();
+	   map.put("rseq", chk);
+	   System.out.println(chk[0]);
+	      count=sqlSession.update(namespace+"delRe",map);
+	      return count>0?true:false;
+   }
 
+   //바탕화면 리뷰 ($$$)
+   @Override
+   public List<UserDto> printReview(int useq) {
+      return sqlSession.selectList(namespace+"printReview",useq);
+   }
+   
+   
    @Override
    public List<UserDto> getFavoriteMovie(String[] seqs) {
       Map<String, String[]> map=new HashMap<String, String[]>();
@@ -77,9 +94,9 @@ public class UserDaoImp implements IUserDao {
       return sqlSession.selectList(namespace+"getFavoriteMovie",map);
    }
 
-   //영화 즐찾추가
+   //영화 즐찾추가 ($$$)
    public boolean  updateFavoriteMovie (UserDto udto) {
-	   int count=sqlSession.update(namespace+"updatefavoritemovie",udto);
+	   int count=sqlSession.update(namespace+"updateFavoriteMovie",udto);
 	      return count>0?true:false;
    }
    
@@ -89,24 +106,20 @@ public class UserDaoImp implements IUserDao {
    }
    
 
-   //영호 즐찾 삭제
+   //영화 즐찾 삭제 ($$$)
    public boolean delFavoriteMovie(UserDto udto) {
-	   int count=sqlSession.update(namespace+"delfavoritemovie",udto);
+	   int count=sqlSession.update(namespace+"delFavoriteMovie",udto);
 	      return count>0?true:false;
    
    }
    
-   //ㅁㅈ
+   
+   //민지
    @Override
    public List<UserDto> getAlluserinfo() {
 	   return sqlSession.selectList(namespace+"getAlluserinfo");
    }
    
-   @Override
-   public boolean delRe(int useq) {
-      int count=0;
-         count=sqlSession.update(namespace+"delRe",useq);
-         return count>0?true:false;
-   }
+
 
 }

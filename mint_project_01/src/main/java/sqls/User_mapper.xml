@@ -59,7 +59,7 @@
 <!--    로그인  0-->
    <select id="login" parameterType="UserDto" resultMap="UserDto">
       SELECT USEQ,UEMAIL,UNICK,UIMG,UDELFLAG,UMSEQ,UFMSEQ,UFUSEQ,URSEQ,USESSIONKEY,
-      USESSIONLIMIT,UUPRSEQ,UDOWNRSEQ FROM USER_TABLE WHERE UEMAIL=#{uemail} AND UPWD=#{upwd} AND UDELFLAG='N'
+      USESSIONLIMIT,UUPRSEQ,UDOWNRSEQ FROM USER_TABLE WHERE UEMAIL=#{uemail, jdbcType=VARCHAR} AND UPWD=#{upwd, jdbcType=VARCHAR} AND UDELFLAG='N'
    </select>
 <!--    이메일체크 0-->
    <select id="chkEmail" parameterType="UserDto" resultMap="UserDto">
@@ -78,51 +78,42 @@
    <update id="updateUimg" parameterType="UserDto" >
       UPDATE USER_TABLE SET UIMG=#{uimg} WHERE USEQ=#{useq}      
    </update>
-<!--    유저 정보 변경 0-->
+<!--    유저 정보 변경 $$$-->
    <update id="updateUserinfo" parameterType="UserDto">
-      UPDATE USER_TABLE SET UPWD=#{upwd} WHERE USEQ=#{useq}
+      UPDATE USER_TABLE SET unick=#{unick} ,UPWD=#{upwd} WHERE USEQ=#{useq}
    </update>
-<!--    즐겨찾기한 영화 가져오기-->
+<!--    즐겨찾기한 영화 가져오기 $$$-->
    <select id="getFavoriteMovie" parameterType="Map" resultMap="UserDto">
-      SELECT MTITLE,MIMG FROM MOVIE_TABLE WHERE MSEQ IN 
+      SELECT * FROM MOVIE_TABLE WHERE MSEQ IN 
       <foreach collection="seqs" item="mseq" open="(" close=")" separator=",">
-         #{mseq}
-      </foreach>
+			#{mseq}
+		</foreach>
    </select>
    
-<!--    유저가 쓴 리뷰 불러오기 0  resultType="UserDto"  -->
+<!--    유저가 쓴 리뷰 불러오기 0  resultType="UserDto"  $$$-->
    <select id="getUserReview" parameterType="int" resultMap="UserDto">
-        SELECT MTITLE,RCONTENT,RDATE,RUP FROM USER_TABLE, REVIEW_TABLE, MOVIE_TABLE 
-      WHERE REVIEW_TABLE.RUSEQ=USER_TABLE.USEQ AND MOVIE_TABLE.MSEQ=REVIEW_TABLE.RMSEQ AND USEQ=#{useq} ORDER BY RSEQ DESC
+        SELECT MTITLE,RCONTENT,RDATE,RDELFLAG,RSEQ,RUSEQ FROM USER_TABLE, REVIEW_TABLE, MOVIE_TABLE 
+      WHERE REVIEW_TABLE.RUSEQ=USER_TABLE.USEQ AND MOVIE_TABLE.MSEQ=REVIEW_TABLE.RMSEQ 
+      AND USEQ=#{useq} AND REVIEW_TABLE.RDELFLAG='N' ORDER BY RSEQ DESC
    </select>
    
-   <!--    리뷰추가 -->
-
-<!--    <update id="insertReview_user" parameterType="int"> -->
-<!--       UPDATE USER_TABLE SET URSEQ=(URSEQ||#{urseq})||':' WHERE USEQ=#{useq} -->
-<!--    </update> -->
+<!-- 리뷰삭제 $$$-->
+		<update id="delRe" parameterType="Map">
+		UPDATE REVIEW_TABLE SET RDELFLAG='Y'
+		WHERE RSEQ IN
+		<foreach collection="rseq" item="rseqs" open="(" close=")" separator=",">
+			#{rseqs}
+		</foreach>
+		</update>
    
-<!--         후기삭제 DELFLAG N =삭제되기전 Y = 삭제된후-->
-      <update id="delRe" parameterType="int">
-      UPDATE REVIEW_TABLE SET RDELFLAG='Y'
-      WHERE RSEQ=#{rseq}
-      
-<!--       UPDATE REVIEW_TABLE R INNER JOIN USER_TABLE U -->
-<!--       ON R.RUSEQ= U.USEQ -->
-<!--       SET RDELFLAG= 'Y' -->
-<!--       WHERE USEQ=#{useq} AND RSEQ=#{rseq} -->
-      
-<!--       UPDATE REVIEW_TABLE  -->
-<!--       SET RDELFLAG='Y' WHERE RUSEQ IN  -->
-<!--       (SELECT USEQ FROM USER_TABLE  -->
-<!--       WHERE USER=${USEQ}) AND RSEQ={RSEQ} -->
-      
-      
-<!--       UPDATE REVIEW_TABLE SET RDELFLAG='Y'이걸 해야 하는데 -->
-<!--       REVIEW_TABLE (URSEQ)랑 USER_TABLE (USEQ)랑 같아야 한다.  -->
-      
-      </update>
-   
+<!--  화면에 뿌릴 리뷰 $$$-->
+		<select id="printReview" parameterType="int">
+		SELECT RNUM,RSEQ,RCONTENT FROM 
+		(SELECT ROWNUM AS RNUM,RSEQ,RCONTENT 
+		FROM (SELECT * FROM REVIEW_TABLE 
+		WHERE RUSEQ=#{ruseq} ORDER BY RDATE DESC)) 
+		WHERE RNUM BETWEEN 1 AND 6;
+		</select>   
    
 <!--    회원탈퇴  0-->
    <update id="delUser" parameterType="int">

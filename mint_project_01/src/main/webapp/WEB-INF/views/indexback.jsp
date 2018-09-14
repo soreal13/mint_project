@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-<title>MINT!!</title>
+<title>MINT!! 여기는 감춰진 사이트 개발진의 피땀 눈물</title>
 </head>
 <body>
 <%@include file="header.jsp"%>
