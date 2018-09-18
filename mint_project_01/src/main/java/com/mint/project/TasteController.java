@@ -43,7 +43,7 @@ public class  TasteController {
 	@Autowired
 	private MovieServiceImp mService;
 	
-	@Autowired
+	@Autowired 
 	   private StarpointServiceImp sService;
 	
 	TasteAop taop = new TasteAop();
