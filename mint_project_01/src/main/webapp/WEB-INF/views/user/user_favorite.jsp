@@ -106,5 +106,6 @@ list-style: none;float: left;
    </tr>
 </table>
  </div>
+ <%@include file="../footer.jsp"%>
 </body>
 </html>

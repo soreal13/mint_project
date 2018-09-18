@@ -180,5 +180,6 @@
 	  <input width="10px;" class="button" id="submit" type="submit" value="삭제"/>
    </form>
 </div>
+<%@include file="../footer.jsp"%>
 </body>
 </html>
