@@ -581,7 +581,7 @@ $(function(){
 				<col width="80"><col width="80"><col width="100">
 				<tr>
 					<td><input type="hidden" name="runick" value="${ldto.unick}">${ldto.unick}</td>
-					<td><textarea rows="3" cols="59" name="rcontent" placeholder="한줄평을 입력해주세요."></textarea></td>
+					<td><textarea style="resize: none;" rows="3" cols="59" name="rcontent" placeholder="한줄평을 입력해주세요."></textarea></td>
 					<td><input type="submit" value="입력"></td>
 				</tr>
 					

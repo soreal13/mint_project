@@ -64,7 +64,7 @@
    </tr>   
    <tr>
       <th>답변받을 이메일</th>
-      <td><textarea rows="10" cols="40" name="content" placeholder="별명&답변받을 이메일을 적어주세요." class="form-control" required="required" ></textarea></td>
+      <td><textarea style="resize: none;" rows="10" cols="40" name="content" placeholder="별명&답변받을 이메일을 적어주세요." class="form-control" required="required" ></textarea></td>
    </tr>
    <tr>
       <td colspan="2" align="right"><input type="submit" value="문의보내기" class="btn btn-warning" >

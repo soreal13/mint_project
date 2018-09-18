@@ -236,7 +236,7 @@ function drawChart() {
 </div>
 
 
-  <h1 style="margin-top: 50px;">${ldto.unick}님의 선호영화</h1>
+  <h1 style="margin-top: 50px;" onclick="location.href='userprefer.do?useq=${ldto.useq}'">${ldto.unick}님의 선호영화</h1>
 <br/><br/><br/><br/><br/>
 <table>
    <tr>

@@ -40,5 +40,9 @@ public interface IStarpointDao {
 	public List<StarpointDto> getUserhighmovie(int suseq);
 	
 	
+	//개인 별점 선호 높은 순 전체	
+		public List<StarpointDto> getUserhighmovie2(int suseq);
+		
+	
 	
 }

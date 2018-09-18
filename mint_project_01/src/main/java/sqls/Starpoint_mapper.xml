@@ -54,5 +54,11 @@
 			ORDER BY SGRADE DESC		
 	</select>
 	
+		<select id="getUserhighmovie2" parameterType="int" resultType="StarpointDto">
+			SELECT * FROM STARPOINT_TABLE
+			WHERE SUSEQ=#{SUSEQ, jdbcType=INTEGER}
+			ORDER BY SGRADE DESC		
+	</select>
+	
 	
 </mapper>
