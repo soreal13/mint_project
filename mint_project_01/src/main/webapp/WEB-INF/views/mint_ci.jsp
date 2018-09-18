@@ -127,7 +127,7 @@ vertical-align: middle;
 #mint_team{
 	border-bottom:none;
        border-style:dotted;
-       font-size: 30px;
+       font-size: 20px;
 	   margin: auto;
        height: 200px;
    
@@ -211,7 +211,7 @@ vertical-align: middle;
 			<td><img src="resources/img/cip3.jpg"></td><td>CAT</td><td>버스기사<br/>(하드캐리)</td><td>힘들고 재밌고 즐거웠습니다 고생하셨습니다~^_^</td>
 		</tr>
 		<tr>
-			<td><img src="resouces/img/cip4.jpg"></td><td>Chicken</td><td>팀원</td><td></td>
+			<td><img src="resources/img/cip4.png"></td><td>BigChicken</td><td>팀원</td><td>힘들고 힘들고 눈치싸움이였다.. 치맥이 생각나는구나.</td>
 		</tr>
 	</table>
 	
