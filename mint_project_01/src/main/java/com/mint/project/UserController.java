@@ -204,12 +204,24 @@ public class UserController {
       public String uerfavoriteMovie(HttpSession session, Model model) {
     	   UserDto lldto=(UserDto)session.getAttribute("ldto");
            UserDto ldto=userService.getUserinfo(lldto);
-           String[] seqs =ldto.getUfmseq().split(":");
-           List<UserDto>dto=userService.getFavoriteMovie(seqs);
+           
+           List<UserDto>dto=null;
+           if(ldto.getUfmseq()!=null) {
+        	   String[] seqs = ldto.getUfmseq().split(":");
+	            dto=userService.getFavoriteMovie(seqs);
+           }
+//           if(seqs==null) {
+//        	   return 
+//           }
            model.addAttribute("lists", dto);
            model.addAttribute("lldto", ldto);
-    	  
-         return "user/user_favorite";
+
+        	     
+               return "user/user_favorite";
+    
+          
+      
+     
 }
    
       //   4점이상영화 전페 목록으로 이동

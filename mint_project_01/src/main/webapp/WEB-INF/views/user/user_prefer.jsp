@@ -87,7 +87,7 @@ List<MovieDto> fmlists2=(List<MovieDto>)request.getAttribute("fmlists2");
    
    for(int i=0;i<fmlists2.size();i++){
 	      MovieDto fmdto=fmlists2.get(i);
-	   if(i<6){
+	  
 		   
 		  %>		 
 			<li>
@@ -95,7 +95,7 @@ List<MovieDto> fmlists2=(List<MovieDto>)request.getAttribute("fmlists2");
 				<a id="title" href="movie_info.do?mseq=<%=fmdto.getMseq()%>&useq=${ldto.useq}"><%=fmdto.getMtitle()%></a>
 			</li>				
 		 <%		   
-	   	}		   				   
+	   	   				   
 	   }
 %>        
          
