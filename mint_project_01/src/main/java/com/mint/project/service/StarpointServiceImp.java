@@ -65,4 +65,9 @@ public class StarpointServiceImp implements IStarpointService {
 		return starpointDao.getUserhighmovie(suseq);
 	};
 
+	//개인 별점 선호 높은 순 전체	
+	public List<StarpointDto> getUserhighmovie2(int suseq){
+		return starpointDao.getUserhighmovie(suseq);
+	};
+	
 }

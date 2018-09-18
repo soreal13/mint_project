@@ -115,5 +115,6 @@
             <button style="margin-left: 50px;" onclick="location.href='deluser.do?useq=${ldto.useq}'">탈퇴</button>
 
 </div>
+<%@include file="../footer.jsp"%>
 </body>
 </html>

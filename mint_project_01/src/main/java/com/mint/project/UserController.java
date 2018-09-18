@@ -212,6 +212,34 @@ public class UserController {
          return "user/user_favorite";
 }
    
-   
+      //   4점이상영화 전페 목록으로 이동
+      @RequestMapping(value="/userprefer.do", method =RequestMethod.GET)
+      public String userprefer(HttpSession session,UserDto udto, Model model,int useq) {
+    	  //선호별영화
+
+          System.out.println("선호별 영화 들어감");
+          System.out.println(useq);
+          List<StarpointDto> slist=starpointService.getUserhighmovie2(useq);
+          System.out.println(slist.toString());
+          System.out.println(slist.size());
+          
+          
+          List<MovieDto> fmlists2= new ArrayList<MovieDto>();	
+          
+	  		for(int i=0; i<slist.size(); i++) {
+	  			System.out.println(slist.get(i).getSmseq());
+	  			fmlists2.add(i, movieService.getMovieinfo(slist.get(i).getSmseq()));
+	  			System.out.println(fmlists2.toString());
+	  		}
+	  		System.out.println(fmlists2.toString());
+	  		
+	  		model.addAttribute("fmlists2", fmlists2);
+          
+    	  
+    	  
+    	  
+         return "user/user_prefer";
+      }
+      
 
 }

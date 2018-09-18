@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>MINT!! :: 평점보기</title>
+<title>Insert title here</title>
 <style type="text/css">
 @font-face{     font-family:"mint_catefont";     src: url("resources/font/tvN Enjoystories Bold.ttf") format("truetype");       }
 
@@ -75,34 +75,31 @@ h1{
 <body>
 <%@include file="../header.jsp"%>
 <div class="배경div">
-<h1 style="font-size: 90px;">회원님께 추천해드리는 영화</h1>
+<h1 style="font-size: 90px;">별점 4점 이상을 준 선호영화</h1>
  
 <table class="imgtable">
    <tr>
      <td>
          <ul class="mimg">
-<%
+ <%
+List<MovieDto> fmlists2=(List<MovieDto>)request.getAttribute("fmlists2");
 
-	List<MovieDto> tmlist=(List<MovieDto>)request.getAttribute("tmlist");
-	String keyw =(String)request.getAttribute("keyw");
-	
-%>
-
-<%
-
-   for(int i=0;i<tmlist.size();i++){
-         MovieDto mdto=tmlist.get(i);
-      
+   
+   for(int i=0;i<fmlists2.size();i++){
+	      MovieDto fmdto=fmlists2.get(i);
+	   if(i<6){
+		   
+		  %>		 
+			<li>
+				<a href="movie_info.do?mseq=<%=fmdto.getMseq()%>&useq=${ldto.useq}"><img id="img" src="<%=fmdto.getMimg()%>" id="recmovie"></a><br/>
+				<a id="title" href="movie_info.do?mseq=<%=fmdto.getMseq()%>&useq=${ldto.useq}"><%=fmdto.getMtitle()%></a>
+			</li>				
+		 <%		   
+	   	}		   				   
+	   }
+%>        
          
-        %>       
-         <li>
-            <a href="movie_info.do?mseq=<%=mdto.getMseq()%>&useq=${ldto.useq}" ><img src="<%=mdto.getMimg()%>" id="recmovie"></a><br/>
-            <a id="title" href="movie_info.do?mseq=<%=mdto.getMseq()%>&useq=${ldto.useq}"><%=mdto.getMtitle()%></a>
-         </li>            
-       <%         
-                           
-      }
-%>
+         
       </ul>
      </td>
    </tr>

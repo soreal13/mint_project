@@ -42,6 +42,52 @@
    
    }    
     a{text-decoration: none; color: green;}
+    
+    
+    
+    input{
+		width: 110px;
+		border-radius:20px 20px 20px 20px;
+		font-family:"mint_catefont"; 
+		  background:#595959;
+		  color:#96ffd4;
+		  border:none;
+		  position:relative;
+		  font-size:30px;
+		  cursor:pointer;
+		  transition:800ms ease all;
+		  outline:none;
+		}
+	input:hover{
+		  background:#96ffd4 ;
+		  color:#595959;
+		}
+	input:before, input:after{
+		  content:'';
+		  top:0;
+		  right:0;
+		  height:2px;
+		  width:0; 
+		  background: #1AAB8A;
+		  transition:400ms ease all;
+		}
+	input:after{
+		  right:inherit;
+		  top:inherit;
+		  left:0;
+		  bottom:0;
+		}
+	input:hover:before,input:hover:after{
+		  transition:800ms ease all;
+		      }
+		      
+	#echeck,#ncheck{
+	font-size:30px;
+	 width: 80px;
+	 height:40px;
+	}
+    
+    
 </style>
 <script type="text/javascript">
 //이메일 중복체크하기
