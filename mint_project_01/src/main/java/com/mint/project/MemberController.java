@@ -44,7 +44,7 @@ public class MemberController {
    private JavaMailSender mailSender;
    
 	TasteAop taop = new TasteAop();
-	
+	 
 	//로그인 창으로
 	@RequestMapping(value="/login.do", method =RequestMethod.GET)
 	public String index(Locale locale, Model model) {
