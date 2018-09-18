@@ -30,7 +30,7 @@ public class  AdminController {
 	public String Admin(Locale locale, Model model) {
 		
 		return "admin/admin_main";
-	}
+	} 
 	
 	@Autowired
 	public IMovieService movieServiceImp;
