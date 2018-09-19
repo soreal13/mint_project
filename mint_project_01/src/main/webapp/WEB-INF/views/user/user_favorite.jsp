@@ -79,9 +79,7 @@ list-style: none;float: left;
 <body>
 <%@include file="../header.jsp"%>
 <div class="배경div">
-<h1>팔로우한 영화 전체</h1>
- 
- 
+<h1 style="font-size: 90px;">팔로우 한 영화</h1>
 <br/><br/><br/><br/><br/>
  <table class="imgtable">
    <tr>
@@ -89,6 +87,9 @@ list-style: none;float: left;
 		<ul class="ul태그">
       <c:choose>
          <c:when test="${empty lists}">
+        	 	<li >
+        	 		<a>즐찾영화없음</a>
+                 </li>
          </c:when>
          <c:otherwise>
             <c:forEach var = "ldto" items="${lists}">
